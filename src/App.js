@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import './App.css';
 
 import * as Pages from './pages/index';
 import store from './store/store';
