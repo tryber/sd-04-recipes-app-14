@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/header/Header'
 
-const Foods = () => (<div><Header /></div>);
+const Perfil = () => (<div><Header /></div>);
 
-export default Foods;
+export default Perfil;
