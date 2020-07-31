@@ -1,39 +1,49 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addSearchRadio } from '../../action/actionSearch';
 
-function RadioButton() {
+function RadioButton({ inputRadio }) {
   return (
     <div>
       <label id="ingrediente" htmlFor="ingrediente">
-        Ingrediente
         <input
+          onChange={(event) => inputRadio(event.target.value)}
           id="ingrediente"
           type="radio"
           data-testid="ingredient-search-radio"
           name="radio-button-searchbar"
           value="ingrediente"
-        ></input>
+        />
+        Ingrediente
       </label>
       <label id="nome" htmlFor="Nome">
-        Nome
         <input
+          onChange={(event) => inputRadio(event.target.value)}
           id="nome"
           type="radio"
           data-testid="name-search-radio"
           name="radio-button-searchbar"
           value="nome"
-        ></input>
+        />
+        Nome
       </label>
       <label id="primeiraletra" htmlFor="primeiraletr">
-        Primeira Letra
         <input
+          onChange={(event) => inputRadio(event.target.value)}
           id="primeiraletra"
           type="radio"
           data-testid="first-letter-search-radio"
           name="radio-button-searchbar"
           value="primeiraletra"
-        ></input>
+        />
+        Primeira Letra
       </label>
     </div>
   );
 }
-export default RadioButton;
+
+const mapDispatchToProps = (dispatch) => ({
+  inputRadio: (e) => dispatch(addSearchRadio(e)),
+});
+
+export default connect(null, mapDispatchToProps)(RadioButton);
