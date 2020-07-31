@@ -16,8 +16,8 @@ function App() {
         <Route exact path="/comidas" component={Pages.Foods} />
         <Route exact path="/bebidas" component={Pages.Drinks} />
         <Route exact path="/perfil" component={Pages.Perfil}/>
-        <Route exact path="/home" component={Pages.Home}/>
-        {/* <Route path="" component={}/>
+        {/* <Route exact path="" component={}/>
+        <Route path="" component={}/>
         <Route path="" component={}/>
         <Route path="" component={}/>
         <Route path="" component={}/>

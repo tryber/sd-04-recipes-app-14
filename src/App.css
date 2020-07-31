@@ -60,14 +60,3 @@
     transform: rotate(-10deg);
   }
 }
-
-.header-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: baseline;
-}
-
-.content {
-  display: none;
-  overflow: hidden;
-}
