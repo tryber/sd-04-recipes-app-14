@@ -36,12 +36,11 @@ class Login extends React.Component {
     localStorage.cocktailsToken = '1';
     localStorage.user = JSON.stringify(user);
     this.props.getEmail1(this.state.email);
-    event.preventDefault();
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={(event) => event.preventDefault()}>
         <h3>Login</h3>
         <label htmlFor="email">
           E-mail
@@ -52,7 +51,7 @@ class Login extends React.Component {
             name="email"
             data-testid="email-input"
             required
-            pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$"
+            pattern="[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}"
           />
         </label>
         <label htmlFor="senha">
@@ -60,7 +59,7 @@ class Login extends React.Component {
           <input data-testid="password-input" type="password" name="senha" required minLength="6" />
         </label>
         <Link>
-          <button onClick={() => this.handleSubmit} data-testid="login-submit-btn">
+          <button type='submit' onClick={() => this.handleSubmit} data-testid="login-submit-btn">
             Entrar
           </button>
         </Link>
