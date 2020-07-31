@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getFood } from '../service';
+import getFood from '../service';
 import { fetchFoodApi, getEmail } from '../actions/actions';
 
 class Login extends React.Component {
@@ -30,7 +31,7 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    let user = { email: this.state.email };
+    const user = { email: this.state.email };
     localStorage.mealsToken = '1';
     localStorage.cocktailsToken = '1';
     localStorage.user = JSON.stringify(user);
@@ -51,7 +52,8 @@ class Login extends React.Component {
             name="email"
             data-testid="email-input"
             required
-            pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$"
+            pattern=
+            "^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$"
           />
         </label>
         <label htmlFor="senha">
@@ -67,6 +69,11 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  fetchFoodApi1: PropTypes.func.isRequired,
+  getEmail1: PropTypes.func.isRequired,
+};
 
 const mapDispacthToProps = (dispatch) => ({
   fetchFoodApi1: (data) => dispatch(fetchFoodApi(data)),
