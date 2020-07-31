@@ -18,7 +18,6 @@ const reducerSearch = (state = INITIAL_STATE, action) => {
         radio: action.radio,
       };
     default:
-      console.log('Deu Ruim');
       return state;
   }
 };
