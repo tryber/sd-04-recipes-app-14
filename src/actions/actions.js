@@ -1,5 +1,3 @@
-import { getFood } from '../service';
-
 export const REQUEST_API = 'REQUEST_API';
 export const GET_FOOD_API = 'GET_FOOD_API';
 export const GET_EMAIL = 'GET_EMAIL';

@@ -58,9 +58,11 @@ class Login extends React.Component {
           Senha:
           <input data-testid="password-input" type="password" name="senha" required minLength="6" />
         </label>
-        <button onClick={() => this.handleSubmit} data-testid="login-submit-btn">
-          Entrar
-        </button>
+        <Link>
+          <button onClick={() => this.handleSubmit} data-testid="login-submit-btn">
+            Entrar
+          </button>
+        </Link>
       </form>
     );
   }
