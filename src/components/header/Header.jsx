@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileIcon from '../../images/profileIcon.svg'
+import ProfileIcon from '../../images/profileIcon.svg';
 import SearchIcon from '../../images/searchIcon.svg';
 import './Header.css';
 
@@ -12,7 +12,7 @@ const Header = () => {
       searchBar.style.display = 'block';
     }
   }
-  
+
   return (
     <div>
       <div className="header-container">
