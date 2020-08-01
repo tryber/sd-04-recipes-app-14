@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addSearchSearchBar } from '../../action/actionSearch';
 import { fetchApi } from '../../action/actionFoods';
 import { fetchApiDrinks } from '../../action/actionDrinks';
-import { primeiraLetra } from '../../Helper/SearchBar-PrimeiraLetra';
+import primeiraLetra from '../../Helper/SearchBar-PrimeiraLetra';
 
 function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, requestAPIdrinks }) {
   const FoodOrDrinks = () => {
