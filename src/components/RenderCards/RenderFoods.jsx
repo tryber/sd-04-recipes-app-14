@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import './Renders.css';
@@ -16,6 +17,13 @@ function RenderFoods({ foods }) {
     return null;
   });
 }
+
+RenderFoods.propTypes = {
+  foods: PropTypes.shape({
+    length: PropTypes.number,
+    map: PropTypes.func,
+  }).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   foods: state.reducerFoods.Foods,

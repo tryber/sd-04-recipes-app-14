@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { addSearchRadio } from '../../action/actionSearch';
@@ -41,6 +42,10 @@ function RadioButton({ inputRadio }) {
     </div>
   );
 }
+
+RadioButton.propTypes = {
+  inputRadio: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   inputRadio: (e) => dispatch(addSearchRadio(e)),

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { addSearchSearchBar } from '../../action/actionSearch';
@@ -33,6 +34,16 @@ function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, reque
     </div>
   );
 }
+
+BarraDePesquisa.propTypes = {
+  inputSearch: PropTypes.func.isRequired,
+  radio: PropTypes.string.isRequired,
+  requestAPIdrinks: PropTypes.func.isRequired,
+  requestAPIfoods: PropTypes.func.isRequired,
+  searchBar: PropTypes.shape({
+    length: PropTypes.number,
+  }).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   searchBar: state.reducerSearch.searchBar,
