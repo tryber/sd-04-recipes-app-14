@@ -1,0 +1,12 @@
+.picture-cards-food {
+  width: 100px;
+}
+
+.foods-card {
+  padding: 5px;
+  margin: 10px;
+  display: flex;
+  text-align: center;
+  width: 200px;
+  border: 1px solid black;
+}
