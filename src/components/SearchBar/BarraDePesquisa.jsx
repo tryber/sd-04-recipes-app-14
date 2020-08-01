@@ -2,14 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addSearchSearchBar } from '../../action/actionSearch';
 import { fetchApi } from '../../action/actionFoods';
+import { fetchApiDrinks } from '../../action/actionDrinks';
 
-function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPI }) {
+function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, requestAPIdrinks }) {
   const primeiraLetra = (event) => {
     if (radio === 'primeiraletra') {
       if (searchBar.length >= 1) alert('Sua busca deve conter somente 1 (um) caracter');
       console.log(searchBar, searchBar.length);
     }
     inputSearch(event);
+  };
+
+  const FoodOrDrinks = () => {
+    if (window.location.href.includes('bebidas')) return requestAPIdrinks(searchBar, radio);
+    if (window.location.href.includes('comidas')) return requestAPIfoods(searchBar, radio);
   };
 
   return (
@@ -21,7 +27,7 @@ function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPI }) {
         value={searchBar}
         onChange={(e) => primeiraLetra(e)}
       />
-      <button onClick={() => requestAPI(searchBar, radio)} data-testid="exec-search-btn">
+      <button onClick={() => FoodOrDrinks()} data-testid="exec-search-btn">
         Pesquisar
       </button>
     </div>
@@ -35,7 +41,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   inputSearch: (e) => dispatch(addSearchSearchBar(e.target.value)),
-  requestAPI: (searchBar, radio) => dispatch(fetchApi(searchBar, radio)),
+  requestAPIfoods: (searchBar, radio) => dispatch(fetchApi(searchBar, radio)),
+  requestAPIdrinks: (searchBar, radio) => dispatch(fetchApiDrinks(searchBar, radio)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BarraDePesquisa);

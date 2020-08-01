@@ -6,16 +6,13 @@ const INITIAL_STATE = {
 };
 
 const reducerFoods = (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case REQUEST_API:
-      console.log('REQUEST API');
       return {
         ...state,
         isLoading: true,
       };
     case REQUEST_API_SUCESS:
-      console.log('REQUEST API SUCESS!!');
       return {
         ...state,
         Foods: action.data,
