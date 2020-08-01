@@ -4,19 +4,13 @@ import { connect } from 'react-redux';
 import { addSearchSearchBar } from '../../action/actionSearch';
 import { fetchApi } from '../../action/actionFoods';
 import { fetchApiDrinks } from '../../action/actionDrinks';
+import { primeiraLetra } from '../../Helper/SearchBar-PrimeiraLetra';
 
 function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, requestAPIdrinks }) {
-  const primeiraLetra = (event) => {
-    if (radio === 'primeiraletra') {
-      if (searchBar.length >= 1) alert('Sua busca deve conter somente 1 (um) caracter');
-      console.log(searchBar, searchBar.length);
-    }
-    inputSearch(event);
-  };
-
   const FoodOrDrinks = () => {
     if (window.location.href.includes('bebidas')) return requestAPIdrinks(searchBar, radio);
     if (window.location.href.includes('comidas')) return requestAPIfoods(searchBar, radio);
+    return null;
   };
 
   return (
@@ -26,9 +20,9 @@ function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, reque
         type="text"
         placeholder="Digite sua pesquisa"
         value={searchBar}
-        onChange={(e) => primeiraLetra(e)}
+        onChange={(e) => primeiraLetra(e, inputSearch, radio, searchBar)}
       />
-      <button onClick={() => FoodOrDrinks()} data-testid="exec-search-btn">
+      <button type="submit" onClick={() => FoodOrDrinks()} data-testid="exec-search-btn">
         Pesquisar
       </button>
     </div>
