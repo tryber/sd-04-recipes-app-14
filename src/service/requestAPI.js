@@ -20,7 +20,7 @@ export function requestAPIfoods(query = '', radio) {
 export function requestAPIdrinks(query = '', radio) {
   if (radio === 'ingrediente') {
     return fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${query}`).then((data) =>
-      data.json(),
+      data.json().catch(() => alert('ERROR')),
     );
   }
   if (radio === 'nome') {
