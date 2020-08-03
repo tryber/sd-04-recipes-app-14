@@ -2,7 +2,7 @@ import { ADD_SEARCH_TERMS_SEARCHBAR, ADD_SEARCH_TERMS_RADIO } from '../action/ac
 
 const INITIAL_STATE = {
   searchBar: '',
-  radio: '',
+  radio: 'ingrediente',
 };
 
 const reducerSearch = (state = INITIAL_STATE, action) => {

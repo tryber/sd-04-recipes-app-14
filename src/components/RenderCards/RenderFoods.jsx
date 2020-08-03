@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import './Renders.css';
+import oneResultOrError from '../../Helper/SearchBar-Missing';
 
 function RenderFoods({ foods, isLoading }) {
   if (isLoading) return null;
-  if (foods === null) {
-    return <p>Sinto muito, não encontramos nenhuma receita para esses filtros.</p>;
-  }
+  if (foods === null || foods.length === 1) return oneResultOrError(foods, 'comidas');
   return foods.map((food, index) => {
     if (index < 12) {
       return (

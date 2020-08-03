@@ -6,11 +6,15 @@ import { fetchApi } from '../../action/actionFoods';
 import { fetchApiDrinks } from '../../action/actionDrinks';
 import primeiraLetra from '../../Helper/SearchBar-PrimeiraLetra';
 
-// TESTE
-
 function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, requestAPIdrinks }) {
   const FoodOrDrinks = () => {
-    if (window.location.href.includes('bebidas')) return requestAPIdrinks(searchBar, radio);
+    if (window.location.href.includes('bebidas')) {
+      if (searchBar.length === 0 && radio === 'ingrediente') {
+        return alert('Você deve digitar uma busca!');
+      }
+      return requestAPIdrinks(searchBar, radio);
+    }
+
     if (window.location.href.includes('comidas')) return requestAPIfoods(searchBar, radio);
     return null;
   };
