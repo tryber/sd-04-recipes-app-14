@@ -7,7 +7,7 @@ import oneResultOrError from '../../Helper/SearchBar-Missing';
 
 function RenderFoods({ foods, isLoading }) {
   if (isLoading) return null;
-  if (foods === null || foods.length === 1) return oneResultOrError(foods, 'comidas');
+  if (foods === null || foods.length === 1) return oneResultOrError(foods, 'comidas', 'idMeal');
   return foods.map((food, index) => {
     if (index < 12) {
       return (
