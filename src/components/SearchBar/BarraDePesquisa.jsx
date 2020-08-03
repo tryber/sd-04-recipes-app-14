@@ -5,20 +5,9 @@ import { addSearchSearchBar } from '../../action/actionSearch';
 import { fetchApi } from '../../action/actionFoods';
 import { fetchApiDrinks } from '../../action/actionDrinks';
 import primeiraLetra from '../../Helper/SearchBar-PrimeiraLetra';
+import FoodOrDrinks from './FoodOrDrinks';
 
 function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, requestAPIdrinks }) {
-  const FoodOrDrinks = () => {
-    if (window.location.href.includes('bebidas')) {
-      if (searchBar.length === 0 && radio === 'ingrediente') {
-        return alert('Você deve digitar uma busca!');
-      }
-      return requestAPIdrinks(searchBar, radio);
-    }
-
-    if (window.location.href.includes('comidas')) return requestAPIfoods(searchBar, radio);
-    return null;
-  };
-
   return (
     <div>
       <input
@@ -28,7 +17,11 @@ function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, reque
         value={searchBar}
         onChange={(e) => primeiraLetra(e, inputSearch, radio, searchBar)}
       />
-      <button type="submit" onClick={() => FoodOrDrinks()} data-testid="exec-search-btn">
+      <button
+        type="submit"
+        onClick={() => FoodOrDrinks(searchBar, radio, requestAPIdrinks, requestAPIfoods)}
+        data-testid="exec-search-btn"
+      >
         Pesquisar
       </button>
     </div>
