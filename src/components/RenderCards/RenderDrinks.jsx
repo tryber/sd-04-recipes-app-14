@@ -5,10 +5,9 @@ import { connect } from 'react-redux';
 import './Renders.css';
 
 function RenderDrinks({ drinks, isLoading }) {
-  console.log(drinks);
   if (isLoading) return null;
-  if (isLoading && drinks.length === 0) {
-    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  if (drinks === null) {
+    return <p>Sinto muito, não encontramos nenhuma receita para esses filtros.</p>;
   }
   return drinks.map((drink, index) => {
     if (index < 12) {

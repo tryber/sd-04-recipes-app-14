@@ -4,8 +4,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './Renders.css';
 
-function RenderFoods({ foods }) {
-  if (foods.length === 0) return <p>Nenhum pesquisa Feita</p>;
+function RenderFoods({ foods, isLoading }) {
+  if (isLoading) return null;
+  if (foods === null) {
+    return <p>Sinto muito, não encontramos nenhuma receita para esses filtros.</p>;
+  }
   return foods.map((food, index) => {
     if (index < 12) {
       return (
@@ -35,6 +38,7 @@ RenderFoods.propTypes = {
 
 const mapStateToProps = (state) => ({
   foods: state.reducerFoods.Foods,
+  isLoading: state.reducerFoods.isLoading,
 });
 
 export default connect(mapStateToProps)(RenderFoods);
