@@ -15,7 +15,7 @@ function RadioButton({ inputRadio }) {
           name="radio-button-searchbar"
           value="ingrediente"
         />
-        Ingredientee
+        Ingrediente
       </label>
       <label id="nome" htmlFor="Nome">
         <input

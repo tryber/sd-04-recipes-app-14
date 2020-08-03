@@ -6,6 +6,8 @@ import { fetchApi } from '../../action/actionFoods';
 import { fetchApiDrinks } from '../../action/actionDrinks';
 import primeiraLetra from '../../Helper/SearchBar-PrimeiraLetra';
 
+// TESTE
+
 function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, requestAPIdrinks }) {
   const FoodOrDrinks = () => {
     if (window.location.href.includes('bebidas')) return requestAPIdrinks(searchBar, radio);
