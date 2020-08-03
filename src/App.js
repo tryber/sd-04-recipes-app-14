@@ -5,7 +5,6 @@ import './App.css';
 
 import * as Pages from './pages/index';
 import store from './store/store';
-// Testando na Master
 
 function App() {
   return (
