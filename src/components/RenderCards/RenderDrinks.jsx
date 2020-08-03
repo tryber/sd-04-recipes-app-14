@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import './Renders.css';
+import { Link } from 'react-router-dom';
 
 function RenderDrinks({ drinks, isLoading }) {
   console.log(drinks);
@@ -12,10 +13,17 @@ function RenderDrinks({ drinks, isLoading }) {
   return drinks.map((drink, index) => {
     if (index < 12) {
       return (
-        <div className="foods-card" id={drink.idDrink} key={drink.strDrink}>
-          <img className="picture-cards-food" src={drink.strDrinkThumb} alt={drink.strDrink} />
-          <p>{drink.strDrink}</p>
-        </div>
+        <Link to={`/bebidas/${drink.idDrink}`}>
+          <div className="foods-card" id={drink.idDrink} key={drink.strDrink}>
+            <img
+              className="picture-cards-food"
+              data-testid={`${index}-card-image`}
+              src={drink.strDrinkThumb}
+              alt={drink.strDrink}
+            />
+            <p data-testid={`${index}-card-name`}>{drink.strDrink}</p>
+          </div>
+        </Link>
       );
     }
     return null;
