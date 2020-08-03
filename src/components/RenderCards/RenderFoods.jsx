@@ -1,8 +1,8 @@
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import './Renders.css';
-import { Link } from 'react-router-dom';
 
 function RenderFoods({ foods }) {
   if (foods.length === 0) return <p>Nenhum pesquisa Feita</p>;
