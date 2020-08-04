@@ -7,14 +7,14 @@ import './Footer.css';
 
 const Footer = () => (
   <footer className="footer" data-testid="footer">
-    <Link to="/bebidas" data-testid="drinks-bottom-btn">
-      <img src={drinkIcon} alt="Drink logo" />
+    <Link to="/bebidas">
+      <img src={drinkIcon} alt="Drink logo" data-testid="drinks-bottom-btn" />
     </Link>
-    <Link to="/explorar" data-testid="explore-bottom-btn">
-      <img src={exploreIcon} alt="Explore logo" />
+    <Link to="/explorar">
+      <img src={exploreIcon} alt="Explore logo" data-testid="explore-bottom-btn" />
     </Link>
-    <Link to="/comidas" data-testid="food-bottom-btn">
-      <img src={mealIcon} alt="Meal logo" />
+    <Link to="/comidas">
+      <img src={mealIcon} alt="Meal logo" data-testid="food-bottom-btn" />
     </Link>
   </footer>
 );
