@@ -9,7 +9,6 @@ const Foods = () => (
     <Header />
     <SearchBar />
     <RenderFoods />
-    <Header />
     <Footer />
   </div>
 );
