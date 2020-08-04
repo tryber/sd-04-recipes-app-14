@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import ProfileIcon from "../../images/profileIcon.svg";
-import SearchIcon from "../../images/searchIcon.svg";
-import SearchBar from "../SearchBar/SearchBar";
-import "./Header.css";
+import React, { Component } from 'react';
+import ProfileIcon from '../../images/profileIcon.svg';
+import SearchIcon from '../../images/searchIcon.svg';
+import SearchBar from '../SearchBar/SearchBar';
+import './Header.css';
 
 class Header extends Component {
   constructor(props) {
@@ -24,15 +24,16 @@ class Header extends Component {
   }
 
   setName() {
-    if (document.URL.includes("comidas")) {
+    if (document.URL.includes('comidas')) {
       return <h1 data-testid="page-title">Comidas</h1>;
     }
-    if (document.URL.includes("bebidas")) {
+    if (document.URL.includes('bebidas')) {
       return <h1 data-testid="page-title">Bebidas</h1>;
     }
-    if (document.URL.includes("perfil")) {
+    if (document.URL.includes('perfil')) {
       return <h1 data-testid="page-title">Perfil</h1>;
     }
+    return null;
   }
   render() {
     return (
