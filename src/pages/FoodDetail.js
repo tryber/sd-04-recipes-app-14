@@ -24,7 +24,6 @@ class FoodDetail extends React.Component {
   render() {
     if (this.state.receita.idMeal) {
       const {
-        idMeal,
         strMealThumb,
         strCategory,
         strInstructions,
@@ -46,7 +45,7 @@ class FoodDetail extends React.Component {
             title={strMeal}
             data-testid="video"
           />
-          <div data-testid="${index}-recomendation-card">
+          <div>
             <h2>receitas recomendadas</h2>
           </div>
           <button data-testid="start-recipe-btn">Iniciar receita</button>

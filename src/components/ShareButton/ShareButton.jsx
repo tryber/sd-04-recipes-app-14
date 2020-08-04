@@ -9,10 +9,20 @@ const ShareButton = () => {
   };
   return (
     <div>
-      <input type="text" value={document.URL} id="text-to-copy" readOnly />
-      <button type="button" onClick={() => copy()} data-testid="share-btn">
-        <img src={ShareIcon} alt="Share icon" />
-      </button>
+      <input
+        type="text"
+        value={document.URL}
+        id="text-to-copy"
+        readOnly
+        style={{ display: 'none' }}
+      />
+      <input
+        data-testid="share-btn"
+        type="image"
+        src={ShareIcon}
+        alt="Share icon"
+        onClick={() => copy()}
+      />
     </div>
   );
 };

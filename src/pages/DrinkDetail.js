@@ -2,7 +2,6 @@ import React from 'react';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
 import IngredientList from '../components/IngredientList/IngredientList';
 
-
 class DrinkDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -25,9 +24,7 @@ class DrinkDetail extends React.Component {
   render() {
     if (this.state.receita.idDrink) {
       const {
-        idDrink,
         strDrinkThumb,
-        strCategory,
         strAlcoholic,
         strInstructions,
         strDrink,
@@ -45,7 +42,7 @@ class DrinkDetail extends React.Component {
             <h3>Instruções</h3>
             <span data-testid="instructions">{strInstructions}</span>
           </div>
-          <div data-testid="${index}-recomendation-card">
+          <div>
             <h2>receitas recomendadas</h2>
           </div>
           <button data-testid="start-recipe-btn">Iniciar receita</button>

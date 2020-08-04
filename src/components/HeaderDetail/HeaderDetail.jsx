@@ -1,6 +1,6 @@
 import React from 'react';
-import BlackHeartIcon from '../../images/blackHeartIcon.svg';
-import ShareIcon from '../../images/shareIcon.svg';
+import ShareButton from '../ShareButton/ShareButton';
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
 
 const HeaderDetail = (props) => {
   const { src, nomeReceita, categoriaReceita } = props;
@@ -16,8 +16,8 @@ const HeaderDetail = (props) => {
             <span data-testid="recipe-category">{categoriaReceita}</span>
           </div>
           <div>
-            <img src={ShareIcon} data-testid="share-btn" alt="botao de compartilhar" />
-            <img src={BlackHeartIcon} data-testid="favorite-btn" alt="botao de curtir" />
+            <ShareButton />
+            <FavoriteButton />
           </div>
         </div>
       </div>
