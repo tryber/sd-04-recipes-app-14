@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import './Renders.css';
+import oneResultOrError from '../../Helper/SearchBar-Missing';
 
 function RenderDrinks({ drinks, isLoading }) {
-  console.log(drinks);
   if (isLoading) return null;
-  if (isLoading && drinks.length === 0) {
-    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-  }
+  if (drinks === null || drinks.length === 1) return oneResultOrError(drinks, 'bebidas', 'idDrink');
   return drinks.map((drink, index) => {
     if (index < 12) {
       return (
