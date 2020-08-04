@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ProfileIcon from '../../images/profileIcon.svg';
 import SearchIcon from '../../images/searchIcon.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import './Header.css';
-import { Component } from 'react';
 
 class Header extends Component {
   constructor(props) {
