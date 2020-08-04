@@ -47,10 +47,7 @@ class FoodDetail extends React.Component {
             <h3>Instrucoe</h3>
             <span>{strInstructions}</span>
           </div>
-          <Player data-testid="video">
-            {/* <source src={`https://www.youtube.com/embed/${url}`}/> */}
-            <source src={`https://youtu.be/${url}`} />
-          </Player>
+<iframe src={`https://www.youtube.com/embed/${url}`} title={strMeal} data-testid="video" />
           {console.log('url', url)}
           <div data-testid="${index}-recomendation-card">
             <h2>receitas recomendadas</h2>
