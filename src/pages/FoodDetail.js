@@ -1,6 +1,6 @@
 import React from 'react';
-import { Player } from 'video-react';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
+import IngredientList from '../components/IngredientList/IngredientList';
 
 class FoodDetail extends React.Component {
   constructor(props) {
@@ -11,7 +11,6 @@ class FoodDetail extends React.Component {
   }
 
   componentDidMount() {
-    console.log('params', this.props.match.params.id);
     const id = this.props.match.params.id;
     this.getRecipe(id);
   }
@@ -24,7 +23,6 @@ class FoodDetail extends React.Component {
 
   render() {
     if (this.state.receita.idMeal) {
-      console.log('coki', document.cookie);
       const {
         idMeal,
         strMealThumb,
@@ -34,21 +32,20 @@ class FoodDetail extends React.Component {
         strYoutube,
       } = this.state.receita;
       let url = strYoutube.slice(32);
+      const receita = this.state;
       return (
         <div>
-          {console.log('re', this.state.receita)}
-          {console.log('you', strYoutube)}
           <HeaderDetail src={strMealThumb} nomeReceita={strMeal} categoriaReceita={strCategory} />
-          <div data-testid="${index}-ingredient-name-and-measure">
-            <h3>Ingredientes</h3>
-            <ul></ul>
+          <IngredientList receita={receita} />
+          <div>
+            <h3>Instruções</h3>
+            <span data-testid="instructions">{strInstructions}</span>
           </div>
-          <div data-testid="instructions">
-            <h3>Instrucoe</h3>
-            <span>{strInstructions}</span>
-          </div>
-<iframe src={`https://www.youtube.com/embed/${url}`} title={strMeal} data-testid="video" />
-          {console.log('url', url)}
+          <iframe
+            src={`https://www.youtube.com/embed/${url}`}
+            title={strMeal}
+            data-testid="video"
+          />
           <div data-testid="${index}-recomendation-card">
             <h2>receitas recomendadas</h2>
           </div>
