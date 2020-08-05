@@ -1,32 +1,23 @@
 .div-carousel-cards {
   display: flex;
   margin: 0;
-  padding: 0;
   overflow: hidden;
+  padding: 0;
 }
+
 .recomendation-card {
   display: block;
   list-style: none;
 }
 
 .buttons-carousel {
-  display: flex;
-  font-size: 32px;
   align-items: center;
-  justify-content: center;
-  color: #fff;
   background-color: #333;
   border-radius: 50%;
-  width: 44px;
+  color: white;
+  display: flex;
+  font-size: 32px;
   height: 44px;
-}
-button.prev {
-  position: absolute;
-  left: 0;
-  top: 80px;
-}
-button.next {
-  position: absolute;
-  right: 0;
-  top: 80px;
+  justify-content: center;
+  width: 44px;
 }

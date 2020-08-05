@@ -1,4 +1,5 @@
 import { CAROUSEL_INDEX } from '../action/actionCarousel';
+
 const INITIAL_STATE = {
   indexInitial: 0,
   indexLast: 1,

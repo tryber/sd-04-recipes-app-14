@@ -24,21 +24,21 @@ class AuxCarousel extends React.Component {
     }
   }
 
-  increaseCar = () => {
+  increaseCar() {
     const { indexInitial, changeIndex } = this.props;
     if (indexInitial === 0) return changeIndex(2, 3);
     if (indexInitial === 2) return changeIndex(4, 5);
     if (indexInitial === 4) return changeIndex(0, 1);
     return null;
-  };
+  }
 
-  decreaseCar = () => {
+  decreaseCar() {
     const { indexInitial, changeIndex } = this.props;
     if (indexInitial === 0) return changeIndex(4, 5);
     if (indexInitial === 2) return changeIndex(0, 1);
     if (indexInitial === 4) return changeIndex(2, 3);
     return null;
-  };
+  }
 
   render() {
     const {
