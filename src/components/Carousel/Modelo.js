@@ -5,17 +5,13 @@ import './carousel.css';
 
 export const ModeloFood = (props) => {
   const { data, index } = props;
+  console.log(index);
   return (
     <div className="recomendation-card">
       <Link to={`/comidas/${data.idMeal}`}>
-        <div className="foods-card" key={index}>
-          <img
-            className="picture-cards-food"
-            data-testid={`${index}-recomendation-card`}
-            src={data.strMealThumb}
-            alt={data.strMeal}
-          />
-          <p data-testid={`${index}-card-name`}>{data.strMeal}</p>
+        <div data-testid={`${index}-recomendation-card`} className="foods-card" key={index}>
+          <img className="picture-cards-food" src={data.strMealThumb} alt={data.strMeal} />
+          <p data-testid={`${index}-recomendation-title`}>{data.strMeal}</p>
         </div>
       </Link>
     </div>
@@ -33,15 +29,11 @@ ModeloFood.propTypes = {
 
 export const ModeloDrink = (props) => {
   const { data, index } = props;
+  console.log(index);
   return (
-    <div data-testid="recomendation-card" className="recomendation-card">
+    <div className="recomendation-card">
       <Link to={`/bebidas/${data.idDrink}`}>
-        <div
-          data-testid={`${index}-recomendation-card`}
-          className="foods-card"
-          id={data.idDrink}
-          key={index}
-        >
+        <div data-testid={`${index}-recomendation-card`} className="foods-card" key={index}>
           <img className="picture-cards-food" src={data.strDrinkThumb} alt={data.strDrink} />
           <p data-testid={`${index}-recomendation-title`}>{data.strDrink}</p>
         </div>
