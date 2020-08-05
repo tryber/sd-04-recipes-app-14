@@ -84,10 +84,23 @@ class AuxCarousel extends React.Component {
 }
 
 AuxCarousel.propTypes = {
-  drinks: PropTypes.object.isRequired,
-  foods: PropTypes.object.isRequired,
+  changeIndex: PropTypes.func.isRequired,
+  drinks: PropTypes.shape({
+    idDrink: PropTypes.string,
+    strDrink: PropTypes.string,
+    strDrinkThumb: PropTypes.string,
+  }).isRequired,
+  drinksLoading: PropTypes.bool.isRequired,
+  foods: PropTypes.PropTypes.shape({
+    idMeal: PropTypes.string,
+    strMeal: PropTypes.string,
+    strMealThumb: PropTypes.string,
+  }).isRequired,
+  foodsLoading: PropTypes.bool.isRequired,
   indexInitial: PropTypes.number.isRequired,
   indexLast: PropTypes.number.isRequired,
+  recDrinks: PropTypes.func.isRequired,
+  recFoods: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
