@@ -34,16 +34,16 @@ ModeloFood.propTypes = {
 export const ModeloDrink = (props) => {
   const { data, index } = props;
   return (
-    <div className="recomendation-card">
+    <div data-testid="recomendation-card" className="recomendation-card">
       <Link to={`/bebidas/${data.idDrink}`}>
-        <div className="foods-card" id={data.idDrink} key={index}>
-          <img
-            className="picture-cards-food"
-            data-testid={`${index}-card-image`}
-            src={data.strDrinkThumb}
-            alt={data.strDrink}
-          />
-          <p data-testid={`${index}-card-name`}>{data.strDrink}</p>
+        <div
+          data-testid={`${index}-recomendation-card`}
+          className="foods-card"
+          id={data.idDrink}
+          key={index}
+        >
+          <img className="picture-cards-food" src={data.strDrinkThumb} alt={data.strDrink} />
+          <p data-testid={`${index}-recomendation-title`}>{data.strDrink}</p>
         </div>
       </Link>
     </div>
