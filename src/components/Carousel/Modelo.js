@@ -11,7 +11,7 @@ export const ModeloFood = (props) => {
         <div className="foods-card" key={index}>
           <img
             className="picture-cards-food"
-            data-testid={`${index}-card-image`}
+            data-testid={`${index}-recomendation-card`}
             src={data.strMealThumb}
             alt={data.strMeal}
           />
@@ -52,9 +52,9 @@ export const ModeloDrink = (props) => {
 
 ModeloDrink.propTypes = {
   data: PropTypes.shape({
-    idMeal: PropTypes.string,
-    strMeal: PropTypes.string,
-    strMealThumb: PropTypes.string,
+    idDrink: PropTypes.string,
+    strDrink: PropTypes.string,
+    strDrinkThumb: PropTypes.string,
   }).isRequired,
   index: PropTypes.number.isRequired,
 };

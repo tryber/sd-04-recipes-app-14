@@ -15,7 +15,7 @@ const reducerFoods = (state = INITIAL_STATE, action) => {
     case REQUEST_API_SUCESS:
       return {
         ...state,
-        Foods: action.data.meals,
+        Foods: action.data.meals.slice(0, 12),
         isLoading: false,
       };
     default:

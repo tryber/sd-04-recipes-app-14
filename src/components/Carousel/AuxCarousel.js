@@ -1,56 +1,86 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React from 'react';
-import CreateArray from './CreateArray';
+import { fetchApiDrinks } from '../../action/actionDrinks';
+import { fetchApi } from '../../action/actionFoods';
 import { actionCarousel } from '../../action/actionCarousel';
 import { ModeloFood, ModeloDrink } from './Modelo';
 
-const increaseCar = (indexInitial, changeIndex) => {
-  if (indexInitial === 0) return changeIndex(2, 3);
-  if (indexInitial === 2) return changeIndex(4, 5);
-  if (indexInitial === 4) return changeIndex(0, 1);
-  return null;
-};
+class AuxCarousel extends React.Component {
+  constructor(props) {
+    super(props);
 
-const decreaseCar = (indexInitial, changeIndex) => {
-  if (indexInitial === 0) return changeIndex(4, 5);
-  if (indexInitial === 2) return changeIndex(0, 1);
-  if (indexInitial === 4) return changeIndex(2, 3);
-  return null;
-};
+    this.decreaseCar = this.decreaseCar.bind(this);
+    this.increaseCar = this.increaseCar.bind(this);
+  }
 
-function AuxCarousel({ indexInitial, indexLast, drinks, foods, changeIndex }) {
-  const type = window.location.href.includes('comidas');
-  if (type) {
-    const recomendation = CreateArray(foods);
+  componentDidMount() {
+    const { recFoods, recDrinks } = this.props;
+    const type = window.location.href.includes('comidas');
+    if (type) {
+      recDrinks('', 'nome');
+    } else {
+      recFoods('', 'nome');
+    }
+  }
+
+  increaseCar = () => {
+    const { indexInitial, changeIndex } = this.props;
+    if (indexInitial === 0) return changeIndex(2, 3);
+    if (indexInitial === 2) return changeIndex(4, 5);
+    if (indexInitial === 4) return changeIndex(0, 1);
+    return null;
+  };
+
+  decreaseCar = () => {
+    const { indexInitial, changeIndex } = this.props;
+    if (indexInitial === 0) return changeIndex(4, 5);
+    if (indexInitial === 2) return changeIndex(0, 1);
+    if (indexInitial === 4) return changeIndex(2, 3);
+    return null;
+  };
+
+  render() {
+    const {
+      indexInitial,
+      indexLast,
+      drinks,
+      foods,
+      changeIndex,
+      drinksLoading,
+      foodsLoading,
+    } = this.props;
+
+    const type = window.location.href.includes('comidas');
+    if (foodsLoading || drinksLoading) return null;
+    if (type) {
+      return (
+        <div className="div-carousel-cards">
+          <button type="button" onClick={() => this.decreaseCar(indexInitial, changeIndex)}>
+            &lt;
+          </button>
+          <ModeloDrink data={drinks[indexInitial]} index={indexInitial} />
+          <ModeloDrink data={drinks[indexLast]} index={indexLast} />
+          <button type="button" onClick={() => this.increaseCar(indexInitial, changeIndex)}>
+            &gt;
+          </button>
+        </div>
+      );
+    }
+    if (foodsLoading || drinksLoading) return null;
     return (
       <div className="div-carousel-cards">
-        <button type="button" onClick={() => decreaseCar(indexInitial, changeIndex)}>
+        <button type="button" onClick={() => this.decreaseCar(indexInitial, changeIndex)}>
           &lt;
         </button>
         <ModeloFood data={foods[indexInitial]} index={indexInitial} />
         <ModeloFood data={foods[indexLast]} index={indexLast} />
-        <button type="button" onClick={() => increaseCar(indexInitial, changeIndex)}>
+        <button type="button" onClick={() => this.increaseCar(indexInitial, changeIndex)}>
           &gt;
         </button>
       </div>
     );
   }
-
-  const recomendation = CreateArray(drinks);
-
-  return (
-    <div className="div-carousel-cards">
-      <button type="button" onClick={() => decreaseCar(indexInitial, changeIndex)}>
-        &lt;
-      </button>
-      <ModeloDrink data={recomendation[indexInitial]} index={indexInitial} />
-      <ModeloDrink data={recomendation[indexLast]} index={indexLast} />
-      <button type="button" onClick={() => increaseCar(indexInitial, changeIndex)}>
-        &gt;
-      </button>
-    </div>
-  );
 }
 
 AuxCarousel.propTypes = {
@@ -65,10 +95,14 @@ const mapStateToProps = (state) => ({
   indexLast: state.reducerCarousel.indexLast,
   drinks: state.reducerDrinks.Drinks,
   foods: state.reducerFoods.Foods,
+  drinksLoading: state.reducerDrinks.isLoading,
+  foodsLoading: state.reducerFoods.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   changeIndex: (a, b) => dispatch(actionCarousel(a, b)),
+  recFoods: (a, b) => dispatch(fetchApi(a, b)),
+  recDrinks: (a, b) => dispatch(fetchApiDrinks(a, b)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuxCarousel);

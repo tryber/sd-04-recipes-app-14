@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import AuxCarousel from './AuxCarousel';
@@ -14,6 +15,11 @@ function Carousel({ foodsLoading, drinksLoading }) {
   }
   return null;
 }
+
+Carousel.propTypes = {
+  drinksLoading: PropTypes.bool.isRequired,
+  foodsLoading: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   drinksLoading: state.reducerDrinks.isLoading,
