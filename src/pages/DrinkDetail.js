@@ -23,12 +23,7 @@ class DrinkDetail extends React.Component {
 
   render() {
     if (this.state.receita.idDrink) {
-      const {
-        strDrinkThumb,
-        strAlcoholic,
-        strInstructions,
-        strDrink,
-      } = this.state.receita;
+      const { strDrinkThumb, strAlcoholic, strInstructions, strDrink } = this.state.receita;
       const { receita } = this.state;
       return (
         <div>
@@ -45,7 +40,9 @@ class DrinkDetail extends React.Component {
           <div>
             <h2>receitas recomendadas</h2>
           </div>
-          <button data-testid="start-recipe-btn">Iniciar receita</button>
+          <button data-testid="start-recipe-btn" style={{ position: 'fixed', bottom: 0 }}>
+            Iniciar receita
+          </button>
         </div>
       );
     }

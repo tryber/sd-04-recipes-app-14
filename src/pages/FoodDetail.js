@@ -31,7 +31,7 @@ class FoodDetail extends React.Component {
         strYoutube,
       } = this.state.receita;
       let url = strYoutube.slice(32);
-      const receita = this.state;
+      const { receita } = this.state;
       return (
         <div>
           <HeaderDetail src={strMealThumb} nomeReceita={strMeal} categoriaReceita={strCategory} />
@@ -48,7 +48,9 @@ class FoodDetail extends React.Component {
           <div>
             <h2>receitas recomendadas</h2>
           </div>
-          <button data-testid="start-recipe-btn">Iniciar receita</button>
+          <button data-testid="start-recipe-btn" style={{ position: 'fixed', bottom: 0 }}>
+            Iniciar receita
+          </button>
         </div>
       );
     }

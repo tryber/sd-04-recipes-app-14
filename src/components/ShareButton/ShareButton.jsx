@@ -6,6 +6,8 @@ const ShareButton = () => {
     const textToCopy = document.querySelector('#text-to-copy');
     textToCopy.select();
     document.execCommand('copy');
+    console.log('copiou')
+    alert('Link copiado!');
   };
   return (
     <div>
