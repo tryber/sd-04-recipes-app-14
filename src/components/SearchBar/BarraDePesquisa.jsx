@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { addSearchSearchBar } from '../../action/actionSearch';
-import { fetchApi } from '../../action/actionFoods';
-import { fetchApiDrinks } from '../../action/actionDrinks';
+import { addSearchSearchBar } from '../../actions/actionSearch';
+import { fetchApi } from '../../actions/actionFoods';
+import { fetchApiDrinks } from '../../actions/actionDrinks';
 import primeiraLetra from '../../Helper/SearchBar-PrimeiraLetra';
 import FoodOrDrinks from './FoodOrDrinks';
 

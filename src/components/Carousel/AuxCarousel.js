@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React from 'react';
-import { fetchApiDrinks } from '../../action/actionDrinks';
-import { fetchApi } from '../../action/actionFoods';
-import { actionCarousel } from '../../action/actionCarousel';
+import { fetchApiDrinks } from '../../actions/actionDrinks';
+import { fetchApi } from '../../actions/actionFoods';
+import { actionCarousel } from '../../actions/actionCarousel';
 import { ModeloFood, ModeloDrink } from './Modelo';
 
 class AuxCarousel extends React.Component {

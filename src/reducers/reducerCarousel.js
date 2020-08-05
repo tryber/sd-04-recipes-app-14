@@ -1,4 +1,4 @@
-import { CAROUSEL_INDEX } from '../action/actionCarousel';
+import { CAROUSEL_INDEX } from '../actions/actionCarousel';
 
 const INITIAL_STATE = {
   indexInitial: 0,
