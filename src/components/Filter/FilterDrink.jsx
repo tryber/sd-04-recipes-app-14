@@ -24,6 +24,22 @@ class FilterDrink extends Component {
     fetch();
   }
 
+  onClick(e) {
+    const { lastButton } = this.state;
+    const { fetchFiltered, fetchAll } = this.props;
+    this.setState({ lastButton: e.target.value });
+    if (e.target.value === lastButton) {
+      this.setState({ show: true, lastButton: '' });
+    } else if (e.target.value === 'All') {
+      this.setState({ show: true });
+      fetchAll();
+    } else {
+      this.setState({ show: false });
+      fetchFiltered(e.target.value);
+    }
+    return null;
+  }
+
   buildCard() {
     const { drinkSelected } = this.props;
     return drinkSelected.map((drink, index) => (
@@ -58,29 +74,14 @@ class FilterDrink extends Component {
     ));
   }
 
-  onClick(e) {
-    const { lastButton } = this.state;
-    const { fetchFiltered, fetchAll } = this.props;
-    this.setState({ lastButton: e.target.value });
-    if (e.target.value === lastButton) {
-      this.setState({ show: true, lastButton: '' });
-    } else if (e.target.value === 'All') {
-      this.setState({ show: true });
-      fetchAll();
-    } else {
-      this.setState({ show: false });
-      fetchFiltered(e.target.value);
-    }
-    return null;
-  }
-
   render() {
     const { drinkCategories } = this.props;
-    console.log('show', this.state.show);
+    const { show } = this.state;
     return (
       <div>
         {drinkCategories.map((item) => (
           <button
+            type="button"
             data-testid={`${item.strCategory}-category-filter`}
             value={item.strCategory}
             onClick={(e) => this.onClick(e)}
@@ -88,10 +89,10 @@ class FilterDrink extends Component {
             {item.strCategory}
           </button>
         ))}
-        <button data-testid={`All-category-filter`} value="All" onClick={this.onClick}>
+        <button type="button" data-testid="All-category-filter" value="All" onClick={this.onClick}>
           All
         </button>
-        {this.state.show ? this.buildCardAll() : this.buildCard()}
+        {show ? this.buildCardAll() : this.buildCard()}
       </div>
     );
   }

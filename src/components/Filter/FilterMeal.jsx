@@ -78,15 +78,12 @@ class FilterMeal extends Component {
     const { mealCategories } = this.props;
     return (
       <div>
-        <button
-          data-testid={"All-category-filter"}
-          value="All"
-          onClick={this.onClick}
-        >
+        <button type="button" data-testid="All-category-filter" value="All" onClick={this.onClick}>
           All
         </button>
         {mealCategories.map((item) => (
           <button
+            type="button"
             key={item.strCategory}
             data-testid={`${item.strCategory}-category-filter`}
             value={item.strCategory}
