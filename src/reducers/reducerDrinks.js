@@ -1,4 +1,7 @@
-import { REQUEST_API_DRINK, REQUEST_API_SUCESS_DRINK } from '../action/actionDrinks';
+import {
+  REQUEST_API_DRINK,
+  REQUEST_API_SUCESS_DRINK,
+} from '../action/actionDrinks';
 
 const INITIAL_STATE = {
   isLoading: true,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import fetchDrinkCategory from '../../actions/actionDrinkCategory';
 import { fetchSelectedDrink } from '../../actions/actionSelectedDrink';
 import { fetchAllDrinks } from '../../actions/actionSelectAllD';
@@ -71,9 +72,8 @@ class FilterDrink extends Component {
     const { fetchFiltered, fetchAll } = this.props;
     this.setState({ lastButton: e.target.value });
     if (e.target.value === lastButton) {
-      this.setState({show: true, lastButton: ''})
-    }
-    else if (e.target.value === 'All') {
+      this.setState({ show: true, lastButton: '' });
+    } else if (e.target.value === 'All') {
       this.setState({ show: true });
       fetchAll();
     } else {
@@ -85,7 +85,7 @@ class FilterDrink extends Component {
 
   render() {
     const { drinkCategories } = this.props;
-    console.log('show',this.state.show);
+    console.log('show', this.state.show);
     return (
       <div>
         {drinkCategories.map((item) => (
@@ -121,5 +121,30 @@ const mapDispatchToProps = (dispatch) => ({
   fetchFiltered: (drink) => dispatch(fetchSelectedDrink(drink)),
   fetchAll: () => dispatch(fetchAllDrinks()),
 });
+
+FilterDrink.propTypes = {
+  drinkCategories: PropTypes.arrayOf(
+    PropTypes.shape({
+      strCategory: PropTypes.string,
+    })
+  ).isRequired,
+  drinkSelected: PropTypes.arrayOf(
+    PropTypes.shape({
+      idDrink: PropTypes.string,
+      strDrink: PropTypes.string,
+      strDrinkThumb: PropTypes.string,
+    })
+  ).isRequired,
+  drinkAll: PropTypes.arrayOf(
+    PropTypes.shape({
+      idDrink: PropTypes.string,
+      strDrink: PropTypes.string,
+      strDrinkThumb: PropTypes.string,
+    })
+  ).isRequired,
+  fetch: PropTypes.func.isRequired,
+  fetchFiltered: PropTypes.func.isRequired,
+  fetchAll: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterDrink);

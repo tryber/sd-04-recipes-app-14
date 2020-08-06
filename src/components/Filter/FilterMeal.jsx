@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchMealCategory } from '../../actions/actionMealCategory';
 import { fetchSelectedMeal } from '../../actions/actionSelectedMeal';
 import { fetchAllMeal } from '../../actions/actionSelectAllM';
-// import { fetchFoodApi } from '../../actions/actions';
 
 class FilterMeal extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class FilterMeal extends Component {
       toogle: true,
       show: true,
       lastButton: '',
-    }
+    };
     this.onClick = this.onClick.bind(this);
     this.buildCard = this.buildCard.bind(this);
     this.buildCardAll = this.buildCardAll.bind(this);
@@ -50,7 +50,11 @@ class FilterMeal extends Component {
     const { mealAll } = this.props;
     return mealAll.map((meal, index) => (
       <Link to={`/comidas/${meal.idMeal}`}>
-        <div data-testid={`${index}-recipe-card`} className="foods-card" key={meal.idMeal}>
+        <div
+          data-testid={`${index}-recipe-card`}
+          className="foods-card"
+          key={meal.idMeal}
+        >
           <img
             className="picture-cards-food"
             data-testid={`${index}-card-img`}
@@ -68,9 +72,8 @@ class FilterMeal extends Component {
     const { fetchFiltered, fetchAll } = this.props;
     this.setState({ lastButton: e.target.value });
     if (e.target.value === lastButton) {
-      this.setState({show: true, lastButton: ''})
-    }
-    else if (e.target.value === 'All') {
+      this.setState({ show: true, lastButton: '' });
+    } else if (e.target.value === 'All') {
       this.setState({ show: true });
       fetchAll();
     } else {
@@ -118,5 +121,30 @@ const mapDispatchToProps = (dispatch) => ({
   fetchFiltered: (meal) => dispatch(fetchSelectedMeal(meal)),
   fetchAll: () => dispatch(fetchAllMeal()),
 });
+
+FilterMeal.propTypes = {
+  drinkCategories: PropTypes.arrayOf(
+    PropTypes.shape({
+      strCategory: PropTypes.string,
+    })
+  ).isRequired,
+  drinkSelected: PropTypes.arrayOf(
+    PropTypes.shape({
+      idMeal: PropTypes.string,
+      strMeal: PropTypes.string,
+      strMealThumb: PropTypes.string,
+    })
+  ).isRequired,
+  drinkAll: PropTypes.arrayOf(
+    PropTypes.shape({
+      idMeal: PropTypes.string,
+      strMeal: PropTypes.string,
+      strMealThumb: PropTypes.string,
+    })
+  ).isRequired,
+  fetch: PropTypes.func.isRequired,
+  fetchFiltered: PropTypes.func.isRequired,
+  fetchAll: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterMeal);

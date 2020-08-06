@@ -1,9 +1,12 @@
-import { REQUEST_MEAL_SELECTED, GET_MEAL_SELECTED } from '../actions/actionSelectedMeal';
+import {
+  REQUEST_MEAL_SELECTED,
+  GET_MEAL_SELECTED,
+} from '../actions/actionSelectedMeal';
 
 const INITIAL_STATE = {
   isLoading: false,
   mealSelected: [],
-}
+};
 
 const mealSelectedReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -21,6 +24,6 @@ const mealSelectedReducer = (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-}
+};
 
 export default mealSelectedReducer;

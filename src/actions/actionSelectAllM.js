@@ -14,9 +14,6 @@ export function getAllMeal(data) {
 export function fetchAllMeal() {
   return (dispatch) => {
     dispatch(requestAllMeal());
-    return getAllMeals()
-    .then(
-      (data) => dispatch(getAllMeal(data)),
-    );
+    return getAllMeals().then((data) => dispatch(getAllMeal(data)));
   };
 }

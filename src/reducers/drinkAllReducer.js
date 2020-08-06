@@ -3,9 +3,9 @@ import { REQUEST_ALL_DRINK, GET_ALL_DRINK } from '../actions/actionSelectAllD';
 const INITIAL_STATE = {
   isLoading: false,
   drinkAll: [],
-}
+};
 
-const drinkAllReducer = (state=INITIAL_STATE, action) => {
+const drinkAllReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case REQUEST_ALL_DRINK:
       return {
@@ -21,6 +21,6 @@ const drinkAllReducer = (state=INITIAL_STATE, action) => {
     default:
       return state;
   }
-}
+};
 
 export default drinkAllReducer;
