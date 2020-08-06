@@ -23,14 +23,27 @@ class DrinkDetail extends React.Component {
 
   render() {
     if (this.state.receita.idDrink) {
-      const { strDrinkThumb, strAlcoholic, strInstructions, strDrink } = this.state.receita;
       const { receita } = this.state;
+      const {
+        strDrinkThumb,
+        strCategory,
+        idDrink,
+        strAlcoholic,
+        strInstructions,
+        strDrink,
+      } = this.state.receita;
+      console.log(receita)
+      console.log('alc', strAlcoholic)
       return (
         <div>
           <HeaderDetail
+            id={idDrink}
+            area={''}
+            type={'bebida'}
+            categoria={strCategory}
             src={strDrinkThumb}
-            nomeReceita={strDrink}
-            categoriaReceita={strAlcoholic}
+            alcolica={strAlcoholic}
+            nome={strDrink}
           />
           <IngredientList receita={receita} />
           <div>

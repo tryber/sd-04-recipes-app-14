@@ -24,6 +24,8 @@ class FoodDetail extends React.Component {
   render() {
     if (this.state.receita.idMeal) {
       const {
+        idMeal,
+        strArea,
         strMealThumb,
         strCategory,
         strInstructions,
@@ -34,7 +36,15 @@ class FoodDetail extends React.Component {
       const { receita } = this.state;
       return (
         <div>
-          <HeaderDetail src={strMealThumb} nomeReceita={strMeal} categoriaReceita={strCategory} />
+          <HeaderDetail
+            id={idMeal}
+            area={strArea}
+            type={'comida'}
+            categoria={strCategory}
+            src={strMealThumb}
+            alcolica={''}
+            nome={strMeal}
+          />
           <IngredientList receita={receita} />
           <div>
             <h3>Instruções</h3>

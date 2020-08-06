@@ -1,32 +1,43 @@
 import React from 'react';
 import ShareIcon from '../../images/shareIcon.svg';
 
-const ShareButton = () => {
-  const copy = () => {
-    const textToCopy = document.querySelector('#text-to-copy');
-    textToCopy.select();
-    document.execCommand('copy');
-    console.log('copiou')
-    alert('Link copiado!');
+class ShareButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      copiado: false,
+    };
+    this.copy = this.copy.bind(this);
+  }
+
+  copy = () => {
+    const copia = require('clipboard-copy');
+    copia(document.URL);
+    // const copiado = this.state.copiado;
+    this.setState({ copiado: true});
   };
-  return (
-    <div>
-      <input
-        type="text"
-        value={document.URL}
-        id="text-to-copy"
-        readOnly
-        style={{ display: 'none' }}
-      />
-      <input
-        data-testid="share-btn"
-        type="image"
-        src={ShareIcon}
-        alt="Share icon"
-        onClick={() => copy()}
-      />
-    </div>
-  );
-};
+
+  render() {
+    return (
+      <div>
+        <input
+          type="text"
+          value={document.URL}
+          id="text-to-copy"
+          readOnly
+          style={{ display: 'none' }}
+        />
+        <input
+          data-testid="share-btn"
+          type="image"
+          src={ShareIcon}
+          alt="Share icon"
+          onClick={() => this.copy()}
+        />
+        {this.state.copiado && <span>Link copiado!</span>}
+      </div>
+    );
+  }
+}
 
 export default ShareButton;

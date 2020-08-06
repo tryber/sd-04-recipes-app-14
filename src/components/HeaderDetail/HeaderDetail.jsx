@@ -3,7 +3,7 @@ import ShareButton from '../ShareButton/ShareButton';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 
 const HeaderDetail = (props) => {
-  const { src, nomeReceita, categoriaReceita } = props;
+  const { src, nome, categoria, id, type, area, alcolica } = props;
   return (
     <div>
       <div>
@@ -12,12 +12,19 @@ const HeaderDetail = (props) => {
         </div>
         <div>
           <div>
-            <h2 data-testid="recipe-title">{nomeReceita}</h2>
-            <span data-testid="recipe-category">{categoriaReceita}</span>
+            <h2 data-testid="recipe-title">{nome}</h2>
+            <span data-testid="recipe-category">{categoria}</span>
           </div>
           <div>
             <ShareButton />
-            <FavoriteButton />
+            <FavoriteButton 
+            id={id}
+            area={area}
+            type={type}
+            categoria={categoria}
+            src={src}
+            alcolica={alcolica}
+            nome={nome}/>
           </div>
         </div>
       </div>
