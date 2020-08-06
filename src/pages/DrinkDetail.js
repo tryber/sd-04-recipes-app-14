@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
 import IngredientList from '../components/IngredientList/IngredientList';
+import Instructions from '../components/Instructions/Instructions';
 
 class DrinkDetail extends React.Component {
   constructor(props) {
@@ -45,10 +46,7 @@ class DrinkDetail extends React.Component {
             nome={strDrink}
           />
           <IngredientList receita={receita} />
-          <div>
-            <h3>Instruções</h3>
-            <span data-testid="instructions">{strInstructions}</span>
-          </div>
+          <Instructions strInstructions={strInstructions} />
           <div>
             <h2>receitas recomendadas</h2>
           </div>
