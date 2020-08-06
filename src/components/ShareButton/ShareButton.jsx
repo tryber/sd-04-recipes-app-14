@@ -10,12 +10,12 @@ class ShareButton extends React.Component {
     this.copy = this.copy.bind(this);
   }
 
-  copy = () => {
+  copy() {
     const copia = require('clipboard-copy');
     copia(document.URL);
     // const copiado = this.state.copiado;
-    this.setState({ copiado: true});
-  };
+    this.setState({ copiado: true });
+  }
 
   render() {
     return (

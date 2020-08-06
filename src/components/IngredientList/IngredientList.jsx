@@ -1,3 +1,4 @@
+import PropTypes, { string } from 'prop-types';
 import React from 'react';
 
 const IngredientList = (props) => {
@@ -13,7 +14,7 @@ const IngredientList = (props) => {
           {ingredientes.map((e, i) => {
             if (receita[e] !== '') {
               return (
-                <li key={i} data-testid={`${i}-ingredient-name-and-measure`}>
+                <li key={receita[e]} data-testid={`${i}-ingredient-name-and-measure`}>
                   {receita[e]}
                 </li>
               );
@@ -24,7 +25,7 @@ const IngredientList = (props) => {
           {quantidades.map((e, i) => {
             if (receita[e] !== '') {
               return (
-                <li key={i} data-testid={`${i}-ingredient-name-and-measure`}>
+                <li key={receita[e]} data-testid={`${i}-ingredient-name-and-measure`}>
                   {receita[e]}
                 </li>
               );
@@ -35,6 +36,10 @@ const IngredientList = (props) => {
     );
   }
   return null;
+};
+
+IngredientList.propTypes = {
+  receita: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default IngredientList;
