@@ -18,6 +18,8 @@ function getMealCategoryData(category) {
 export function fetchMealCategory() {
   return (dispatch) => {
     dispatch(requestMealCategory());
-    return getMealCategory().then((category) => dispatch(getMealCategoryData(category)));
+    return getMealCategory().then((category) =>
+      dispatch(getMealCategoryData(category)),
+    );
   };
 }
