@@ -5,12 +5,24 @@ import SearchBar from '../SearchBar/SearchBar';
 import './Header.css';
 
 class Header extends Component {
+  static setName() {
+    if (document.URL.includes('comidas')) {
+      return <h1 data-testid="page-title">Comidas</h1>;
+    }
+    if (document.URL.includes('bebidas')) {
+      return <h1 data-testid="page-title">Bebidas</h1>;
+    }
+    if (document.URL.includes('perfil')) {
+      return <h1 data-testid="page-title">Perfil</h1>;
+    }
+    return null;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       show: false,
     };
-    this.setName = this.setName.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
@@ -23,18 +35,6 @@ class Header extends Component {
     }
   }
 
-  setName() {
-    if (document.URL.includes('comidas')) {
-      return <h1 data-testid="page-title">Comidas</h1>;
-    }
-    if (document.URL.includes('bebidas')) {
-      return <h1 data-testid="page-title">Bebidas</h1>;
-    }
-    if (document.URL.includes('perfil')) {
-      return <h1 data-testid="page-title">Perfil</h1>;
-    }
-    return null;
-  }
   render() {
     return (
       <div>
@@ -46,7 +46,7 @@ class Header extends Component {
               alt="profile-icon"
             />
           </a>
-          {this.setName()}
+          {Header.setName()}
           <button data-testid="search-top-btn" onClick={this.onClick}>
             <img src={SearchIcon} alt="search-icon" />
           </button>

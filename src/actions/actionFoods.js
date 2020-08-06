@@ -15,6 +15,8 @@ export const requestApiSucess = (data) => ({
 export function fetchApi(searchBar, radio) {
   return (dispatch) => {
     dispatch(requestAPIaction());
-    requestAPIfoods(searchBar, radio).then((json) => dispatch(requestApiSucess(json)));
+    requestAPIfoods(searchBar, radio).then((json) =>
+      dispatch(requestApiSucess(json))
+    );
   };
 }

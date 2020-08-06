@@ -1,5 +1,78 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
+import IngredientList from '../components/IngredientList/IngredientList';
+import Instructions from '../components/Instructions/Instructions';
 
-const FoodDetail = () => (<div>FoodDetail</div>);
+class FoodDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      receita: {},
+    };
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.getRecipe(id);
+  }
+
+  getRecipe(id) {
+    return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then((response) => response.json())
+      .then((data) => this.setState({ receita: data.meals[0] }));
+  }
+
+  render() {
+    if (this.state.receita.idMeal) {
+      const {
+        idMeal,
+        strArea,
+        strMealThumb,
+        strCategory,
+        strInstructions,
+        strMeal,
+        strYoutube,
+      } = this.state.receita;
+      const url = strYoutube.slice(32);
+      const { receita } = this.state;
+      return (
+        <div>
+          <HeaderDetail
+            id={idMeal}
+            area={strArea}
+            type={'comida'}
+            categoria={strCategory}
+            src={strMealThumb}
+            alcolica={''}
+            nome={strMeal}
+          />
+          <IngredientList receita={receita} />
+          <Instructions strInstructions={strInstructions} />
+          <iframe
+            src={`https://www.youtube.com/embed/${url}`}
+            title={strMeal}
+            data-testid="video"
+          />
+          <div>
+            <h2>receitas recomendadas</h2>
+          </div>
+          <button data-testid="start-recipe-btn" style={{ position: 'fixed', bottom: 0 }}>
+            Iniciar receita
+          </button>
+        </div>
+      );
+    }
+    return null;
+  }
+}
+
+FoodDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 export default FoodDetail;

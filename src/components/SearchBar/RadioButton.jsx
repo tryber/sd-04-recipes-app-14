@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { addSearchRadio } from '../../action/actionSearch';
+import { addSearchRadio } from '../../actions/actionSearch';
 
 function RadioButton({ inputRadio }) {
   return (

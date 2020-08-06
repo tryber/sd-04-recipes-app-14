@@ -1,4 +1,4 @@
-import { REQUEST_API, REQUEST_API_SUCESS } from '../action/actionFoods';
+import { REQUEST_API, REQUEST_API_SUCESS } from '../actions/actionFoods';
 
 const INITIAL_STATE = {
   isLoading: true,
