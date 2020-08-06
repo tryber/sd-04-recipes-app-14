@@ -15,7 +15,7 @@ function getMealCategoryData(category) {
   };
 }
 
-function fetchMealCategory() {
+export function fetchMealCategory() {
   return (dispatch) => {
     dispatch(requestMealCategory());
     return getMealCategory()
@@ -24,5 +24,3 @@ function fetchMealCategory() {
     );
   };
 }
-
-export default fetchMealCategory;
