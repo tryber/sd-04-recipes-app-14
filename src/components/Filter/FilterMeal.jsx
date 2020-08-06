@@ -12,6 +12,7 @@ class FilterMeal extends Component {
     this.state = {
       toogle: true,
       show: true,
+      lastButton: '',
     }
     this.onClick = this.onClick.bind(this);
     this.buildCard = this.buildCard.bind(this);
@@ -26,8 +27,6 @@ class FilterMeal extends Component {
 
   buildCard() {
     const { mealSelected } = this.props;
-    const { toogle } = this.state;
-    if (toogle === true) return <div>{this.buildCardAll()}</div>;
     return mealSelected.map((meal, index) => (
       <Link to={`/comidas/${meal.idMeal}`}>
         <div
@@ -65,17 +64,18 @@ class FilterMeal extends Component {
   }
 
   onClick(e) {
-    const { toogle } = this.state;
+    const { lastButton } = this.state;
     const { fetchFiltered, fetchAll } = this.props;
-    this.setState({ toogle: !toogle, show: false });
-    if (e.target.value === 'All') {
-      console.log('all', fetchAll());
+    this.setState({ lastButton: e.target.value });
+    if (e.target.value === lastButton) {
+      this.setState({show: true, lastButton: ''})
+    }
+    else if (e.target.value === 'All') {
+      this.setState({ show: true });
       fetchAll();
-      this.buildCardAll();
     } else {
-      console.log(`${e.target.value}`, fetchFiltered(e.target.value));
+      this.setState({ show: false });
       fetchFiltered(e.target.value);
-      this.buildCard();
     }
     return null;
   }
