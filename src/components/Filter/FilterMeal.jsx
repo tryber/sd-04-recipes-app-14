@@ -44,11 +44,7 @@ class FilterMeal extends Component {
     const { mealSelected } = this.props;
     return mealSelected.map((meal, index) => (
       <Link to={`/comidas/${meal.idMeal}`}>
-        <div
-          data-testid={`${index}-recipe-card`}
-          className="foods-card"
-          key={meal.idMeal}
-        >
+        <div data-testid={`${index}-recipe-card`} className="foods-card" key={meal.idMeal}>
           <img
             className="picture-cards-food"
             data-testid={`${index}-card-img`}
@@ -65,11 +61,7 @@ class FilterMeal extends Component {
     const { mealAll } = this.props;
     return mealAll.map((meal, index) => (
       <Link to={`/comidas/${meal.idMeal}`}>
-        <div
-          data-testid={`${index}-recipe-card`}
-          className="foods-card"
-          key={meal.idMeal}
-        >
+        <div data-testid={`${index}-recipe-card`} className="foods-card" key={meal.idMeal}>
           <img
             className="picture-cards-food"
             data-testid={`${index}-card-img`}
