@@ -1,4 +1,5 @@
 import React from 'react';
+import copia from 'clipboard-copy';
 import ShareIcon from '../../images/shareIcon.svg';
 
 class ShareButton extends React.Component {
@@ -11,7 +12,6 @@ class ShareButton extends React.Component {
   }
 
   copy() {
-    const copia = require('clipboard-copy');
     copia(document.URL);
     // const copiado = this.state.copiado;
     this.setState({ copiado: true });
