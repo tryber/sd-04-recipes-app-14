@@ -1,4 +1,7 @@
-import { ADD_SEARCH_TERMS_SEARCHBAR, ADD_SEARCH_TERMS_RADIO } from '../action/actionSearch';
+import {
+  ADD_SEARCH_TERMS_SEARCHBAR,
+  ADD_SEARCH_TERMS_RADIO,
+} from '../action/actionSearch';
 
 const INITIAL_STATE = {
   searchBar: '',
