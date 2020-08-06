@@ -32,8 +32,6 @@ class DrinkDetail extends React.Component {
         strInstructions,
         strDrink,
       } = this.state.receita;
-      console.log(receita)
-      console.log('alc', strAlcoholic)
       return (
         <div>
           <HeaderDetail

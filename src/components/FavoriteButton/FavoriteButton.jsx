@@ -13,7 +13,7 @@ class FavoriteButton extends React.Component {
   }
   componentDidMount() {
     const id = document.URL.slice(30);
-    console.log(id)
+    console.log(id);
     console.log('match', this.props);
     if (!localStorage.favoriteRecipes) localStorage.favoriteRecipes = JSON.stringify([]);
     let storeInicial = JSON.parse(localStorage.favoriteRecipes);

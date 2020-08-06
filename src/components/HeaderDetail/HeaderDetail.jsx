@@ -17,14 +17,15 @@ const HeaderDetail = (props) => {
           </div>
           <div>
             <ShareButton />
-            <FavoriteButton 
-            id={id}
-            area={area}
-            type={type}
-            categoria={categoria}
-            src={src}
-            alcolica={alcolica}
-            nome={nome}/>
+            <FavoriteButton
+              id={id}
+              area={area}
+              type={type}
+              categoria={categoria}
+              src={src}
+              alcolica={alcolica}
+              nome={nome}
+            />
           </div>
         </div>
       </div>
