@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
 import IngredientList from '../components/IngredientList/IngredientList';
@@ -11,7 +12,7 @@ class FoodDetail extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const { id } = this.props.match.params;
     this.getRecipe(id);
   }
 
@@ -32,7 +33,7 @@ class FoodDetail extends React.Component {
         strMeal,
         strYoutube,
       } = this.state.receita;
-      let url = strYoutube.slice(32);
+      const url = strYoutube.slice(32);
       const { receita } = this.state;
       return (
         <div>
@@ -67,5 +68,13 @@ class FoodDetail extends React.Component {
     return null;
   }
 }
+
+FoodDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 export default FoodDetail;

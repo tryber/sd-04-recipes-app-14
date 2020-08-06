@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ShareButton from '../ShareButton/ShareButton';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
@@ -31,6 +32,16 @@ const HeaderDetail = (props) => {
       </div>
     </div>
   );
+};
+
+HeaderDetail.propTypes = {
+  alcolica: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
+  categoria: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  nome: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default HeaderDetail;

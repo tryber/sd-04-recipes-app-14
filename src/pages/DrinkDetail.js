@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
 import IngredientList from '../components/IngredientList/IngredientList';
@@ -11,7 +12,7 @@ class DrinkDetail extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const { id } = this.props.match.params;
     this.getRecipe(id);
   }
 
@@ -60,4 +61,12 @@ class DrinkDetail extends React.Component {
     return null;
   }
 }
+
+DrinkDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 export default DrinkDetail;
