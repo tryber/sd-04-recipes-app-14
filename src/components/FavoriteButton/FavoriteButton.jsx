@@ -11,6 +11,7 @@ class FavoriteButton extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleStorage = this.handleStorage.bind(this);
+    this.handleInicial = this.handleInicial.bind(this);
   }
 
   componentDidMount() {
@@ -19,7 +20,11 @@ class FavoriteButton extends React.Component {
     console.log('match', this.props);
     if (!localStorage.favoriteRecipes) localStorage.favoriteRecipes = JSON.stringify([]);
     const storeInicial = JSON.parse(localStorage.favoriteRecipes);
-    if (storeInicial.some((e) => e.id === id)) this.setState({ favorito: true });
+    if (storeInicial.some((e) => e.id === id)) this.handleInicial();
+  }
+
+  handleInicial() {
+    this.setState({ favorito: true });
   }
 
   handleClick() {

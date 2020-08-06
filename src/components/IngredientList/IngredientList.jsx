@@ -1,4 +1,4 @@
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const IngredientList = (props) => {
@@ -19,6 +19,7 @@ const IngredientList = (props) => {
                 </li>
               );
             }
+            return null;
           })}
         </div>
         <div>
@@ -30,6 +31,7 @@ const IngredientList = (props) => {
                 </li>
               );
             }
+            return null;
           })}
         </div>
       </div>

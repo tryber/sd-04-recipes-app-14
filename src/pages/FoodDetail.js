@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
 import IngredientList from '../components/IngredientList/IngredientList';
+import Instructions from '../components/Instructions/Instructions';
 
 class FoodDetail extends React.Component {
   constructor(props) {
@@ -47,10 +48,7 @@ class FoodDetail extends React.Component {
             nome={strMeal}
           />
           <IngredientList receita={receita} />
-          <div>
-            <h3>Instruções</h3>
-            <span data-testid="instructions">{strInstructions}</span>
-          </div>
+          <Instructions strInstructions={strInstructions} />
           <iframe
             src={`https://www.youtube.com/embed/${url}`}
             title={strMeal}
