@@ -3,6 +3,7 @@ import React from 'react';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
 import IngredientList from '../components/IngredientList/IngredientList';
 import Instructions from '../components/Instructions/Instructions';
+import Carousel from '../components/Carousel/Carousel';
 
 class DrinkDetail extends React.Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class DrinkDetail extends React.Component {
           <IngredientList receita={receita} />
           <Instructions strInstructions={strInstructions} />
           <div>
-            <h2>receitas recomendadas</h2>
+            <Carousel />
           </div>
           <button data-testid="start-recipe-btn" style={{ position: 'fixed', bottom: 0 }}>
             Iniciar receita
