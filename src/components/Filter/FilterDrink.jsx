@@ -126,21 +126,21 @@ FilterDrink.propTypes = {
   drinkCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
-    })
+    }),
   ).isRequired,
   drinkSelected: PropTypes.arrayOf(
     PropTypes.shape({
       idDrink: PropTypes.string,
       strDrink: PropTypes.string,
       strDrinkThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
   drinkAll: PropTypes.arrayOf(
     PropTypes.shape({
       idDrink: PropTypes.string,
       strDrink: PropTypes.string,
       strDrinkThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
   fetch: PropTypes.func.isRequired,
   fetchFiltered: PropTypes.func.isRequired,

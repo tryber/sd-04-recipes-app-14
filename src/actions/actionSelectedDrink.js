@@ -19,7 +19,7 @@ export function fetchSelectedDrink(drink) {
   return (dispatch) => {
     dispatch(requestDrinkSelected());
     return getDrinksFiltered(drink).then((data) =>
-      dispatch(getDrinkSelectedData(data))
+      dispatch(getDrinkSelectedData(data)),
     );
   };
 }

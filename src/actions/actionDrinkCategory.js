@@ -19,7 +19,7 @@ function fetchDrinkCategory() {
   return (dispatch) => {
     dispatch(requestDrinkCategory());
     return getDrinksCategory().then((category) =>
-      dispatch(getDrinkCategoryData(category))
+      dispatch(getDrinkCategoryData(category)),
     );
   };
 }

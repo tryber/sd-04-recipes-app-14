@@ -11,8 +11,7 @@ class FilterMeal extends Component {
     super(props);
     this.state = {
       toogle: true,
-      show: true,
-      lastButton: '',
+      lastMeal: '',
     };
     this.onClick = this.onClick.bind(this);
     this.buildCard = this.buildCard.bind(this);
@@ -23,6 +22,22 @@ class FilterMeal extends Component {
     const { fetch, fetchAll } = this.props;
     fetchAll();
     fetch();
+  }
+
+  onClick(e) {
+    const { lastMeal } = this.state;
+    const { fetchFiltered, fetchAll } = this.props;
+    this.setState({ lastMeal: e.target.value });
+    if (e.target.value === lastMeal) {
+      this.setState({ show: true, lastMeal: '' });
+    } else if (e.target.value === 'All') {
+      this.setState({ toogle: true });
+      fetchAll();
+    } else {
+      this.setState({ toogle: false });
+      fetchFiltered(e.target.value);
+    }
+    return null;
   }
 
   buildCard() {
@@ -67,36 +82,20 @@ class FilterMeal extends Component {
     ));
   }
 
-  onClick(e) {
-    const { lastButton } = this.state;
-    const { fetchFiltered, fetchAll } = this.props;
-    this.setState({ lastButton: e.target.value });
-    if (e.target.value === lastButton) {
-      this.setState({ show: true, lastButton: '' });
-    } else if (e.target.value === 'All') {
-      this.setState({ show: true });
-      fetchAll();
-    } else {
-      this.setState({ show: false });
-      fetchFiltered(e.target.value);
-    }
-    return null;
-  }
-
   render() {
     const { mealCategories } = this.props;
     return (
       <div>
         <button
-          data-testid={`All-category-filter`}
+          data-testid={"All-category-filter"}
           value="All"
           onClick={this.onClick}
         >
           All
         </button>
-        {mealCategories.map((item, index) => (
+        {mealCategories.map((item) => (
           <button
-            key={index}
+            key={item.strCategory}
             data-testid={`${item.strCategory}-category-filter`}
             value={item.strCategory}
             onClick={this.onClick}
@@ -104,7 +103,7 @@ class FilterMeal extends Component {
             {item.strCategory}
           </button>
         ))}
-        {this.state.show ? this.buildCardAll() : this.buildCard()}
+        {this.state.toogle ? this.buildCardAll() : this.buildCard()}
       </div>
     );
   }
@@ -123,24 +122,24 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 FilterMeal.propTypes = {
-  drinkCategories: PropTypes.arrayOf(
+  mealCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
-    })
+    }),
   ).isRequired,
-  drinkSelected: PropTypes.arrayOf(
+  mealSelected: PropTypes.arrayOf(
     PropTypes.shape({
       idMeal: PropTypes.string,
       strMeal: PropTypes.string,
       strMealThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
-  drinkAll: PropTypes.arrayOf(
+  mealAll: PropTypes.arrayOf(
     PropTypes.shape({
       idMeal: PropTypes.string,
       strMeal: PropTypes.string,
       strMealThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
   fetch: PropTypes.func.isRequired,
   fetchFiltered: PropTypes.func.isRequired,
