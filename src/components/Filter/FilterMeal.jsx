@@ -10,7 +10,6 @@ class FilterMeal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toogle: true,
       show: true,
       lastButton: '',
     };
@@ -29,11 +28,7 @@ class FilterMeal extends Component {
     const { mealSelected } = this.props;
     return mealSelected.map((meal, index) => (
       <Link to={`/comidas/${meal.idMeal}`}>
-        <div
-          data-testid={`${index}-recipe-card`}
-          className="foods-card"
-          key={meal.idMeal}
-        >
+        <div data-testid={`${index}-recipe-card`} className="foods-card" key={meal.idMeal}>
           <img
             className="picture-cards-food"
             data-testid={`${index}-card-img`}
@@ -50,11 +45,7 @@ class FilterMeal extends Component {
     const { mealAll } = this.props;
     return mealAll.map((meal, index) => (
       <Link to={`/comidas/${meal.idMeal}`}>
-        <div
-          data-testid={`${index}-recipe-card`}
-          className="foods-card"
-          key={meal.idMeal}
-        >
+        <div data-testid={`${index}-recipe-card`} className="foods-card" key={meal.idMeal}>
           <img
             className="picture-cards-food"
             data-testid={`${index}-card-img`}
@@ -87,11 +78,7 @@ class FilterMeal extends Component {
     const { mealCategories } = this.props;
     return (
       <div>
-        <button
-          data-testid={`All-category-filter`}
-          value="All"
-          onClick={this.onClick}
-        >
+        <button data-testid={`All-category-filter`} value="All" onClick={this.onClick}>
           All
         </button>
         {mealCategories.map((item, index) => (
@@ -126,21 +113,21 @@ FilterMeal.propTypes = {
   drinkCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
-    })
+    }),
   ).isRequired,
   drinkSelected: PropTypes.arrayOf(
     PropTypes.shape({
       idMeal: PropTypes.string,
       strMeal: PropTypes.string,
       strMealThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
   drinkAll: PropTypes.arrayOf(
     PropTypes.shape({
       idMeal: PropTypes.string,
       strMeal: PropTypes.string,
       strMealThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
   fetch: PropTypes.func.isRequired,
   fetchFiltered: PropTypes.func.isRequired,
