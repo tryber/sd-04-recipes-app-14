@@ -1,0 +1,23 @@
+.div-carousel-cards {
+  display: flex;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.recomendation-card {
+  display: block;
+  list-style: none;
+}
+
+.buttons-carousel {
+  align-items: center;
+  background-color: #333;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  font-size: 32px;
+  height: 44px;
+  justify-content: center;
+  width: 44px;
+}

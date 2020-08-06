@@ -4,6 +4,7 @@ import reducerFoods from './reducerFoods';
 import reducerDrinks from './reducerDrinks';
 import fetchReducer from './fetchApi';
 import loginReducer from './loginReducer';
+import reducerCarousel from './reducerCarousel';
 import mealCategoryReducer from './mealCategoryReducer';
 import drinkCategoryReducer from './drinkCategoryReducer';
 import mealSelectedReducer from './mealSelectedReducer';
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   reducerDrinks,
   fetchReducer,
   loginReducer,
+  reducerCarousel,
 });
 
 export default rootReducer;

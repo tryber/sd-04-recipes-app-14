@@ -7,10 +7,12 @@ import './Styles/Cards.css';
 const Foods = () => (
   <div>
     <Header />
-    <div className="div-page-cards">
-      <RenderFoods />
+    <div>
+      <div className="div-page-cards">
+        <RenderFoods />
+      </div>
+      <Footer />
     </div>
-    <Footer />
   </div>
 );
 

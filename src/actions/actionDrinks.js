@@ -15,8 +15,6 @@ export const requestDrinkApiSucess = (data) => ({
 export function fetchApiDrinks(searchBar, radio) {
   return (dispatch) => {
     dispatch(requestDrinkAPIaction());
-    requestAPIdrinks(searchBar, radio).then((json) =>
-      dispatch(requestDrinkApiSucess(json))
-    );
+    requestAPIdrinks(searchBar, radio).then((json) => dispatch(requestDrinkApiSucess(json)));
   };
 }
