@@ -36,7 +36,7 @@ class Login extends React.Component {
   }
 
   handlePassword(event) {
-    if (event.target.value.length > 5) {
+    if (event.target.value.length > 6) {
       this.setState({
         password: event.target.value,
       });
