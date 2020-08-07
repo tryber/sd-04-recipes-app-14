@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+function juntaArray(arr1, arr2) {
+  return arr1.map((ing, i) => ing + arr2[i]);
+}
+
 const IngredientList = (props) => {
   const { receita } = props;
   if (receita) {
@@ -12,7 +16,7 @@ const IngredientList = (props) => {
         <h2>Ingredientes</h2>
         <div>
           {ingredientes.map((e, i) => {
-            if (receita[e] !== '') {
+            if (receita[e] !== null) {
               return (
                 <li key={receita[e]} data-testid={`${i}-ingredient-name-and-measure`}>
                   {receita[e]}
@@ -24,7 +28,7 @@ const IngredientList = (props) => {
         </div>
         <div>
           {quantidades.map((e, i) => {
-            if (receita[e] !== '') {
+            if (receita[e] !== null) {
               return (
                 <li key={receita[e]} data-testid={`${i}-ingredient-name-and-measure`}>
                   {receita[e]}
