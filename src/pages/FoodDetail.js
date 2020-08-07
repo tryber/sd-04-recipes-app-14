@@ -21,7 +21,8 @@ class FoodDetail extends React.Component {
     const { recFoods, recDrinks } = this.props;
     const { id } = this.props.match.params;
     this.getRecipe(id);
-    didMount(recFoods, recDrinks);
+    recDrinks('', 'nome');
+    recFoods('', 'nome');
   }
 
   getRecipe(id) {

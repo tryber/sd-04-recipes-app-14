@@ -18,10 +18,11 @@ class DrinkDetail extends React.Component {
   }
 
   componentDidMount() {
-    const { recFoods, recDrinks } = this.props;
+    const { recDrinksDrink, recFoodsDrink } = this.props;
     const { id } = this.props.match.params;
     this.getRecipe(id);
-    didMount(recFoods, recDrinks);
+    recDrinksDrink('', 'nome');
+    recFoodsDrink('', 'nome');
   }
 
   getRecipe(id) {
@@ -82,8 +83,8 @@ DrinkDetail.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
-  recDrinks: PropTypes.func.isRequired,
-  recFoods: PropTypes.func.isRequired,
+  recDrinksDrink: PropTypes.func.isRequired,
+  recFoodsDrink: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -92,8 +93,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  recFoods: (a, b) => dispatch(fetchApi(a, b)),
-  recDrinks: (a, b) => dispatch(fetchApiDrinks(a, b)),
+  recFoodsDrink: (a, b) => dispatch(fetchApi(a, b)),
+  recDrinksDrink: (a, b) => dispatch(fetchApiDrinks(a, b)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DrinkDetail);
