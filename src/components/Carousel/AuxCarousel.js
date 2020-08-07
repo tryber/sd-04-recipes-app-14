@@ -8,9 +8,8 @@ import { ModeloFood, ModeloDrink } from './Modelo';
 class AuxCarousel extends React.Component {
   render() {
     const { drinks, foods, drinksLoading, foodsLoading } = this.props;
-    const type = window.location.href.includes('comidas');
     if (!drinksLoading && !foodsLoading) {
-      if (type) {
+      if (window.location.href.includes('comidas')) {
         return (
           <div>
             <Carousel
@@ -29,27 +28,24 @@ class AuxCarousel extends React.Component {
           </div>
         );
       }
-      if (!type) {
-        return (
-          <div>
-            <Carousel
-              arrows
-              slidesPerPage={2}
-              slidesPerScroll={1}
-              animationSpeed={1500}
-              autoPlay={3000}
-              stopAutoPlayOnHover
-              centered
-            >
-              {foods.slice(0, 6).map((e, index) => {
-                return <ModeloFood data={e} index={index} />;
-              })}
-            </Carousel>
-          </div>
-        );
-      }
+      return (
+        <div>
+          <Carousel
+            arrows
+            slidesPerPage={2}
+            slidesPerScroll={1}
+            animationSpeed={1500}
+            autoPlay={3000}
+            stopAutoPlayOnHover
+            centered
+          >
+            {foods.slice(0, 6).map((e, index) => {
+              return <ModeloFood data={e} index={index} />;
+            })}
+          </Carousel>
+        </div>
+      );
     }
-    return null;
   }
 }
 
