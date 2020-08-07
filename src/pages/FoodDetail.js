@@ -7,6 +7,7 @@ import Instructions from '../components/Instructions/Instructions';
 import { fetchApiDrinks } from '../actions/actionDrinks';
 import { fetchApi } from '../actions/actionFoods';
 import Carousel from '../components/Carousel/Carousel';
+import didMount from '../Helper/componentDidiMount-Detail';
 
 class FoodDetail extends React.Component {
   constructor(props) {
@@ -20,8 +21,7 @@ class FoodDetail extends React.Component {
     const { recFoods, recDrinks } = this.props;
     const { id } = this.props.match.params;
     this.getRecipe(id);
-    recDrinks('', 'nome');
-    recFoods('', 'nome');
+    didMount(recFoods, recDrinks);
   }
 
   getRecipe(id) {
@@ -48,7 +48,7 @@ class FoodDetail extends React.Component {
           <HeaderDetail
             id={idMeal}
             area={strArea}
-            type={'comida'}
+            type="comida"
             categoria={strCategory}
             src={strMealThumb}
             alcolica={''}
@@ -84,6 +84,8 @@ FoodDetail.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  recDrinks: PropTypes.func.isRequired,
+  recFoods: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

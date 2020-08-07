@@ -7,6 +7,7 @@ import Instructions from '../components/Instructions/Instructions';
 import { fetchApiDrinks } from '../actions/actionDrinks';
 import { fetchApi } from '../actions/actionFoods';
 import Carousel from '../components/Carousel/Carousel';
+import didMount from '../Helper/componentDidiMount-Detail';
 
 class DrinkDetail extends React.Component {
   constructor(props) {
@@ -20,8 +21,7 @@ class DrinkDetail extends React.Component {
     const { recFoods, recDrinks } = this.props;
     const { id } = this.props.match.params;
     this.getRecipe(id);
-    recDrinks('', 'nome');
-    recFoods('', 'nome');
+    didMount(recFoods, recDrinks);
   }
 
   getRecipe(id) {
@@ -75,11 +75,15 @@ class DrinkDetail extends React.Component {
 }
 
 DrinkDetail.propTypes = {
+  loadingDrinks: PropTypes.func.isRequired,
+  loadingFoods: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
   }).isRequired,
+  recDrinks: PropTypes.func.isRequired,
+  recFoods: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
