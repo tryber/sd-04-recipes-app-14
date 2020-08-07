@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
 import IngredientList from '../components/IngredientList/IngredientList';
 import Instructions from '../components/Instructions/Instructions';
+import { fetchApi } from '../actions/actionFoods';
 import Carousel from '../components/Carousel/Carousel';
+import { fetchApiDrinks } from '../actions/actionDrinks';
 
 class DrinkDetail extends React.Component {
   constructor(props) {
@@ -14,8 +17,11 @@ class DrinkDetail extends React.Component {
   }
 
   componentDidMount() {
+    const { recFoods, recDrinks } = this.props;
     const { id } = this.props.match.params;
     this.getRecipe(id);
+    recFoods('', 'nome');
+    recDrinks('', 'nome');
   }
 
   getRecipe(id) {
@@ -51,7 +57,11 @@ class DrinkDetail extends React.Component {
           <div>
             <Carousel />
           </div>
-          <button data-testid="start-recipe-btn" style={{ position: 'fixed', bottom: 0 }}>
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            style={{ position: 'fixed', bottom: 0 }}
+          >
             Iniciar receita
           </button>
         </div>
@@ -68,4 +78,9 @@ DrinkDetail.propTypes = {
     }),
   }).isRequired,
 };
-export default DrinkDetail;
+const mapDispatchToProps = (dispatch) => ({
+  recFoods: (a, b) => dispatch(fetchApi(a, b)),
+  recDrinks: (a, b) => dispatch(fetchApiDrinks(a, b)),
+});
+
+export default connect(null, mapDispatchToProps)(DrinkDetail);

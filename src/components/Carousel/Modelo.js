@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './carousel.css';
+import { useSelector } from 'react-redux';
 
 export const ModeloFood = (props) => {
-  const { data, index } = props;
-  console.log(index);
+  const { index } = props;
+  const data = useSelector((state) => state.reducerFoods.Foods[index]);
   return (
     <div className="recomendation-card">
       <Link to={`/comidas/${data.idMeal}`}>

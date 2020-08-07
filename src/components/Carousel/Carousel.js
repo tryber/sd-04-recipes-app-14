@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import AuxCarousel from './AuxCarousel';
 import './carousel.css';
 
-function Carousel({ foodsLoading, drinksLoading }) {
-  if (!drinksLoading || !foodsLoading) {
-    return (
-      <div>
-        <h2>Recomendações:</h2>
-        <AuxCarousel />
-      </div>
-    );
-  }
-  return null;
+function Carousel() {
+  const foods = useSelector((state) => state.reducerFoods.Foods);
+  const drinks = useSelector((state) => state.reducerDrinks.Drinks);
+  console.log(foods, drinks);
+  return (
+    <div>
+      <h2>Recomendações:</h2>
+      <AuxCarousel />
+    </div>
+  );
 }
 
 Carousel.propTypes = {
