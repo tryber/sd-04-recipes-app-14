@@ -21,43 +21,45 @@ class AuxCarousel extends React.Component {
               stopAutoPlayOnHover
               centered
             >
-              {drinks.slice(0, 6).map((e, index) => {
-                return <ModeloDrink data={e} index={index} />;
-              })}
+              {drinks.slice(0, 6).map((e, index) => (
+                <ModeloDrink data={e} index={index} />
+              ))}
             </Carousel>
           </div>
         );
       }
-      return (
-        <div>
-          <Carousel
-            arrows
-            slidesPerPage={2}
-            slidesPerScroll={1}
-            animationSpeed={1500}
-            autoPlay={3000}
-            stopAutoPlayOnHover
-            centered
-          >
-            {foods.slice(0, 6).map((e, index) => {
-              return <ModeloFood data={e} index={index} />;
-            })}
-          </Carousel>
-        </div>
-      );
     }
+    return (
+      <div>
+        <Carousel
+          arrows
+          slidesPerPage={2}
+          slidesPerScroll={1}
+          animationSpeed={1500}
+          autoPlay={3000}
+          stopAutoPlayOnHover
+          centered
+        >
+          {foods.slice(0, 6).map((e, index) => (
+            <ModeloFood data={e} index={index} />
+          ))}
+        </Carousel>
+      </div>
+    );
   }
 }
 
 AuxCarousel.propTypes = {
   drinks: PropTypes.shape({
     idDrink: PropTypes.string,
+    slice: PropTypes.func,
     strDrink: PropTypes.string,
     strDrinkThumb: PropTypes.string,
   }).isRequired,
   drinksLoading: PropTypes.bool.isRequired,
-  foods: PropTypes.PropTypes.shape({
+  foods: PropTypes.shape({
     idMeal: PropTypes.string,
+    slice: PropTypes.func,
     strMeal: PropTypes.string,
     strMealThumb: PropTypes.string,
   }).isRequired,
