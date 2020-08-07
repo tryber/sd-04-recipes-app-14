@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import React from 'react';
 import HeaderDetail from '../components/HeaderDetail/HeaderDetail';
 import IngredientList from '../components/IngredientList/IngredientList';
 import Instructions from '../components/Instructions/Instructions';
+import { fetchApiDrinks } from '../actions/actionDrinks';
+import { fetchApi } from '../actions/actionFoods';
+import Carousel from '../components/Carousel/Carousel';
 
 class DrinkDetail extends React.Component {
   constructor(props) {
@@ -13,8 +17,11 @@ class DrinkDetail extends React.Component {
   }
 
   componentDidMount() {
+    const { recFoods, recDrinks } = this.props;
     const { id } = this.props.match.params;
     this.getRecipe(id);
+    recDrinks('', 'nome');
+    recFoods('', 'nome');
   }
 
   getRecipe(id) {
@@ -24,6 +31,7 @@ class DrinkDetail extends React.Component {
   }
 
   render() {
+    const { loadingFoods, loadingDrinks } = this.props;
     if (this.state.receita.idDrink) {
       const { receita } = this.state;
       const {
@@ -34,27 +42,33 @@ class DrinkDetail extends React.Component {
         strInstructions,
         strDrink,
       } = this.state.receita;
-      return (
-        <div>
-          <HeaderDetail
-            id={idDrink}
-            area={''}
-            type={'bebida'}
-            categoria={strCategory}
-            src={strDrinkThumb}
-            alcolica={strAlcoholic}
-            nome={strDrink}
-          />
-          <IngredientList receita={receita} />
-          <Instructions strInstructions={strInstructions} />
+      if (!loadingFoods && !loadingDrinks) {
+        return (
           <div>
-            <h2>receitas recomendadas</h2>
+            <HeaderDetail
+              id={idDrink}
+              area={''}
+              type={'bebida'}
+              categoria={strCategory}
+              src={strDrinkThumb}
+              alcolica={strAlcoholic}
+              nome={strDrink}
+            />
+            <IngredientList receita={receita} />
+            <Instructions strInstructions={strInstructions} />
+            <div>
+              <Carousel />
+            </div>
+            <button
+              type="button"
+              data-testid="start-recipe-btn"
+              style={{ position: 'fixed', bottom: 0 }}
+            >
+              Iniciar receita
+            </button>
           </div>
-          <button data-testid="start-recipe-btn" style={{ position: 'fixed', bottom: 0 }}>
-            Iniciar receita
-          </button>
-        </div>
-      );
+        );
+      }
     }
     return null;
   }
@@ -67,4 +81,15 @@ DrinkDetail.propTypes = {
     }),
   }).isRequired,
 };
-export default DrinkDetail;
+
+const mapStateToProps = (state) => ({
+  loadingFoods: state.reducerFoods.isLoading,
+  loadingDrinks: state.reducerDrinks.isLoading,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  recFoods: (a, b) => dispatch(fetchApi(a, b)),
+  recDrinks: (a, b) => dispatch(fetchApiDrinks(a, b)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DrinkDetail);
