@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './carousel.css';
 
 export const ModeloFood = (props) => {
   const { data, index } = props;
-  console.log(index);
   return (
     <div className="recomendation-card">
       <Link to={`/comidas/${data.idMeal}`}>
@@ -29,7 +27,7 @@ ModeloFood.propTypes = {
 
 export const ModeloDrink = (props) => {
   const { data, index } = props;
-  console.log(index);
+  console.log(data, index);
   return (
     <div className="recomendation-card">
       <Link to={`/bebidas/${data.idDrink}`}>
