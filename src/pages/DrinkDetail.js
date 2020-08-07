@@ -7,7 +7,6 @@ import Instructions from '../components/Instructions/Instructions';
 import { fetchApiDrinks } from '../actions/actionDrinks';
 import { fetchApi } from '../actions/actionFoods';
 import Carousel from '../components/Carousel/Carousel';
-import didMount from '../Helper/componentDidiMount-Detail';
 
 class DrinkDetail extends React.Component {
   constructor(props) {
