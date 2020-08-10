@@ -10,7 +10,7 @@ const Perfil = ({ name = 'Perfil' }) => (
   </div>
 );
 
-Foods.propTypes = {
+Perfil.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
