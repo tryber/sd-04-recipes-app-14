@@ -1,12 +1,13 @@
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
 import './Renders.css';
 import oneResultOrError from '../../Helper/SearchBar-Missing';
 
-function RenderFoods({ foods, isLoading }) {
-  if (isLoading) return null;
+function RenderFoods(props) {
+  const {foods, index} = props;
+  console.log('foods',foods);
+  // if (isLoading) return null;
   if (foods === null) {
     oneResultOrError(foods, 'comidas', 'idMeal');
     return null;
@@ -40,9 +41,4 @@ RenderFoods.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  foods: state.reducerFoods.Foods,
-  isLoading: state.reducerFoods.isLoading,
-});
-
-export default connect(mapStateToProps)(RenderFoods);
+export default RenderFoods;
