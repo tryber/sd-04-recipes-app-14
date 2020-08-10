@@ -10,7 +10,7 @@ class FilterMeal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toogle: true,
+      toggle: true,
       lastMeal: '',
     };
     this.onClick = this.onClick.bind(this);
@@ -29,12 +29,12 @@ class FilterMeal extends Component {
     const { fetchFiltered, fetchAll } = this.props;
     this.setState({ lastMeal: e.target.value });
     if (e.target.value === lastMeal) {
-      this.setState({ show: true, lastMeal: '' });
+      this.setState({ toggle: true, lastMeal: '' });
     } else if (e.target.value === 'All') {
-      this.setState({ toogle: true });
+      this.setState({ toggle: true });
       fetchAll();
     } else {
-      this.setState({ toogle: false });
+      this.setState({ toggle: false });
       fetchFiltered(e.target.value);
     }
     return null;
@@ -92,7 +92,7 @@ class FilterMeal extends Component {
             {item.strCategory}
           </button>
         ))}
-        {this.state.toogle ? this.buildCardAll() : this.buildCard()}
+        {this.state.toggle ? this.buildCardAll() : this.buildCard()}
       </div>
     );
   }

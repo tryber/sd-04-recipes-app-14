@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import RenderDrinks from '../components/RenderCards/RenderDrinks';
 import Footer from '../components/Footer/Footer';
-import Header from '../components/header/Header';
+import Header from '../components/Header/Header';
 import './Styles/Cards.css';
 
-const Drinks = () => (
+const Drinks = ({ search = true, name = 'Bebidas' }) => (
   <div>
-    <Header />
+    <Header search={search} name={name} />
     <div>
       <div className="div-page-cards">
         <RenderDrinks />
@@ -15,5 +16,10 @@ const Drinks = () => (
     </div>
   </div>
 );
+
+Drinks.propTypes = {
+  search: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default Drinks;

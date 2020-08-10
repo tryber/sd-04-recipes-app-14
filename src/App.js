@@ -17,17 +17,17 @@ function App() {
         <Route exact path="/bebidas" component={Pages.Drinks} />
         <Route exact path="/explorar" component={Pages.Explore} />
         <Route exact path="/perfil" component={Pages.Perfil} />
+        <Route exact path="/explorar/comidas" component={Pages.ExploreFood}/>
+        <Route exact path="/explorar/bebidas" component={Pages.ExploreDrinks}/>
+        <Route exact path="/explorar/comidas/ingredientes" component={Pages.ExploreFoodIngredients}/>
+        <Route exact path="/explorar/bebidas/ingredientes" component={Pages.ExploreDrinksIngredients}/>
+        <Route exact path="/explorar/comidas/area" component={Pages.ExploreFoodOrigin}/>
+        <Route exact path="/receitas-feitas" component={Pages.DoneRecipes}/>
+        <Route exact path="/receitas-favoritas" component={Pages.FavoriteRecipes}/>
+        <Route exact path="/explorar/bebidas/area" component={Pages.ExploreDrinksOrigin}/>
         {/* <Route path="" component={}/>
-        <Route path="" component={}/>
-        <Route path="" component={}/>
-        <Route path="" component={}/>
-        <Route path="" component={}/>
-        <Route path="" component={}/>
-        <Route path="" component={}/>
-        <Route path="" component={}/>
-        <Route path="" component={}/>
-        <Route path="" component={}/>
         <Route path="" component={}/> */}
+        <Route component={Pages.NotFound}/>
       </Switch>
     </Provider>
   );
