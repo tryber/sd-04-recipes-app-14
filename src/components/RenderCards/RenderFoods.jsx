@@ -37,6 +37,7 @@ RenderFoods.propTypes = {
     length: PropTypes.number,
     map: PropTypes.func,
   }).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
