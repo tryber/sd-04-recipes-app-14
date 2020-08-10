@@ -47,4 +47,9 @@ const Perfil = ({ name = 'Perfil' }) => {
     </div>
   );
 };
+
+Perfil.propTypes = {
+  name: PropTypes.string.isRequired,
+};
+
 export default Perfil;

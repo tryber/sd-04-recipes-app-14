@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProfileIcon from '../../images/profileIcon.svg';
 import SearchIcon from '../../images/searchIcon.svg';
 import SearchBar from '../SearchBar/SearchBar';
@@ -25,7 +26,11 @@ class Header extends Component {
 
   buildSearchBtn() {
     return (
-      <button src={SearchIcon} data-testid="search-top-btn" onClick={this.onClick}>
+      <button
+        src={SearchIcon}
+        data-testid="search-top-btn"
+        onClick={this.onClick}
+      >
         <img src={SearchIcon} alt="search-icon" />
       </button>
     );
@@ -35,14 +40,16 @@ class Header extends Component {
     return (
       <div>
         <div className="header-container">
-          <a className='perfil-btn' href="/perfil">
+          <a className="perfil-btn" href="/perfil">
             <img
               data-testid="profile-top-btn"
               src={ProfileIcon}
               alt="profile-icon"
             />
           </a>
-          <h1 className="page-title" data-testid="page-title">{this.props.name}</h1>
+          <h1 className="page-title" data-testid="page-title">
+            {this.props.name}
+          </h1>
           {this.props.search && this.buildSearchBtn()}
         </div>
         {this.state.show && <SearchBar />}
@@ -50,5 +57,10 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  name: PropTypes.string.isRequired,
+  search: PropTypes.bool.isRequired,
+};
 
 export default Header;

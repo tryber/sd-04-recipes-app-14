@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
-const ExploreFoodIngredients = ({ name = 'Explorar Ingredientes' }) => {
-  return (
-    <div>
-      <Header name={name} />
-      <Footer />
-    </div>
-  );
-};
+const ExploreFoodIngredients = ({ name = 'Explorar Ingredientes' }) => (
+  <div>
+    <Header name={name} />
+    <Footer />
+  </div>
+);
 
 ExploreFoodIngredients.propTypes = {
   name: PropTypes.string.isRequired,
