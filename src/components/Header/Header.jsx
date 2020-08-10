@@ -7,13 +7,16 @@ import './Header.css';
 class Header extends Component {
   static setName() {
     if (document.URL.includes('comidas')) {
-      return <h1 data-testid="page-title">Comidas</h1>;
+      return <h1 className="page-title" data-testid="page-title">Comidas</h1>;
     }
     if (document.URL.includes('bebidas')) {
       return <h1 data-testid="page-title">Bebidas</h1>;
     }
     if (document.URL.includes('perfil')) {
       return <h1 data-testid="page-title">Perfil</h1>;
+    }
+    if (document.URL.includes('explorar')) {
+      return <h1 data-testid="page-title">Explorar</h1>;
     }
     return null;
   }
@@ -24,6 +27,7 @@ class Header extends Component {
       show: false,
     };
     this.onClick = this.onClick.bind(this);
+    this.buildSearchBtn = this.buildSearchBtn.bind(this);
   }
 
   onClick() {
@@ -35,11 +39,19 @@ class Header extends Component {
     }
   }
 
+  buildSearchBtn() {
+    return (
+      <button src={SearchIcon} data-testid="search-top-btn" onClick={this.onClick}>
+        <img src={SearchIcon} alt="search-icon" />
+      </button>
+    );
+  }
+
   render() {
     return (
       <div>
         <div className="header-container">
-          <a href="/perfil">
+          <a className='perfil-btn' href="/perfil">
             <img
               data-testid="profile-top-btn"
               src={ProfileIcon}
@@ -47,9 +59,7 @@ class Header extends Component {
             />
           </a>
           {Header.setName()}
-          <button data-testid="search-top-btn" onClick={this.onClick}>
-            <img src={SearchIcon} alt="search-icon" />
-          </button>
+          {this.props.search && this.buildSearchBtn()}
         </div>
         {this.state.show && <SearchBar />}
       </div>

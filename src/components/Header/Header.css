@@ -5,3 +5,10 @@
   height: 58px;
   justify-content: space-around;
 }
+
+.perfil-btn {
+  display: inline;
+  left: 15px;
+  top: 12px;
+}
+

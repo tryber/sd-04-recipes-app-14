@@ -11,8 +11,10 @@ import mealSelectedReducer from './mealSelectedReducer';
 import drinkSelectedReducer from './drinkSelectedReducer';
 import mealAllReducer from './mealAllReducer';
 import drinkAllReducer from './drinkAllReducer';
+import buildSearchBtnReducer from './buildSearchBtnReducer';
 
 const rootReducer = combineReducers({
+  buildSearchBtnReducer,
   drinkAllReducer,
   drinkSelectedReducer,
   mealAllReducer,
