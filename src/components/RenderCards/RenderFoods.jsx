@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -7,21 +7,25 @@ import oneResultOrError from '../../Helper/SearchBar-Missing';
 
 function RenderFoods({ foods, isLoading }) {
   if (isLoading) return null;
-  if (foods === null || foods.length === 1) return oneResultOrError(foods, 'comidas', 'idMeal');
+  if (foods === null) {
+    oneResultOrError(foods, 'comidas', 'idMeal');
+    return null;
+  }
+  if (foods.length === 1) return <Redirect to={`/comidas/${foods[0].idMeal}`} />;
   return foods.map((food, index) => {
     if (index < 12) {
       return (
-        <Link to={`/comidas/${food.idMeal}`}>
-          <div className="foods-card" key={food.idMeal}>
+        <div data-testid={`${index}-recipe-card`} className="foods-card" key={food.idMeal}>
+          <Link to={`/comidas/${food.idMeal}`}>
             <img
               className="picture-cards-food"
-              data-testid={`${index}-card-image`}
+              data-testid={`${index}-card-img`}
               src={food.strMealThumb}
               alt={food.strMeal}
             />
             <p data-testid={`${index}-card-name`}>{food.strMeal}</p>
-          </div>
-        </Link>
+          </Link>
+        </div>
       );
     }
     return null;
