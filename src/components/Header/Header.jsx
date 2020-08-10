@@ -5,22 +5,6 @@ import SearchBar from '../SearchBar/SearchBar';
 import './Header.css';
 
 class Header extends Component {
-  static setName() {
-    if (document.URL.includes('comidas')) {
-      return <h1 className="page-title" data-testid="page-title">Comidas</h1>;
-    }
-    if (document.URL.includes('bebidas')) {
-      return <h1 data-testid="page-title">Bebidas</h1>;
-    }
-    if (document.URL.includes('perfil')) {
-      return <h1 data-testid="page-title">Perfil</h1>;
-    }
-    if (document.URL.includes('explorar')) {
-      return <h1 data-testid="page-title">Explorar</h1>;
-    }
-    return null;
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +42,7 @@ class Header extends Component {
               alt="profile-icon"
             />
           </a>
-          {Header.setName()}
+          <h1 className="page-title" data-testid="page-title">{this.props.name}</h1>
           {this.props.search && this.buildSearchBtn()}
         </div>
         {this.state.show && <SearchBar />}

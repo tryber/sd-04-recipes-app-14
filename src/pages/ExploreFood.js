@@ -1,14 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
-const ExploreFood = () => {
+const ExploreFood = ({ name = 'Explorar Comidas' }) => {
   return (
     <div>
-      <Header />
+      <Header name={name} />
       <Footer />
     </div>
   );
+};
+
+ExploreFood.propTypes = {
+  name: PropTypes.string.isRequired,
 };
 
 export default ExploreFood;

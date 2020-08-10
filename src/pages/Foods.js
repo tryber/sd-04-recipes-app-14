@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import RenderFoods from '../components/RenderCards/RenderFoods';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
-import FilterFoods from '../components/Filter/FilterMeal'
 import './Styles/Cards.css';
 
-const Foods = ({ search }) => (
+const Foods = ({ search = true, name = 'Comidas' }) => (
   <div>
-    <Header search={search} />
+    <Header search={search} name={name} />
     <div>
-      <FilterFoods />
       <div className="div-page-cards">
         <RenderFoods />
       </div>
@@ -20,12 +17,9 @@ const Foods = ({ search }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  search: state.buildSearchBtnReducer.isShow,
-});
-
 Foods.propTypes = {
   search: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps)(Foods);
+export default Foods;
