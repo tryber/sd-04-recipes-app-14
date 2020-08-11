@@ -1,16 +1,11 @@
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 import './Renders.css';
-import oneResultOrError from '../../Helper/SearchBar-Missing';
 
 function RenderFoods(props) {
   const { foods, index } = props;
-  if (foods === null) {
-    oneResultOrError(foods, 'comidas', 'idMeal');
-    return null;
-  }
-  if (foods.length === 1) return <Redirect to={`/comidas/${foods[0].idMeal}`} />;
+  console.log(foods, index);
   return (
     <div data-testid={`${index}-recipe-card`} className="foods-card" key={foods.idMeal}>
       <Link to={`/comidas/${foods.idMeal}`}>
