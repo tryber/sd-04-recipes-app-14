@@ -6,8 +6,16 @@ import { fetchApi } from '../../actions/actionFoods';
 import { fetchApiDrinks } from '../../actions/actionDrinks';
 import primeiraLetra from '../../Helper/SearchBar-PrimeiraLetra';
 import FoodOrDrinks from './FoodOrDrinks';
+import { ChangeRender } from '../../actions/actionChangeRender';
 
-function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, requestAPIdrinks }) {
+function BarraDePesquisa({
+  inputSearch,
+  searchBar,
+  radio,
+  requestAPIfoods,
+  requestAPIdrinks,
+  changeRender,
+}) {
   return (
     <div>
       <input
@@ -19,8 +27,11 @@ function BarraDePesquisa({ inputSearch, searchBar, radio, requestAPIfoods, reque
       />
       <button
         type="submit"
-        onClick={() => FoodOrDrinks(searchBar, radio, requestAPIdrinks, requestAPIfoods)}
         data-testid="exec-search-btn"
+        onClick={() => {
+          changeRender(false);
+          FoodOrDrinks(searchBar, radio, requestAPIdrinks, requestAPIfoods);
+        }}
       >
         Pesquisar
       </button>
@@ -44,6 +55,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  changeRender: (bool) => dispatch(ChangeRender(bool)),
   inputSearch: (e) => dispatch(addSearchSearchBar(e.target.value)),
   requestAPIfoods: (searchBar, radio) => dispatch(fetchApi(searchBar, radio)),
   requestAPIdrinks: (searchBar, radio) => dispatch(fetchApiDrinks(searchBar, radio)),

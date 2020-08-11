@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchMealCategory } from '../../actions/actionMealCategory';
 import { fetchSelectedMeal } from '../../actions/actionSelectedMeal';
+import RenderFoods from '../RenderCards/RenderFoods';
 import { fetchAllMeal } from '../../actions/actionSelectAllM';
+import { ChangeRender } from '../../actions/actionChangeRender';
 
 class FilterMeal extends Component {
   constructor(props) {
@@ -20,13 +21,14 @@ class FilterMeal extends Component {
 
   componentDidMount() {
     const { fetch, fetchAll } = this.props;
-    fetchAll();
     fetch();
+    fetchAll();
   }
 
   onClick(e) {
     const { lastMeal } = this.state;
-    const { fetchFiltered, fetchAll } = this.props;
+    const { fetchFiltered, fetchAll, changeRender } = this.props;
+    changeRender(true);
     this.setState({ lastMeal: e.target.value });
     if (e.target.value === lastMeal) {
       this.setState({ toggle: true, lastMeal: '' });
@@ -42,36 +44,12 @@ class FilterMeal extends Component {
 
   buildCard() {
     const { mealSelected } = this.props;
-    return mealSelected.map((meal, index) => (
-      <Link to={`/comidas/${meal.idMeal}`}>
-        <div data-testid={`${index}-recipe-card`} className="foods-card" key={meal.idMeal}>
-          <img
-            className="picture-cards-food"
-            data-testid={`${index}-card-img`}
-            src={meal.strMealThumb}
-            alt={meal.strMeal}
-          />
-          <p data-testid={`${index}-card-name`}>{meal.strMeal}</p>
-        </div>
-      </Link>
-    ));
+    return mealSelected.map((foods, index) => <RenderFoods foods={foods} index={index} />);
   }
 
   buildCardAll() {
     const { mealAll } = this.props;
-    return mealAll.map((meal, index) => (
-      <Link to={`/comidas/${meal.idMeal}`}>
-        <div data-testid={`${index}-recipe-card`} className="foods-card" key={meal.idMeal}>
-          <img
-            className="picture-cards-food"
-            data-testid={`${index}-card-img`}
-            src={meal.strMealThumb}
-            alt={meal.strMeal}
-          />
-          <p data-testid={`${index}-card-name`}>{meal.strMeal}</p>
-        </div>
-      </Link>
-    ));
+    return mealAll.map((meal, index) => <RenderFoods foods={meal} index={index} />);
   }
 
   render() {
@@ -106,8 +84,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetch: () => dispatch(fetchMealCategory()),
-  fetchFiltered: (meal) => dispatch(fetchSelectedMeal(meal)),
   fetchAll: () => dispatch(fetchAllMeal()),
+  fetchFiltered: (meal) => dispatch(fetchSelectedMeal(meal)),
+  changeRender: (bool) => dispatch(ChangeRender(bool)),
 });
 
 FilterMeal.propTypes = {
@@ -132,7 +111,6 @@ FilterMeal.propTypes = {
   ).isRequired,
   fetch: PropTypes.func.isRequired,
   fetchFiltered: PropTypes.func.isRequired,
-  fetchAll: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterMeal);
