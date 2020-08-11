@@ -34,11 +34,13 @@ function RenderDrinks(props) {
 }
 
 RenderDrinks.propTypes = {
-  drinks: PropTypes.shape({
+  drink: PropTypes.shape({
+    idDrink: PropTypes.number,
     length: PropTypes.number,
-    map: PropTypes.func,
+    strDrink: PropTypes.string,
+    strDrinkThumb: PropTypes.string,
   }).isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({

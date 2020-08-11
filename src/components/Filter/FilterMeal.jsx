@@ -90,6 +90,17 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 FilterMeal.propTypes = {
+  changeRender: PropTypes.func.isRequired,
+  fetch: PropTypes.func.isRequired,
+  fetchAll: PropTypes.func.isRequired,
+  fetchFiltered: PropTypes.func.isRequired,
+  mealAll: PropTypes.arrayOf(
+    PropTypes.shape({
+      idMeal: PropTypes.string,
+      strMeal: PropTypes.string,
+      strMealThumb: PropTypes.string,
+    }),
+  ).isRequired,
   mealCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
@@ -102,15 +113,6 @@ FilterMeal.propTypes = {
       strMealThumb: PropTypes.string,
     }),
   ).isRequired,
-  mealAll: PropTypes.arrayOf(
-    PropTypes.shape({
-      idMeal: PropTypes.string,
-      strMeal: PropTypes.string,
-      strMealThumb: PropTypes.string,
-    }),
-  ).isRequired,
-  fetch: PropTypes.func.isRequired,
-  fetchFiltered: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterMeal);
