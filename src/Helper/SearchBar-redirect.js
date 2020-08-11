@@ -19,6 +19,6 @@ export const redirectDrinks = (drinks) => {
     oneResultOrError(drinks);
     return null;
   }
-  if (drinks.length === 1) return <Redirect to={`/bebidas/${drinks[0].idDrinks}`} />;
-  return drinks.map((e, index) => <RenderDrinks drinks={e} index={index} />);
+  if (drinks.length === 1) return <Redirect to={`/bebidas/${drinks[0].idDrink}`} />;
+  return drinks.map((e, index) => <RenderDrinks drink={e} index={index} />);
 };

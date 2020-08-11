@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { redirectFoods, redirectDrinks } from '../../Helper/SearchBar-redirect';
 
 function RenderBusca({ drinks, foods }) {
-  console.log(drinks, foods);
   if (window.location.href.includes('comidas')) {
     return redirectFoods(foods);
   }

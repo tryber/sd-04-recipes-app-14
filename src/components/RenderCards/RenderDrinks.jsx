@@ -11,7 +11,8 @@ function RenderDrinks(props) {
     oneResultOrError(drink);
     return null;
   }
-  if (drink.length === 1) return <Redirect to={`/bebidas/${drink[0].idDrink}`} />;
+  console.log(drink.idDrink);
+  if (drink.length === 1) return <Redirect to={`/bebidas/${drink.idDrink}`} />;
   return (
     <div
       data-testid={`${index}-recipe-card`}
