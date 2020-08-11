@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import RenderFoods from '../RenderCards/RenderFoods';
 import RenderDrinks from '../RenderCards/RenderDrinks';
-import oneResultOrError from '../../Helper/SearchBar-Missing';
+import { redirectFoods } from '../../Helper/SearchBar-redirect';
 
 function RenderBusca({ drinks, foods }) {
   console.log(drinks, foods);
   if (window.location.href.includes('comidas')) {
-    oneResultOrError(foods);
+    redirectFoods(foods);
     return foods.map((e, index) => <RenderFoods foods={e} index={index} />);
   }
   if (window.location.href.includes('bebidas')) {
