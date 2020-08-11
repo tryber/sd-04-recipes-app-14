@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import getFood from '../service';
-import { fetchFoodApi, getEmail } from '../actions/actions';
+import { getEmail } from '../actions/actions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -14,16 +13,7 @@ class Login extends React.Component {
     };
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
-    this.storeApiRedux = this.storeApiRedux.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    this.storeApiRedux();
-  }
-
-  storeApiRedux() {
-    getFood().then((data) => this.props.fetchFoodApi1(data));
   }
 
   handleEmail(event) {
@@ -102,7 +92,6 @@ Login.propTypes = {
 };
 
 const mapDispacthToProps = (dispatch) => ({
-  fetchFoodApi1: (data) => dispatch(fetchFoodApi(data)),
   getEmail1: (email) => dispatch(getEmail(email)),
 });
 

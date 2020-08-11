@@ -13,9 +13,16 @@ const drinkAllReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
       };
     case GET_ALL_DRINK:
+      if (action.data.meals !== null) {
+        return {
+          ...state,
+          drinkAll: action.data.drinks.slice(0, 12),
+          isLoading: true,
+        };
+      }
       return {
         ...state,
-        drinkAll: action.data.drinks.slice(0, 12),
+        drinkAll: action.data.drinks,
         isLoading: true,
       };
     default:

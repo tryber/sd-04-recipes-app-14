@@ -1,7 +1,4 @@
-import {
-  REQUEST_MEAL_SELECTED,
-  GET_MEAL_SELECTED,
-} from '../actions/actionSelectedMeal';
+import { REQUEST_MEAL_SELECTED, GET_MEAL_SELECTED } from '../actions/actionSelectedMeal';
 
 const INITIAL_STATE = {
   isLoading: false,
@@ -16,9 +13,16 @@ const mealSelectedReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
       };
     case GET_MEAL_SELECTED:
+      if (action.data.meals !== null) {
+        return {
+          ...state,
+          mealSelected: action.data.meals.slice(0, 12),
+          isLoading: true,
+        };
+      }
       return {
         ...state,
-        mealSelected: action.data.meals.slice(0, 12),
+        mealSelected: action.data.meals,
         isLoading: true,
       };
     default:

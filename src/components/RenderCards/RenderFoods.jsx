@@ -5,32 +5,25 @@ import './Renders.css';
 import oneResultOrError from '../../Helper/SearchBar-Missing';
 
 function RenderFoods(props) {
-  const {foods, index} = props;
-  console.log('foods',foods);
-  // if (isLoading) return null;
+  const { foods, index } = props;
   if (foods === null) {
     oneResultOrError(foods, 'comidas', 'idMeal');
     return null;
   }
   if (foods.length === 1) return <Redirect to={`/comidas/${foods[0].idMeal}`} />;
-  return foods.map((food, index) => {
-    if (index < 12) {
-      return (
-        <div data-testid={`${index}-recipe-card`} className="foods-card" key={food.idMeal}>
-          <Link to={`/comidas/${food.idMeal}`}>
-            <img
-              className="picture-cards-food"
-              data-testid={`${index}-card-img`}
-              src={food.strMealThumb}
-              alt={food.strMeal}
-            />
-            <p data-testid={`${index}-card-name`}>{food.strMeal}</p>
-          </Link>
-        </div>
-      );
-    }
-    return null;
-  });
+  return (
+    <div data-testid={`${index}-recipe-card`} className="foods-card" key={foods.idMeal}>
+      <Link to={`/comidas/${foods.idMeal}`}>
+        <img
+          className="picture-cards-food"
+          data-testid={`${index}-card-img`}
+          src={foods.strMealThumb}
+          alt={foods.strMeal}
+        />
+        <p data-testid={`${index}-card-name`}>{foods.strMeal}</p>
+      </Link>
+    </div>
+  );
 }
 
 RenderFoods.propTypes = {

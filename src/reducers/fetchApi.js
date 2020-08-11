@@ -13,6 +13,13 @@ const fetchReducer = (state = INITIAL_STATE, action) => {
         receivedData: false,
       };
     case GET_FOOD_API:
+      if (action.data.meals !== null) {
+        return {
+          ...state,
+          foodData: action.data.meals.slice(0, 12),
+          receivedData: true,
+        };
+      }
       return {
         ...state,
         foodData: action.data.meals,

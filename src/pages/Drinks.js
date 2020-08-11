@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RenderDrinks from '../components/RenderCards/RenderDrinks';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import './Styles/Cards.css';
+import FilterDrink from '../components/Filter/FilterDrink';
 
 const Drinks = ({ search = true, name = 'Bebidas' }) => (
   <div>
     <Header search={search} name={name} />
     <div>
       <div className="div-page-cards">
-        <RenderDrinks />
+        <FilterDrink />
       </div>
       <Footer />
     </div>
