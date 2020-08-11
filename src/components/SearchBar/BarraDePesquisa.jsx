@@ -40,6 +40,7 @@ function BarraDePesquisa({
 }
 
 BarraDePesquisa.propTypes = {
+  changeRender: PropTypes.func.isRequired,
   inputSearch: PropTypes.func.isRequired,
   radio: PropTypes.string.isRequired,
   requestAPIdrinks: PropTypes.func.isRequired,

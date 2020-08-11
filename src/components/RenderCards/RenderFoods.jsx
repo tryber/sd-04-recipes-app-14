@@ -28,10 +28,13 @@ function RenderFoods(props) {
 
 RenderFoods.propTypes = {
   foods: PropTypes.shape({
+    idMeal: PropTypes.any,
     length: PropTypes.number,
     map: PropTypes.func,
+    strMeal: PropTypes.any,
+    strMealThumb: PropTypes.any,
   }).isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default RenderFoods;
