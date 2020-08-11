@@ -16,8 +16,6 @@ class FavoriteButton extends React.Component {
 
   componentDidMount() {
     const id = document.URL.slice(30);
-    console.log(id);
-    console.log('match', this.props);
     if (!localStorage.favoriteRecipes) localStorage.favoriteRecipes = JSON.stringify([]);
     const storeInicial = JSON.parse(localStorage.favoriteRecipes);
     if (storeInicial.some((e) => e.id === id)) this.handleInicial();
@@ -55,7 +53,6 @@ class FavoriteButton extends React.Component {
   render() {
     const { favorito } = this.state;
     const { id, nome, categoria, area, alcolica, type, src } = this.props;
-    console.log(this.props);
     return (
       <div>
         <input

@@ -7,6 +7,8 @@ import Instructions from '../components/Instructions/Instructions';
 import { fetchApiDrinks } from '../actions/actionDrinks';
 import { fetchApi } from '../actions/actionFoods';
 import Carousel from '../components/Carousel/Carousel';
+import StartRecipeButton from '../components/StartRecipeButton/StartRecipeButton'
+
 
 class DrinkDetail extends React.Component {
   constructor(props) {
@@ -49,7 +51,7 @@ class DrinkDetail extends React.Component {
               id={idDrink}
               area={''}
               type={'bebida'}
-              categoria={strCategory}
+              categoria={strAlcoholic}
               src={strDrinkThumb}
               alcolica={strAlcoholic}
               nome={strDrink}
@@ -59,13 +61,7 @@ class DrinkDetail extends React.Component {
             <div>
               <Carousel />
             </div>
-            <button
-              type="button"
-              data-testid="start-recipe-btn"
-              style={{ position: 'fixed', bottom: 0 }}
-            >
-              Iniciar receita
-            </button>
+            <StartRecipeButton receita={receita} />
           </div>
         );
       }

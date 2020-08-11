@@ -5,10 +5,13 @@ import { connect } from 'react-redux';
 import './Renders.css';
 import oneResultOrError from '../../Helper/SearchBar-Missing';
 
-function RenderFoods({ foods, isLoading }) {
-  if (isLoading) return null;
-  if (foods === null || foods.length === 1) return oneResultOrError(foods, 'comidas', 'idMeal');
-  return foods.map((food, index) => {
+function RenderFoods({ foods, isLoading, foodData }) {
+  console.log('food',foods)
+  console.log('load', isLoading)
+  console.log('foData', foodData)
+  // if (isLoading) return null;
+  // if (foods === null || foods.length === 1) return oneResultOrError(foods, 'comidas', 'idMeal');
+  return foodData.map((food, index) => {
     if (index < 12) {
       return (
         <Link to={`/comidas/${food.idMeal}`}>
@@ -38,6 +41,7 @@ RenderFoods.propTypes = {
 const mapStateToProps = (state) => ({
   foods: state.reducerFoods.Foods,
   isLoading: state.reducerFoods.isLoading,
+  foodData: state.fetchReducer.foodData,
 });
 
 export default connect(mapStateToProps)(RenderFoods);

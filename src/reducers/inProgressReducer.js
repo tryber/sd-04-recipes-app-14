@@ -1,9 +1,10 @@
-import { CHANGE_INPROGRESS, CHANGE_DONE } from '../actions/actions';
-import IngredientCheck from '../components/IngredientList/IngredientCheck';
+import { CHANGE_INPROGRESS, CHANGE_DONE, PASS_RECIPE, BUTTON_FINALIZAR } from '../actions/actions';
 
 const INITIAL_STATE = {
   inprogress: false,
   done: false,
+  receita: {},
+  button: false,
 };
 
 const inprogressReducer = (state = INITIAL_STATE, action) => {
@@ -18,6 +19,16 @@ const inprogressReducer = (state = INITIAL_STATE, action) => {
         ...state,
         inprogress: true,
       };
+    case PASS_RECIPE:
+      return {
+        ...state,
+        receita: action.receita,
+      };
+    case BUTTON_FINALIZAR:
+      return {
+        ...state,
+        button: true,
+      }
     default:
       return state;
   }

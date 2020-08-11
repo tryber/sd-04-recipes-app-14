@@ -26,6 +26,24 @@ class FoodInProgress extends React.Component {
     this.setState({ receita: receita });
   };
 
+  handleStorage(id, type, area, category, alcoholicOrNot, name, image, doneDate, tags) {
+    if (!localStorage.doneRecipes) localStorage.doneRecipes = JSON.stringify([])
+    let storage = JSON.parse(localStorage.doneRecipes)
+    const salvar = {
+      id: id,
+      type: type,
+      area: area,
+      category: category,
+      alcoholicOrNot: alcoholicOrNot,
+      name: name,
+      image: image,
+      doneDate: doneDate,
+      tags: tags,
+    }
+    storage = [...storage, salvar]
+    localStorage.doneRecipes = JSON.stringify(storage)
+  }
+
   render() {
     if (this.state.receita.idMeal) {
       const {
@@ -35,9 +53,9 @@ class FoodInProgress extends React.Component {
         strCategory,
         strInstructions,
         strMeal,
-        strYoutube,
+        strTags,
       } = this.state.receita;
-      const { receita } = this.props;
+      const { receita, botao } = this.props;
       return (
         <div>
           <HeaderDetail
@@ -51,7 +69,16 @@ class FoodInProgress extends React.Component {
           />
           <IngredientCheck receita={receita} />
           <Instructions strInstructions={strInstructions} />
-          <button data-testid="finish-recipe-btn">finalizar receita</button>
+          <button
+            disabled={!botao}
+            data-testid="finish-recipe-btn"
+            onClick={() => {
+              this.props.changeDone1()
+              this.handleStorage(idMeal,'comida',strArea,strCategory,' ',strMeal,strMealThumb,new Date(),strTags)  
+            }}
+          >
+            finalizar receita
+          </button>
         </div>
       );
     }
@@ -64,9 +91,14 @@ FoodInProgress.propTypes = {
   receita: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  receita: state.inProgressReducer.receita,
+  botao: state.inProgressReducer.button,
+});
+
 const mapDispacthToProps = (dispacht) => ({
   changeDone1: () => dispacht(changeDone()),
   changeInprogress1: () => dispacht(changeInprogress()),
 });
 
-export default connect(null, mapDispacthToProps)(FoodInProgress);
+export default connect(mapStateToProps, mapDispacthToProps)(FoodInProgress);
