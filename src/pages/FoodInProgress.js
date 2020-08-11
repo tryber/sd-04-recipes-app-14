@@ -12,13 +12,17 @@ class FoodInProgress extends React.Component {
     this.state = {
       done: false,
       receita: {},
+      meals: {}
     };
     this.handleInitialState = this.handleInitialState.bind(this);
+    this.handleInProgress = this.handleInProgress.bind(this);
   }
 
   componentDidMount() {
     this.handleInitialState();
+    this.handleInProgress(this.props.receita.idMeal)
     this.props.changeInprogress1();
+
   }
 
   handleInitialState = () => {
@@ -26,9 +30,18 @@ class FoodInProgress extends React.Component {
     this.setState({ receita: receita });
   };
 
+  handleInProgress = (id) => {
+    if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
+    // const {meals} = this.state
+    let fInPro = JSON.parse(localStorage.inProgressRecipes);
+    const meals = {[id]: []}
+    fInPro = { ...fInPro, meals};
+    localStorage.inProgressRecipes = JSON.stringify(fInPro);
+  };
+
   handleStorage(id, type, area, category, alcoholicOrNot, name, image, doneDate, tags) {
-    if (!localStorage.doneRecipes) localStorage.doneRecipes = JSON.stringify([])
-    let storage = JSON.parse(localStorage.doneRecipes)
+    if (!localStorage.doneRecipes) localStorage.doneRecipes = JSON.stringify([]);
+    let storage = JSON.parse(localStorage.doneRecipes);
     const salvar = {
       id: id,
       type: type,
@@ -39,9 +52,9 @@ class FoodInProgress extends React.Component {
       image: image,
       doneDate: doneDate,
       tags: tags,
-    }
-    storage = [...storage, salvar]
-    localStorage.doneRecipes = JSON.stringify(storage)
+    };
+    storage = [...storage, salvar];
+    localStorage.doneRecipes = JSON.stringify(storage);
   }
 
   render() {
@@ -73,8 +86,18 @@ class FoodInProgress extends React.Component {
             disabled={!botao}
             data-testid="finish-recipe-btn"
             onClick={() => {
-              this.props.changeDone1()
-              this.handleStorage(idMeal,'comida',strArea,strCategory,' ',strMeal,strMealThumb,new Date(),strTags)  
+              this.props.changeDone1();
+              this.handleStorage(
+                idMeal,
+                'comida',
+                strArea,
+                strCategory,
+                ' ',
+                strMeal,
+                strMealThumb,
+                new Date(),
+                strTags
+              );
             }}
           >
             finalizar receita

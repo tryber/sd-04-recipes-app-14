@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import fetchDrinkCategory from '../../actions/actionDrinkCategory';
 import { fetchSelectedDrink } from '../../actions/actionSelectedDrink';
 import { fetchAllDrinks } from '../../actions/actionSelectAllD';
+import RenderDrinks from '../RenderCards/RenderDrinks';
+import { ChangeRender } from '../../actions/actionChangeRender';
 
 class FilterDrink extends Component {
   constructor(props) {
@@ -26,7 +27,8 @@ class FilterDrink extends Component {
 
   onClick(e) {
     const { lastButton } = this.state;
-    const { fetchFiltered, fetchAll } = this.props;
+    const { fetchFiltered, fetchAll, changeRender } = this.props;
+    changeRender(true);
     this.setState({ lastButton: e.target.value });
     if (e.target.value === lastButton) {
       this.setState({ show: true, lastButton: '' });
@@ -42,36 +44,12 @@ class FilterDrink extends Component {
 
   buildCard() {
     const { drinkSelected } = this.props;
-    return drinkSelected.map((drink, index) => (
-      <Link to={`/bebidas/${drink.idDrink}`}>
-        <div data-testid={`${index}-recipe-card`} className="foods-card" key={drink.idDrink}>
-          <img
-            className="picture-cards-food"
-            data-testid={`${index}-card-img`}
-            src={drink.strDrinkThumb}
-            alt={drink.strDrink}
-          />
-          <p data-testid={`${index}-card-name`}>{drink.strDrink}</p>
-        </div>
-      </Link>
-    ));
+    return drinkSelected.map((drink, index) => <RenderDrinks drink={drink} index={index} />);
   }
 
   buildCardAll() {
     const { drinkAll } = this.props;
-    return drinkAll.map((drink, index) => (
-      <Link to={`/bebidas/${drink.idDrink}`}>
-        <div data-testid={`${index}-recipe-card`} className="foods-card" key={drink.idDrink}>
-          <img
-            className="picture-cards-food"
-            data-testid={`${index}-card-img`}
-            src={drink.strDrinkThumb}
-            alt={drink.strDrink}
-          />
-          <p data-testid={`${index}-card-name`}>{drink.strDrink}</p>
-        </div>
-      </Link>
-    ));
+    return drinkAll.map((drink, index) => <RenderDrinks drink={drink} index={index} />);
   }
 
   render() {
@@ -105,12 +83,21 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  changeRender: (bool) => dispatch(ChangeRender(bool)),
   fetch: () => dispatch(fetchDrinkCategory()),
   fetchFiltered: (drink) => dispatch(fetchSelectedDrink(drink)),
   fetchAll: () => dispatch(fetchAllDrinks()),
 });
 
 FilterDrink.propTypes = {
+  changeRender: PropTypes.func.isRequired,
+  drinkAll: PropTypes.arrayOf(
+    PropTypes.shape({
+      idDrink: PropTypes.string,
+      strDrink: PropTypes.string,
+      strDrinkThumb: PropTypes.string,
+    }),
+  ).isRequired,
   drinkCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
@@ -123,16 +110,9 @@ FilterDrink.propTypes = {
       strDrinkThumb: PropTypes.string,
     }),
   ).isRequired,
-  drinkAll: PropTypes.arrayOf(
-    PropTypes.shape({
-      idDrink: PropTypes.string,
-      strDrink: PropTypes.string,
-      strDrinkThumb: PropTypes.string,
-    }),
-  ).isRequired,
   fetch: PropTypes.func.isRequired,
-  fetchFiltered: PropTypes.func.isRequired,
   fetchAll: PropTypes.func.isRequired,
+  fetchFiltered: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterDrink);

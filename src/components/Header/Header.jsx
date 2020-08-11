@@ -1,29 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProfileIcon from '../../images/profileIcon.svg';
 import SearchIcon from '../../images/searchIcon.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import './Header.css';
 
 class Header extends Component {
-  static setName() {
-    if (document.URL.includes('comidas')) {
-      return <h1 data-testid="page-title">Comidas</h1>;
-    }
-    if (document.URL.includes('bebidas')) {
-      return <h1 data-testid="page-title">Bebidas</h1>;
-    }
-    if (document.URL.includes('perfil')) {
-      return <h1 data-testid="page-title">Perfil</h1>;
-    }
-    return null;
-  }
-
   constructor(props) {
     super(props);
     this.state = {
       show: false,
     };
     this.onClick = this.onClick.bind(this);
+    this.buildSearchBtn = this.buildSearchBtn.bind(this);
   }
 
   onClick() {
@@ -35,26 +24,43 @@ class Header extends Component {
     }
   }
 
+  buildSearchBtn() {
+    return (
+      <button
+        src={SearchIcon}
+        data-testid="search-top-btn"
+        onClick={this.onClick}
+      >
+        <img src={SearchIcon} alt="search-icon" />
+      </button>
+    );
+  }
+
   render() {
     return (
       <div>
         <div className="header-container">
-          <a href="/perfil">
+          <a className="perfil-btn" href="/perfil">
             <img
               data-testid="profile-top-btn"
               src={ProfileIcon}
               alt="profile-icon"
             />
           </a>
-          {Header.setName()}
-          <button data-testid="search-top-btn" onClick={this.onClick}>
-            <img src={SearchIcon} alt="search-icon" />
-          </button>
+          <h1 className="page-title" data-testid="page-title">
+            {this.props.name}
+          </h1>
+          {this.props.search && this.buildSearchBtn()}
         </div>
         {this.state.show && <SearchBar />}
       </div>
     );
   }
 }
+
+Header.propTypes = {
+  name: PropTypes.string.isRequired,
+  search: PropTypes.bool.isRequired,
+};
 
 export default Header;

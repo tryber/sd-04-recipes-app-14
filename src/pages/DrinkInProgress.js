@@ -27,7 +27,7 @@ class DrinkInProgress extends React.Component {
   };
 
   render() {
-    if (this.state.receita.idMeal) {
+    if (this.state.receita.idDrink) {
       const {
         strDrinkThumb,
         strCategory,

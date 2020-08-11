@@ -7,26 +7,34 @@ class StartRecipeButton extends React.Component {
   constructor(props) {
     super(props);
     this.handleStore = this.handleStore.bind(this);
-    this.handleBotao = this.handleBotao.bind(this)
+    this.handleBotao = this.handleBotao.bind(this);
   }
   componentDidMount() {
     this.handleStore();
+    console.log('store',JSON.parse(localStorage.inProgressRecipes))
   }
 
   handleStore() {
     const { receita } = this.props;
-    console.log('receita bebida', receita)
+    console.log('receita bebida', receita);
     this.props.passRecipe1(receita);
   }
   handleBotao(id) {
     if (localStorage.doneRecipes) {
-      const storage = JSON.parse(localStorage.doneRecipes)
-      return storage.some((ele) => ele.id === id)
+      const storage = JSON.parse(localStorage.doneRecipes);
+      return storage.some((ele) => ele.id === id);
     }
-    return false
+    return false;
   }
+
+  // handleText(id) {
+  //   if (localStorage.inProgressRecipes) {
+  //     const tex = JSON.parse(localStorage.inProgressRecipes)
+  //     return tex
+  //   }
+  // }
   render() {
-    const { inProgress} = this.props;
+    const { inProgress } = this.props;
     const FOrD = document.URL.slice(22, 29);
     const idNum = document.URL.slice(30);
     return (
@@ -35,7 +43,7 @@ class StartRecipeButton extends React.Component {
           // disabled={this.handleBotao(idNum)}
           type="button"
           data-testid="start-recipe-btn"
-          style={this.handleBotao(idNum) ? {display: 'none'} : { position: 'fixed', bottom: 0 }}
+          style={this.handleBotao(idNum) ? { display: 'none' } : { position: 'fixed', bottom: 0 }}
           value={inProgress ? 'Continuar Receita' : 'Iniciar Receita'}
           onClick={() => this.handleStore()}
         />
