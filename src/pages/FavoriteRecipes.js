@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import ShareButtonByURL from '../components/ShareButtonByURL/ShareButtonByURL';
@@ -13,6 +12,7 @@ class FavoriteRecipes extends React.Component {
     this.state = { data: [], filteredData: [], filter: false };
     this.setData = this.setData.bind(this);
     this.filter = this.filter.bind(this);
+    this.renderButtons = this.renderButtons.bind(this);
   }
 
   componentDidMount() {
@@ -36,12 +36,9 @@ class FavoriteRecipes extends React.Component {
     }
   }
 
-  render() {
-    const { name = 'Receitas Favoritas' } = this.props;
-    const { data, filteredData, filter } = this.state;
+  renderButtons() {
     return (
       <div>
-        <Header name={name} />
         <button type="button" data-testid="filter-by-all-btn" onClick={() => this.filter('todos')}>
           All
         </button>
@@ -59,6 +56,16 @@ class FavoriteRecipes extends React.Component {
         >
           Drinks
         </button>
+      </div>
+    );
+  }
+
+  render() {
+    const { data, filteredData, filter } = this.state;
+    return (
+      <div>
+        <Header name="Receitas Favoritas" />
+        {this.renderButtons()}
         {(filter ? filteredData : data).map(
           ({ name, image, id, type, area, category, alcoholicOrNot }, index) => (
             <div>
@@ -95,8 +102,5 @@ class FavoriteRecipes extends React.Component {
     );
   }
 }
-FavoriteRecipes.propTypes = {
-  name: PropTypes.string.isRequired,
-};
 
 export default FavoriteRecipes;
