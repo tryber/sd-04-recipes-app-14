@@ -20,15 +20,20 @@ class FoodDetail extends React.Component {
   componentDidMount() {
     const { recFoods, recDrinks } = this.props;
     const { id } = this.props.match.params;
+    console.log('food id', id)
+    console.log('api', this.getRecipe(id))
     this.getRecipe(id);
+    window.onunhandledrejection = event => {
+      console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`);
+    };
     recDrinks('', 'nome');
     recFoods('', 'nome');
   }
 
   getRecipe(id) {
     return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-      .then((response) => response.json())
-      .then((data) => this.setState({ receita: data.meals[0] }));
+      .then((response) => response.json()
+      .then((data) => response.ok ? Promise.resolve(this.setState({ receita: data.meals[0] })) : Promise.reject(console.log('erro', data))));
   }
 
   render() {
