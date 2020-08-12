@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ShareButtonByURL from '../ShareButtonByURL/ShareButtonByURL';
 
 function DoneFoods(props) {
   const { id, area, category, name, image, doneDate, tags } = props.food;
   const { index } = props;
   console.log(id, area, category, name, image, doneDate, tags);
   return (
-    <Link to={`/comidas/${id}`}>
-      <div>
+    <div>
+      <Link to={`/comidas/${id}`}>
         <img
           data-testid={`${index}-horizontal-image`}
           style={{ height: 150 }}
@@ -21,9 +22,12 @@ function DoneFoods(props) {
         {tags.map((e) => (
           <p data-testid={`${index}-${e}-horizontal-tag`}>{e}</p>
         ))}
-        <p data-testid={`${index}-horizontal-share-btn`}>BOTÃO DE COMPARTILHAR!!</p>
-      </div>
-    </Link>
+      </Link>
+      <ShareButtonByURL
+        URL={`http://localhost:3000/comidas/${id}`}
+        dataTestId={`${index}-horizontal-share-btn`}
+      />
+    </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ShareButtonByURL from '../ShareButtonByURL/ShareButtonByURL';
 
 function DoneDrinks(props) {
   const { id, alcoholicOrNot, name, image, doneDate } = props.drink;
@@ -8,8 +9,8 @@ function DoneDrinks(props) {
   console.log(id, name, image, doneDate);
 
   return (
-    <Link to={`/bebidas/${id}`}>
-      <div>
+    <div>
+      <Link to={`/bebidas/${id}`}>
         <img
           data-testid={`${index}-horizontal-image`}
           style={{ height: 200 }}
@@ -19,9 +20,12 @@ function DoneDrinks(props) {
         <p data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</p>
         <h2 data-testid={`${index}-horizontal-name`}>{name}</h2>
         <p data-testid={`${index}-horizontal-done-date`}>{doneDate}</p>
-        <p data-testid={`${index}-horizontal-share-btn`}>BOTÃO DE COMPARTILHAR!!</p>
-      </div>
-    </Link>
+      </Link>
+      <ShareButtonByURL
+        URL={`http://localhost:3000/bebidas/${id}`}
+        dataTestId={`${index}-horizontal-share-btn`}
+      />
+    </div>
   );
 }
 
