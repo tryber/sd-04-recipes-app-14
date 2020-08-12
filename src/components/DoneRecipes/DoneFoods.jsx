@@ -8,8 +8,8 @@ function DoneFoods(props) {
   const { index } = props;
   console.log(id, area, category, name, image, doneDate, tags);
   return (
-    <Link to={`/comidas/${id}`}>
-      <div>
+    <div>
+      <Link to={`/comidas/${id}`}>
         <img
           data-testid={`${index}-horizontal-image`}
           style={{ height: 150 }}
@@ -22,12 +22,12 @@ function DoneFoods(props) {
         {tags.map((e) => (
           <p data-testid={`${index}-${e}-horizontal-tag`}>{e}</p>
         ))}
-        <ShareButtonByURL
-          URL={`http://localhost:3000/comidas/${id}`}
-          dataTestId={`${index}-horizontal-share-btn`}
-        />
-      </div>
-    </Link>
+      </Link>
+      <ShareButtonByURL
+        URL={`http://localhost:3000/comidas/${id}`}
+        dataTestId={`${index}-horizontal-share-btn`}
+      />
+    </div>
   );
 }
 

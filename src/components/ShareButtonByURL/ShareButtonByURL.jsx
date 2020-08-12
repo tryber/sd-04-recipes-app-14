@@ -39,7 +39,7 @@ class ShareButtonByURL extends React.Component {
             this.copy();
           }}
         />
-        {this.state.copied && <span>Link copied!</span>}
+        {this.state.copied && <span>Link copiado!</span>}
       </div>
     );
   }
