@@ -11,7 +11,7 @@ function DoneFoods(props) {
       <div>
         <img
           data-testid={`${index}-horizontal-image`}
-          style={{ height: 200 }}
+          style={{ height: 150 }}
           src={image}
           alt={name}
         />
