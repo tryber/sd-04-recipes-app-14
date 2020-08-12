@@ -86,14 +86,9 @@ DrinkDetail.propTypes = {
   recFoodsDrink: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  loadingFoods: state.reducerFoods.isLoading,
-  loadingDrinks: state.reducerDrinks.isLoading,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   recFoodsDrink: (a, b) => dispatch(fetchApi(a, b)),
   recDrinksDrink: (a, b) => dispatch(fetchApiDrinks(a, b)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DrinkDetail);
+export default connect(null, mapDispatchToProps)(DrinkDetail);

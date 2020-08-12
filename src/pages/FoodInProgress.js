@@ -25,7 +25,7 @@ class FoodInProgress extends React.Component {
 
   }
 
-  handleInitialState = () => {
+  handleInitialState() {
     const { receita } = this.props;
     this.setState({ receita: receita });
   };
@@ -72,12 +72,9 @@ class FoodInProgress extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idMeal}
-            area={strArea}
-            type={'comida'}
-            categoria={strCategory}
-            src={strMealThumb}
-            alcolica={''}
+            id={idMeal} area={strArea}
+            type={'comida'} categoria={strCategory}
+            src={strMealThumb} alcolica={''}
             nome={strMeal}
           />
           <IngredientCheck receita={receita} />
@@ -88,14 +85,10 @@ class FoodInProgress extends React.Component {
             onClick={() => {
               this.props.changeDone1();
               this.handleStorage(
-                idMeal,
-                'comida',
-                strArea,
-                strCategory,
-                ' ',
-                strMeal,
-                strMealThumb,
-                new Date(),
+                idMeal, 'comida',
+                strArea, strCategory,
+                ' ', strMeal,
+                strMealThumb, new Date(),
                 strTags
               );
             }}

@@ -14,7 +14,7 @@ const HeaderDetail = (props) => {
         <div>
           <div>
             <h2 data-testid="recipe-title">{nome}</h2>
-            <span data-testid="recipe-category">{type ==='comida' ? categoria : alcolica}</span>
+            <span data-testid="recipe-category">{ type === 'comida' ? categoria : alcolica }</span>
           </div>
           <div>
             <ShareButton />

@@ -24,7 +24,7 @@ class DrinkInProgress extends React.Component {
     this.props.changeInprogress1();
   }
 
-  handleInitialState = () => {
+  handleInitialState() {
     const { receita } = this.props;
     this.setState({ receita: receita });
   };
@@ -70,12 +70,9 @@ class DrinkInProgress extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idDrink}
-            area={''}
-            type={'bebida'}
-            categoria={strCategory}
-            src={strDrinkThumb}
-            alcolica={strAlcoholic}
+            id={idDrink} area={''}
+            type={'bebida'} categoria={strCategory}
+            src={strDrinkThumb} alcolica={strAlcoholic}
             nome={strDrink}
           />
           <IngredientCheck receita={receita} />
@@ -86,14 +83,10 @@ class DrinkInProgress extends React.Component {
             onClick={() => {
               this.props.changeDone1();
               this.handleStorage(
-                idDrink,
-                'bebida',
-                ' ',
-                strCategory,
-                strAlcoholic,
-                strDrink,
-                strDrinkThumb,
-                new Date(),
+                idDrink, 'bebida',
+                ' ', strCategory,
+                strAlcoholic, strDrink,
+                strDrinkThumb, new Date(),
                 strTags
               );
             }}
@@ -115,7 +108,7 @@ DrinkInProgress.propTypes = {
 const mapStateToProps = (state) => ({
   receita: state.inProgressReducer.receita,
   botao: state.inProgressReducer.button,
-})
+});
 
 const mapDispacthToProps = (dispacht) => ({
   changeDone1: () => dispacht(changeDone()),

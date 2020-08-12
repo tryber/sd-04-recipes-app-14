@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -11,7 +12,6 @@ class StartRecipeButton extends React.Component {
   }
   componentDidMount() {
     this.handleStore();
-    // console.log('store',JSON.parse(localStorage.inProgressRecipes))
   }
 
   handleStore() {
@@ -19,6 +19,7 @@ class StartRecipeButton extends React.Component {
     console.log('receita bebida', receita);
     this.props.passRecipe1(receita);
   }
+
   handleBotao(id) {
     if (localStorage.doneRecipes) {
       const storage = JSON.parse(localStorage.doneRecipes);
@@ -34,7 +35,7 @@ class StartRecipeButton extends React.Component {
       base[0] === 'meals'
         ? (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).meals)[0])
         : (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).cocktails)[0]);
-      return idStorage === id ? true : false;
+      return idStorage === id;
     }
     return false;
   }
@@ -49,14 +50,20 @@ class StartRecipeButton extends React.Component {
           type="button"
           data-testid="start-recipe-btn"
           style={this.handleBotao(idNum) ? { display: 'none' } : { position: 'fixed', bottom: 0 }}
-          // value={this.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
           onClick={() => this.handleStore()}
-        >{this.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
+        >
+          {this.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
         </button>
       </Link>
     );
   }
 }
+
+StartRecipeButton.propTypes = {
+  inProgress: PropTypes.bool.isRequired,
+  passRecipe1: PropTypes.func.isRequired,
+  receita: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   passRecipe1: (receita) => dispatch(passRecipe(receita)),

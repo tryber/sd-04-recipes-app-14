@@ -28,7 +28,7 @@ const inprogressReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         button: true,
-      }
+      };
     default:
       return state;
   }
