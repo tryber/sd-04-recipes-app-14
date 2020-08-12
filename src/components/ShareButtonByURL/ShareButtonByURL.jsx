@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import copia from 'clipboard-copy';
 import ShareIcon from '../../images/shareIcon.svg';
@@ -43,5 +44,10 @@ class ShareButtonByURL extends React.Component {
     );
   }
 }
+
+ShareButtonByURL.propTypes = {
+  URL: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string.isRequired,
+};
 
 export default ShareButtonByURL;

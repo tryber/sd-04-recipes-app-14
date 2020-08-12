@@ -23,7 +23,9 @@ const UnfavoriteButton = ({ idRecipe, dataTestId, setData }) => {
 };
 
 UnfavoriteButton.propTypes = {
+  dataTestId: PropTypes.string.isRequired,
   idRecipe: PropTypes.number.isRequired,
+  setData: PropTypes.func.isRequired,
 };
 
 export default UnfavoriteButton;

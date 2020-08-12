@@ -20,12 +20,6 @@ class FavoriteRecipes extends React.Component {
     window.onstorage = () => {};
   }
 
-  // componentDidUpdate() {
-  //   window.addEventListener('storage', () => {
-  //     this.setData();
-  //   });
-  // }
-
   setData() {
     const favoriteRecipes = JSON.parse(localStorage.favoriteRecipes);
     this.setState({ data: favoriteRecipes, filter: false });
