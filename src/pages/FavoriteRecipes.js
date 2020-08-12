@@ -17,7 +17,14 @@ class FavoriteRecipes extends React.Component {
 
   componentDidMount() {
     this.setData();
+    window.onstorage = () => {};
   }
+
+  // componentDidUpdate() {
+  //   window.addEventListener('storage', () => {
+  //     this.setData();
+  //   });
+  // }
 
   setData() {
     const favoriteRecipes = JSON.parse(localStorage.favoriteRecipes);
@@ -66,13 +73,14 @@ class FavoriteRecipes extends React.Component {
               </p>
               <Link to={type === 'comida' ? `/comidas/${id}` : `/bebidas/${id}`}>
                 <h3 data-testid={`${index}-horizontal-name`}>{name}</h3>
+                <input
+                  type="image"
+                  src={image}
+                  alt={`${name} img`}
+                  data-testid={`${index}-horizontal-image`}
+                  style={{ height: '300px', width: '200px' }}
+                />
               </Link>
-              <input
-                type="image"
-                src={image}
-                alt={`${name} img`}
-                data-testid={`${index}-horizontal-image`}
-              />
               <ShareButtonByURL
                 URL={`${
                   type === 'comida'
@@ -81,7 +89,11 @@ class FavoriteRecipes extends React.Component {
                 }`}
                 dataTestId={`${index}-horizontal-share-btn`}
               />
-              <UnfavoriteButton idRecipe={id} dataTestId={`${index}-horizontal-favorite-btn`} />
+              <UnfavoriteButton
+                idRecipe={id}
+                dataTestId={`${index}-horizontal-favorite-btn`}
+                setData={this.setData}
+              />
             </div>
           ),
         )}
