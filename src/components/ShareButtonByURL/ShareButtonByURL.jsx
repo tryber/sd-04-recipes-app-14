@@ -7,7 +7,7 @@ class ShareButtonByURL extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      copiado: false,
+      copied: false,
     };
     this.copy = this.copy.bind(this);
   }
@@ -15,8 +15,8 @@ class ShareButtonByURL extends React.Component {
   copy() {
     const { URL } = this.props;
     copia(URL);
-    // const copiado = this.state.copiado;
-    this.setState({ copiado: true });
+    // const copied = this.state.copied;
+    this.setState({ copied: true });
   }
 
   render() {
@@ -39,7 +39,7 @@ class ShareButtonByURL extends React.Component {
             this.copy();
           }}
         />
-        {this.state.copiado && <span>Link copiado!</span>}
+        {this.state.copied && <span>Link copied!</span>}
       </div>
     );
   }
