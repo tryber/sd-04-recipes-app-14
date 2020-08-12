@@ -12,12 +12,15 @@ class DrinkInProgress extends React.Component {
     this.state = {
       done: false,
       receita: {},
+      drinks: {},
     };
     this.handleInitialState = this.handleInitialState.bind(this);
+    this.handleInProgress1 = this.handleInProgress1.bind(this);
   }
 
   componentDidMount() {
     this.handleInitialState();
+    this.handleInProgress1(this.props.receita.idDrink);
     this.props.changeInprogress1();
   }
 
@@ -25,6 +28,32 @@ class DrinkInProgress extends React.Component {
     const { receita } = this.props;
     this.setState({ receita: receita });
   };
+
+  handleInProgress1 = (id) => {
+    if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
+    let dInPro = JSON.parse(localStorage.inProgressRecipes);
+    const cocktails = { [id]: [] };
+    dInPro = { ...dInPro, cocktails };
+    localStorage.inProgressRecipes = JSON.stringify(dInPro);
+  };
+
+  handleStorage1(id, type, area, category, alcoholicOrNot, name, image, doneDate, tags) {
+    if (!localStorage.doneRecipes) localStorage.doneRecipes = JSON.stringify([]);
+    let storage1 = JSON.parse(localStorage.doneRecipes);
+    const salvar1 = {
+      id: id,
+      type: type,
+      area: area,
+      category: category,
+      alcoholicOrNot: alcoholicOrNot,
+      name: name,
+      image: image,
+      doneDate: doneDate,
+      tags: tags,
+    };
+    storage1 = [...storage1, salvar1];
+    localStorage.doneRecipes = JSON.stringify(storage1);
+  }
 
   render() {
     if (this.state.receita.idDrink) {
@@ -35,8 +64,9 @@ class DrinkInProgress extends React.Component {
         strAlcoholic,
         strInstructions,
         strDrink,
+        strTags,
       } = this.state.receita;
-      const { receita } = this.props;
+      const { receita, botao } = this.props;
       return (
         <div>
           <HeaderDetail
@@ -50,7 +80,26 @@ class DrinkInProgress extends React.Component {
           />
           <IngredientCheck receita={receita} />
           <Instructions strInstructions={strInstructions} />
-          <button data-testid="finish-recipe-btn">finalizar receita</button>
+          <button
+            data-testid="finish-recipe-btn"
+            disabled={!botao}
+            onClick={() => {
+              this.props.changeDone1();
+              this.handleStorage(
+                idDrink,
+                'bebida',
+                ' ',
+                strCategory,
+                strAlcoholic,
+                strDrink,
+                strDrinkThumb,
+                new Date(),
+                strTags
+              );
+            }}
+          >
+            finalizar receita
+          </button>
         </div>
       );
     }
@@ -63,9 +112,14 @@ DrinkInProgress.propTypes = {
   receita: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  receita: state.inProgressReducer.receita,
+  botao: state.inProgressReducer.button,
+})
+
 const mapDispacthToProps = (dispacht) => ({
   changeDone1: () => dispacht(changeDone()),
   changeInprogress1: () => dispacht(changeInprogress()),
 });
 
-export default connect(null, mapDispacthToProps)(DrinkInProgress);
+export default connect(mapStateToProps, mapDispacthToProps)(DrinkInProgress);

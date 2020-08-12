@@ -22,7 +22,7 @@ class AuxCarousel extends React.Component {
               centered
             >
               {drinks.slice(0, 6).map((e, index) => (
-                <ModeloDrink data={e} index={index} />
+                <ModeloDrink key={index} data={e} index={index} />
               ))}
             </Carousel>
           </div>
@@ -41,7 +41,7 @@ class AuxCarousel extends React.Component {
           centered
         >
           {foods.slice(0, 6).map((e, index) => (
-            <ModeloFood data={e} index={index} />
+            <ModeloFood key={index} data={e} index={index} />
           ))}
         </Carousel>
       </div>

@@ -7,7 +7,7 @@ import Instructions from '../components/Instructions/Instructions';
 import { fetchApiDrinks } from '../actions/actionDrinks';
 import { fetchApi } from '../actions/actionFoods';
 import Carousel from '../components/Carousel/Carousel';
-import StartRecipeButton from '../components/StartRecipeButton/StartRecipeButton'
+import StartRecipeButton from '../components/StartRecipeButton/StartRecipeButton';
 
 class FoodDetail extends React.Component {
   constructor(props) {
@@ -20,20 +20,21 @@ class FoodDetail extends React.Component {
   componentDidMount() {
     const { recFoods, recDrinks } = this.props;
     const { id } = this.props.match.params;
-    console.log('food id', id)
-    console.log('api', this.getRecipe(id))
     this.getRecipe(id);
-    window.onunhandledrejection = event => {
-      console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`);
-    };
     recDrinks('', 'nome');
     recFoods('', 'nome');
   }
 
   getRecipe(id) {
-    return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-      .then((response) => response.json()
-      .then((data) => response.ok ? Promise.resolve(this.setState({ receita: data.meals[0] })) : Promise.reject(console.log('erro', data))));
+    return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`).then((response) =>
+      response
+        .json()
+        .then((data) =>
+          response.ok
+            ? Promise.resolve(this.setState({ receita: data.meals[0] }))
+            : Promise.reject(console.log('erro', data))
+        )
+    );
   }
 
   render() {
@@ -70,7 +71,7 @@ class FoodDetail extends React.Component {
           <div>
             <Carousel />
           </div>
-          <StartRecipeButton receita={receita}/>
+          <StartRecipeButton receita={receita} />
         </div>
       );
     }

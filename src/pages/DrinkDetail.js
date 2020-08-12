@@ -7,8 +7,7 @@ import Instructions from '../components/Instructions/Instructions';
 import { fetchApiDrinks } from '../actions/actionDrinks';
 import { fetchApi } from '../actions/actionFoods';
 import Carousel from '../components/Carousel/Carousel';
-import StartRecipeButton from '../components/StartRecipeButton/StartRecipeButton'
-
+import StartRecipeButton from '../components/StartRecipeButton/StartRecipeButton';
 
 class DrinkDetail extends React.Component {
   constructor(props) {
@@ -27,15 +26,21 @@ class DrinkDetail extends React.Component {
   }
 
   getRecipe(id) {
-    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-      .then((response) => response.json())
-      .then((data) => this.setState({ receita: data.drinks[0] }));
+    return fetch(
+      `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
+    ).then((response) =>
+      response
+        .json()
+        .then((data) =>
+          response.ok
+            ? Promise.resolve(this.setState({ receita: data.drinks[0] }))
+            : Promise.reject(console.log('erro', data))
+        )
+    );
   }
 
   render() {
-    const { loadingFoods, loadingDrinks } = this.props;
     if (this.state.receita.idDrink) {
-      const { receita } = this.state;
       const {
         strDrinkThumb,
         strCategory,
@@ -44,35 +49,34 @@ class DrinkDetail extends React.Component {
         strInstructions,
         strDrink,
       } = this.state.receita;
-      if (!loadingFoods && !loadingDrinks) {
-        return (
+      const { receita } = this.state;
+      return (
+        <div>
+          <HeaderDetail
+            id={idDrink}
+            area={''}
+            type={'bebida'}
+            categoria={strCategory}
+            src={strDrinkThumb}
+            alcolica={strAlcoholic}
+            nome={strDrink}
+          />
+          <IngredientList receita={receita} />
+          <Instructions strInstructions={strInstructions} />
           <div>
-            <HeaderDetail
-              id={idDrink}
-              area={''}
-              type={'bebida'}
-              categoria={strAlcoholic}
-              src={strDrinkThumb}
-              alcolica={strAlcoholic}
-              nome={strDrink}
-            />
-            <IngredientList receita={receita} />
-            <Instructions strInstructions={strInstructions} />
-            <div>
-              <Carousel />
-            </div>
-            <StartRecipeButton receita={receita} />
+            <Carousel />
           </div>
-        );
-      }
+          <StartRecipeButton receita={receita} />
+        </div>
+      );
     }
     return null;
   }
 }
 
 DrinkDetail.propTypes = {
-  loadingDrinks: PropTypes.func.isRequired,
-  loadingFoods: PropTypes.func.isRequired,
+  loadingDrinks: PropTypes.bool.isRequired,
+  loadingFoods: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,

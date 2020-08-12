@@ -11,7 +11,7 @@ class StartRecipeButton extends React.Component {
   }
   componentDidMount() {
     this.handleStore();
-    console.log('store',JSON.parse(localStorage.inProgressRecipes))
+    // console.log('store',JSON.parse(localStorage.inProgressRecipes))
   }
 
   handleStore() {
@@ -27,26 +27,32 @@ class StartRecipeButton extends React.Component {
     return false;
   }
 
-  // handleText(id) {
-  //   if (localStorage.inProgressRecipes) {
-  //     const tex = JSON.parse(localStorage.inProgressRecipes)
-  //     return tex
-  //   }
-  // }
+  handleText(id) {
+    if (localStorage.inProgressRecipes) {
+      let idStorage = '';
+      const base = Object.keys(JSON.parse(localStorage.inProgressRecipes));
+      base[0] === 'meals'
+        ? (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).meals)[0])
+        : (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).cocktails)[0]);
+      return idStorage === id ? true : false;
+    }
+    return false;
+  }
+
   render() {
     const { inProgress } = this.props;
     const FOrD = document.URL.slice(22, 29);
     const idNum = document.URL.slice(30);
     return (
       <Link to={`/${FOrD}/${idNum}/in-progress`}>
-        <input
-          // disabled={this.handleBotao(idNum)}
+        <button
           type="button"
           data-testid="start-recipe-btn"
           style={this.handleBotao(idNum) ? { display: 'none' } : { position: 'fixed', bottom: 0 }}
-          value={inProgress ? 'Continuar Receita' : 'Iniciar Receita'}
+          // value={this.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
           onClick={() => this.handleStore()}
-        />
+        >{this.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
+        </button>
       </Link>
     );
   }

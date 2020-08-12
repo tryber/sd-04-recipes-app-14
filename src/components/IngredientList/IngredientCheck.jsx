@@ -53,15 +53,11 @@ class IngredientCheck extends React.Component {
       const arr = this.juntaArray(
         this.criaArray(ingredientes, receita),
         this.criaArray(quantidades, receita)
-      ).filter((ele) => ele !== '  ');
-      // console.log('arr', arr);
-      // console.log('length', arr.length);
+      ).filter((ele) => ele.length > 1);
+      console.log('arr', arr)
       return (
         <div>
-          {this.juntaArray(
-            this.criaArray(ingredientes, receita),
-            this.criaArray(quantidades, receita)
-          ).map((item, i) => {
+          {arr.map((item, i) => {
             if (item !== '  ') {
               return (
                 <label key={i} htmlFor={item}>
