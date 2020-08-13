@@ -31,7 +31,6 @@ const rootReducer = combineReducers({
   mealCategoryReducer,
   mealSelectedReducer,
   reducerCarousel,
-  ChangeRender,
   ingredientsReducer,
   reducerDrinks,
   reducerFoods,

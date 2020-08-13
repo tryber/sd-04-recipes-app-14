@@ -19,15 +19,12 @@ class FilterDrink extends Component {
     this.onClick = this.onClick.bind(this);
     this.buildCard = this.buildCard.bind(this);
     this.buildCardAll = this.buildCardAll.bind(this);
+    this.drinkFetched = this.drinkFetched.bind(this);
   }
 
   componentDidMount() {
-    const { fetch, fetchAll, ingredient } = this.props;
-    ingredient === ''
-      ? fetchAll()
-      : fetchMainIngDrink(ingredient).then((drinkIng) =>
-          this.setState((state) => ({ ...state, drinkIng }))
-        );
+    const { fetch } = this.props;
+    this.drinkFetched()
     fetch();
   }
 
@@ -48,6 +45,15 @@ class FilterDrink extends Component {
     return null;
   }
 
+  drinkFetched() {
+    const { fetchAll, ingredient } = this.props;
+    ingredient === ''
+      ? fetchAll()
+      : fetchMainIngDrink(ingredient).then((drinkIng) =>
+          this.setState((state) => ({ ...state, drinkIng })),
+        );
+  }
+
   buildCard() {
     const { drinkSelected } = this.props;
     return drinkSelected.map((drink, index) => (
@@ -63,11 +69,10 @@ class FilterDrink extends Component {
       return drinkAll.map((drink, index) => (
         <RenderDrinks drink={drink} index={index} />
       ));
-    } else {
-      return drinkIng.map((drink, index) => (
-        <RenderDrinks drink={drink} index={index} />
-      ));
     }
+    return drinkIng.map((drink, index) => (
+      <RenderDrinks drink={drink} index={index} />
+    ));
   }
 
   render() {
@@ -120,19 +125,19 @@ FilterDrink.propTypes = {
       idDrink: PropTypes.string,
       strDrink: PropTypes.string,
       strDrinkThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
   drinkCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
-    })
+    }),
   ).isRequired,
   drinkSelected: PropTypes.arrayOf(
     PropTypes.shape({
       idDrink: PropTypes.string,
       strDrink: PropTypes.string,
       strDrinkThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
   ingredient: PropTypes.string.isRequired,
   fetch: PropTypes.func.isRequired,
