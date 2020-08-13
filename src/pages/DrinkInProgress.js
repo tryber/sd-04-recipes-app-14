@@ -7,6 +7,32 @@ import IngredientCheck from '../components/IngredientList/IngredientCheck';
 import { changeDone, changeInprogress } from '../actions/actions';
 
 class DrinkInProgress extends React.Component {
+  static handleInProgress1(id) {
+    if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
+    let dInPro = JSON.parse(localStorage.inProgressRecipes);
+    const cocktails = { [id]: [] };
+    dInPro = { ...dInPro, cocktails };
+    return (localStorage.inProgressRecipes = JSON.stringify(dInPro));
+  }
+
+  static handleStorage1(id, type, area, category, alcoholicOrNot, name, image, doneDate, tags) {
+    if (!localStorage.doneRecipes) localStorage.doneRecipes = JSON.stringify([]);
+    let storage1 = JSON.parse(localStorage.doneRecipes);
+    const salvar1 = {
+      id,
+      type,
+      area,
+      category,
+      alcoholicOrNot,
+      name,
+      image,
+      doneDate,
+      tags,
+    };
+    storage1 = [...storage1, salvar1];
+    localStorage.doneRecipes = JSON.stringify(storage1);
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,44 +41,18 @@ class DrinkInProgress extends React.Component {
       drinks: {},
     };
     this.handleInitialState = this.handleInitialState.bind(this);
-    this.handleInProgress1 = this.handleInProgress1.bind(this);
+    // this.handleInProgress1 = this.handleInProgress1.bind(this);
   }
 
   componentDidMount() {
     this.handleInitialState();
-    this.handleInProgress1(this.props.receita.idDrink);
+    DrinkInProgress.handleInProgress1(this.props.receita.idDrink);
     this.props.changeInprogress1();
   }
 
   handleInitialState() {
     const { receita } = this.props;
-    this.setState({ receita: receita });
-  }
-
-  handleInProgress1(id) {
-    if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
-    let dInPro = JSON.parse(localStorage.inProgressRecipes);
-    const cocktails = { [id]: [] };
-    dInPro = { ...dInPro, cocktails };
-    return (localStorage.inProgressRecipes = JSON.stringify(dInPro));
-  };
-
-  handleStorage1(id, type, area, category, alcoholicOrNot, name, image, doneDate, tags) {
-    if (!localStorage.doneRecipes) localStorage.doneRecipes = JSON.stringify([]);
-    let storage1 = JSON.parse(localStorage.doneRecipes);
-    const salvar1 = {
-      id: id,
-      type: type,
-      area: area,
-      category: category,
-      alcoholicOrNot: alcoholicOrNot,
-      name: name,
-      image: image,
-      doneDate: doneDate,
-      tags: tags,
-    };
-    storage1 = [...storage1, salvar1];
-    localStorage.doneRecipes = JSON.stringify(storage1);
+    this.setState({ receita });
   }
 
   render() {
@@ -80,7 +80,7 @@ class DrinkInProgress extends React.Component {
             disabled={!botao}
             onClick={() => {
               this.props.changeDone1();
-              this.handleStorage(
+              DrinkInProgress.handleStorage1(
                 idDrink,
                 'bebida',
                 ' ',
@@ -89,7 +89,7 @@ class DrinkInProgress extends React.Component {
                 strDrink,
                 strDrinkThumb,
                 new Date(),
-                strTags
+                strTags,
               );
             }}
           >finalizar receita
@@ -102,6 +102,8 @@ class DrinkInProgress extends React.Component {
 }
 
 DrinkInProgress.propTypes = {
+  botao: PropTypes.bool.isRequired,
+  changeDone1: PropTypes.func.isRequired,
   changeInprogress1: PropTypes.func.isRequired,
   receita: PropTypes.func.isRequired,
 };

@@ -18,9 +18,8 @@ class StartRecipeButton extends React.Component {
       let idStorage = '';
       const base = Object.keys(JSON.parse(localStorage.inProgressRecipes));
       if (base[0] === 'meals') {
-        (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).meals)[0])
-      }
-      else (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).cocktails)[0]);
+        idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).meals)[0];
+      } else idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).cocktails)[0];
       return idStorage === id;
     }
     return false;
@@ -43,7 +42,6 @@ class StartRecipeButton extends React.Component {
     this.props.passRecipe1(receita);
   }
 
-
   render() {
     const FOrD = document.URL.slice(22, 29);
     const idNum = document.URL.slice(30);
@@ -58,7 +56,8 @@ class StartRecipeButton extends React.Component {
               : { position: 'fixed', bottom: 0 }
           }
           onClick={() => this.handleStore()}
-        >{StartRecipeButton.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
+        >
+          {StartRecipeButton.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
         </button>
       </Link>
     );

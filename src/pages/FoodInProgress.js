@@ -7,55 +7,55 @@ import IngredientCheck from '../components/IngredientList/IngredientCheck';
 import { changeDone, changeInprogress } from '../actions/actions';
 
 class FoodInProgress extends React.Component {
+  static handleInProgress(id) {
+    if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
+    let fInPro = JSON.parse(localStorage.inProgressRecipes);
+    const meals = { [id]: [] };
+    fInPro = { ...fInPro, meals };
+    localStorage.inProgressRecipes = JSON.stringify(fInPro);
+  }
+
+  static handleStorage(id, type, area, category, alcoholicOrNot, name, image, doneDate, tags) {
+    if (!localStorage.doneRecipes) localStorage.doneRecipes = JSON.stringify([]);
+    let storage = JSON.parse(localStorage.doneRecipes);
+    const salvar = {
+      id,
+      type,
+      area,
+      category,
+      alcoholicOrNot,
+      name,
+      image,
+      doneDate,
+      tags,
+    };
+    storage = [...storage, salvar];
+    localStorage.doneRecipes = JSON.stringify(storage);
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       done: false,
       receita: {},
-      meals: {}
+      meals: {},
     };
     this.handleInitialState = this.handleInitialState.bind(this);
-    this.handleInProgress = this.handleInProgress.bind(this);
+    // this.handleInProgress = this.handleInProgress.bind(this);
   }
 
   componentDidMount() {
     this.handleInitialState();
-    this.handleInProgress(this.props.receita.idMeal)
+    FoodInProgress.handleInProgress(this.props.receita.idMeal);
     this.props.changeInprogress1();
-
   }
 
   handleInitialState() {
     const { receita } = this.props;
-    this.setState({ receita: receita });
-  };
-
-  handleInProgress(id) {
-    if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
-    // const {meals} = this.state
-    let fInPro = JSON.parse(localStorage.inProgressRecipes);
-    const meals = {[id]: []}
-    fInPro = { ...fInPro, meals};
-    localStorage.inProgressRecipes = JSON.stringify(fInPro);
-  };
-
-  handleStorage(id, type, area, category, alcoholicOrNot, name, image, doneDate, tags) {
-    if (!localStorage.doneRecipes) localStorage.doneRecipes = JSON.stringify([]);
-    let storage = JSON.parse(localStorage.doneRecipes);
-    const salvar = {
-      id: id,
-      type: type,
-      area: area,
-      category: category,
-      alcoholicOrNot: alcoholicOrNot,
-      name: name,
-      image: image,
-      doneDate: doneDate,
-      tags: tags,
-    };
-    storage = [...storage, salvar];
-    localStorage.doneRecipes = JSON.stringify(storage);
+    this.setState({ receita });
   }
+
+
 
   render() {
     if (this.state.receita.idMeal) {
@@ -72,9 +72,12 @@ class FoodInProgress extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idMeal} area={strArea}
-            type={'comida'} categoria={strCategory}
-            src={strMealThumb} alcolica={''}
+            id={idMeal}
+            area={strArea}
+            type={'comida'}
+            categoria={strCategory}
+            src={strMealThumb}
+            alcolica={''}
             nome={strMeal}
           />
           <IngredientCheck receita={receita} />
@@ -84,12 +87,16 @@ class FoodInProgress extends React.Component {
             data-testid="finish-recipe-btn"
             onClick={() => {
               this.props.changeDone1();
-              this.handleStorage(
-                idMeal, 'comida',
-                strArea, strCategory,
-                ' ', strMeal,
-                strMealThumb, new Date(),
-                strTags
+              FoodInProgress.handleStorage(
+                idMeal,
+                'comida',
+                strArea,
+                strCategory,
+                ' ',
+                strMeal,
+                strMealThumb,
+                new Date(),
+                strTags,
               );
             }}
           >
@@ -103,8 +110,10 @@ class FoodInProgress extends React.Component {
 }
 
 FoodInProgress.propTypes = {
+  botao: PropTypes.bool.isRequired,
+  changeDone1: PropTypes.func.isRequired,
   changeInprogress1: PropTypes.func.isRequired,
-  receita: PropTypes.func.isRequired,
+  receita: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
