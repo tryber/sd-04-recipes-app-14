@@ -14,23 +14,25 @@ import drinkAllReducer from './drinkAllReducer';
 import inProgressReducer from './inProgressReducer';
 import buildSearchBtnReducer from './buildSearchBtnReducer';
 import ChangeRender from './ChangeRender';
+import DoneRecipe from './DoneRecipe';
 
 const rootReducer = combineReducers({
   inProgressReducer,
+  ChangeRender,
+  DoneRecipe,
   buildSearchBtnReducer,
   drinkAllReducer,
-  drinkSelectedReducer,
-  mealAllReducer,
-  mealSelectedReducer,
-  mealCategoryReducer,
   drinkCategoryReducer,
-  reducerSearch,
-  reducerFoods,
-  reducerDrinks,
+  drinkSelectedReducer,
   fetchReducer,
   loginReducer,
+  mealAllReducer,
+  mealCategoryReducer,
+  mealSelectedReducer,
   reducerCarousel,
-  ChangeRender,
+  reducerDrinks,
+  reducerFoods,
+  reducerSearch,
 });
 
 export default rootReducer;
