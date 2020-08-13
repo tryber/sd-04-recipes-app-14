@@ -4,6 +4,7 @@ import ProfileIcon from '../../images/profileIcon.svg';
 import SearchIcon from '../../images/searchIcon.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   constructor(props) {
@@ -26,11 +27,7 @@ class Header extends Component {
 
   buildSearchBtn() {
     return (
-      <button
-        src={SearchIcon}
-        data-testid="search-top-btn"
-        onClick={this.onClick}
-      >
+      <button src={SearchIcon} data-testid="search-top-btn" onClick={this.onClick}>
         <img src={SearchIcon} alt="search-icon" />
       </button>
     );
@@ -40,13 +37,9 @@ class Header extends Component {
     return (
       <div>
         <div className="header-container">
-          <a className="perfil-btn" href="/perfil">
-            <img
-              data-testid="profile-top-btn"
-              src={ProfileIcon}
-              alt="profile-icon"
-            />
-          </a>
+          <Link className="perfil-btn" to="/perfil">
+            <img data-testid="profile-top-btn" src={ProfileIcon} alt="profile-icon" />
+          </Link>
           <h1 className="page-title" data-testid="page-title">
             {this.props.name}
           </h1>
