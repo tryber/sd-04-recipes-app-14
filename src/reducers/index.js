@@ -11,12 +11,14 @@ import mealSelectedReducer from './mealSelectedReducer';
 import drinkSelectedReducer from './drinkSelectedReducer';
 import mealAllReducer from './mealAllReducer';
 import drinkAllReducer from './drinkAllReducer';
+import inProgressReducer from './inProgressReducer';
 import buildSearchBtnReducer from './buildSearchBtnReducer';
 import ChangeRender from './ChangeRender';
 import ingredientsReducer from './ingredientReducer';
 import DoneRecipe from './DoneRecipe';
 
 const rootReducer = combineReducers({
+  inProgressReducer,
   ChangeRender,
   DoneRecipe,
   buildSearchBtnReducer,

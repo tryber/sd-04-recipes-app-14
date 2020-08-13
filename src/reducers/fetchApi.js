@@ -22,7 +22,7 @@ const fetchReducer = (state = INITIAL_STATE, action) => {
       }
       return {
         ...state,
-        foodData: action.data.meals,
+        foodData: action.data.meals.slice(0, 12),
         receivedData: true,
       };
     default:

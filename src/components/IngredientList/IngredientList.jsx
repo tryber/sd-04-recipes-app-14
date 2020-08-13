@@ -14,7 +14,7 @@ const IngredientList = (props) => {
           {ingredientes.map((e, i) => {
             if (receita[e] !== '') {
               return (
-                <li key={receita[e]} data-testid={`${i}-ingredient-name-and-measure`}>
+                <li data-testid={`${i}-ingredient-name-and-measure`}>
                   {receita[e]}
                 </li>
               );
@@ -24,9 +24,9 @@ const IngredientList = (props) => {
         </div>
         <div>
           {quantidades.map((e, i) => {
-            if (receita[e] !== '') {
+            if (receita[e] !== ' ') {
               return (
-                <li key={receita[e]} data-testid={`${i}-ingredient-name-and-measure`}>
+                <li data-testid={`${i}-ingredient-name-and-measure`}>
                   {receita[e]}
                 </li>
               );

@@ -7,6 +7,7 @@ import Instructions from '../components/Instructions/Instructions';
 import { fetchApiDrinks } from '../actions/actionDrinks';
 import { fetchApi } from '../actions/actionFoods';
 import Carousel from '../components/Carousel/Carousel';
+import StartRecipeButton from '../components/StartRecipeButton/StartRecipeButton';
 
 class DrinkDetail extends React.Component {
   constructor(props) {
@@ -31,9 +32,7 @@ class DrinkDetail extends React.Component {
   }
 
   render() {
-    const { loadingFoods, loadingDrinks } = this.props;
     if (this.state.receita.idDrink) {
-      const { receita } = this.state;
       const {
         strDrinkThumb,
         strCategory,
@@ -42,41 +41,27 @@ class DrinkDetail extends React.Component {
         strInstructions,
         strDrink,
       } = this.state.receita;
-      if (!loadingFoods && !loadingDrinks) {
-        return (
+      const { receita } = this.state;
+      return (
+        <div>
+          <HeaderDetail
+            id={idDrink} type={'bebida'} categoria={strCategory} nome={strDrink}
+            src={strDrinkThumb} area={''} alcolica={strAlcoholic}
+          />
+          <IngredientList receita={receita} />
+          <Instructions strInstructions={strInstructions} />
           <div>
-            <HeaderDetail
-              id={idDrink}
-              area={''}
-              type={'bebida'}
-              categoria={strCategory}
-              src={strDrinkThumb}
-              alcolica={strAlcoholic}
-              nome={strDrink}
-            />
-            <IngredientList receita={receita} />
-            <Instructions strInstructions={strInstructions} />
-            <div>
-              <Carousel />
-            </div>
-            <button
-              type="button"
-              data-testid="start-recipe-btn"
-              style={{ position: 'fixed', bottom: 0 }}
-            >
-              Iniciar receita
-            </button>
+            <Carousel />
           </div>
-        );
-      }
+          <StartRecipeButton receita={receita} />
+        </div>
+      );
     }
     return null;
   }
 }
 
 DrinkDetail.propTypes = {
-  loadingDrinks: PropTypes.func.isRequired,
-  loadingFoods: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
@@ -86,14 +71,9 @@ DrinkDetail.propTypes = {
   recFoodsDrink: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  loadingFoods: state.reducerFoods.isLoading,
-  loadingDrinks: state.reducerDrinks.isLoading,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   recFoodsDrink: (a, b) => dispatch(fetchApi(a, b)),
   recDrinksDrink: (a, b) => dispatch(fetchApiDrinks(a, b)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DrinkDetail);
+export default connect(null, mapDispatchToProps)(DrinkDetail);
