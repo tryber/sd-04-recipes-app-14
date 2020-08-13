@@ -17,9 +17,10 @@ class StartRecipeButton extends React.Component {
     if (localStorage.inProgressRecipes) {
       let idStorage = '';
       const base = Object.keys(JSON.parse(localStorage.inProgressRecipes));
-      base[0] === 'meals'
-        ? (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).meals)[0])
-        : (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).cocktails)[0]);
+      if (base[0] === 'meals') {
+        (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).meals)[0])
+      }
+      else (idStorage = Object.keys(JSON.parse(localStorage.inProgressRecipes).cocktails)[0]);
       return idStorage === id;
     }
     return false;

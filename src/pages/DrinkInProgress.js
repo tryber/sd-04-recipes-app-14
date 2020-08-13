@@ -29,7 +29,7 @@ class DrinkInProgress extends React.Component {
     this.setState({ receita: receita });
   }
 
-  handleInProgress1 = (id) => {
+  handleInProgress1(id) {
     if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
     let dInPro = JSON.parse(localStorage.inProgressRecipes);
     const cocktails = { [id]: [] };
@@ -70,13 +70,8 @@ class DrinkInProgress extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idDrink}
-            area={''}
-            type={'bebida'}
-            categoria={strCategory}
-            src={strDrinkThumb}
-            alcolica={strAlcoholic}
-            nome={strDrink}
+            id={idDrink} area={''} type={'bebida'} nome={strDrink}
+            categoria={strCategory} src={strDrinkThumb} alcolica={strAlcoholic}
           />
           <IngredientCheck receita={receita} />
           <Instructions strInstructions={strInstructions} />
@@ -97,8 +92,7 @@ class DrinkInProgress extends React.Component {
                 strTags
               );
             }}
-          >
-            finalizar receita
+          >finalizar receita
           </button>
         </div>
       );

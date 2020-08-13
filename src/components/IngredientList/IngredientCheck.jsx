@@ -33,15 +33,11 @@ class IngredientCheck extends React.Component {
     });
   }
 
-  contador = (event) => {
+  contador(event) {
     let { cont } = this.state;
     event.target.checked
       ? cont.push(event.target.value)
       : (cont = cont.filter((ele) => ele !== event.target.value));
-    // console.log('value', event.target.value);
-    // console.log('event', event.target.checked);
-    // console.log('cont', cont);
-    // console.log('length', cont.length);
     return this.setState({ cont: cont });
   };
 

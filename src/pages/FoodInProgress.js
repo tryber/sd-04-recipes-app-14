@@ -30,7 +30,7 @@ class FoodInProgress extends React.Component {
     this.setState({ receita: receita });
   };
 
-  handleInProgress = (id) => {
+  handleInProgress(id) {
     if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
     // const {meals} = this.state
     let fInPro = JSON.parse(localStorage.inProgressRecipes);
