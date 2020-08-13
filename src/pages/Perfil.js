@@ -51,6 +51,7 @@ const Perfil = ({ name = 'Perfil', email }) => {
 };
 
 Perfil.propTypes = {
+  email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
 
