@@ -13,6 +13,7 @@ import mealAllReducer from './mealAllReducer';
 import drinkAllReducer from './drinkAllReducer';
 import buildSearchBtnReducer from './buildSearchBtnReducer';
 import ChangeRender from './ChangeRender';
+import ingredientsReducer from './ingredientReducer';
 import DoneRecipe from './DoneRecipe';
 
 const rootReducer = combineReducers({
@@ -28,6 +29,8 @@ const rootReducer = combineReducers({
   mealCategoryReducer,
   mealSelectedReducer,
   reducerCarousel,
+  ChangeRender,
+  ingredientsReducer,
   reducerDrinks,
   reducerFoods,
   reducerSearch,

@@ -6,6 +6,7 @@ import { fetchSelectedDrink } from '../../actions/actionSelectedDrink';
 import { fetchAllDrinks } from '../../actions/actionSelectAllD';
 import RenderDrinks from '../RenderCards/RenderDrinks';
 import { ChangeRender } from '../../actions/actionChangeRender';
+import { fetchMainIngDrink } from '../../service/ingredientApi';
 
 class FilterDrink extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class FilterDrink extends Component {
     this.state = {
       show: true,
       lastButton: '',
+      drinkIng: [],
     };
     this.onClick = this.onClick.bind(this);
     this.buildCard = this.buildCard.bind(this);
@@ -20,8 +22,12 @@ class FilterDrink extends Component {
   }
 
   componentDidMount() {
-    const { fetch, fetchAll } = this.props;
-    fetchAll();
+    const { fetch, fetchAll, ingredient } = this.props;
+    ingredient === ''
+      ? fetchAll()
+      : fetchMainIngDrink(ingredient).then((drinkIng) =>
+          this.setState((state) => ({ ...state, drinkIng }))
+        );
     fetch();
   }
 
@@ -44,12 +50,24 @@ class FilterDrink extends Component {
 
   buildCard() {
     const { drinkSelected } = this.props;
-    return drinkSelected.map((drink, index) => <RenderDrinks drink={drink} index={index} />);
+    return drinkSelected.map((drink, index) => (
+      <RenderDrinks drink={drink} index={index} />
+    ));
   }
 
   buildCardAll() {
-    const { drinkAll } = this.props;
-    return drinkAll.map((drink, index) => <RenderDrinks drink={drink} index={index} />);
+    const { drinkIng } = this.state;
+    const { drinkAll, ingredient } = this.props;
+    console.log(drinkIng);
+    if (ingredient === '') {
+      return drinkAll.map((drink, index) => (
+        <RenderDrinks drink={drink} index={index} />
+      ));
+    } else {
+      return drinkIng.map((drink, index) => (
+        <RenderDrinks drink={drink} index={index} />
+      ));
+    }
   }
 
   render() {
@@ -67,7 +85,12 @@ class FilterDrink extends Component {
             {item.strCategory}
           </button>
         ))}
-        <button type="button" data-testid="All-category-filter" value="All" onClick={this.onClick}>
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          value="All"
+          onClick={this.onClick}
+        >
           All
         </button>
         {show ? this.buildCardAll() : this.buildCard()}
@@ -80,6 +103,7 @@ const mapStateToProps = (state) => ({
   drinkCategories: state.drinkCategoryReducer.drinkCategory,
   drinkSelected: state.drinkSelectedReducer.drinkSelected,
   drinkAll: state.drinkAllReducer.drinkAll,
+  ingredient: state.ingredientsReducer.drink,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -96,20 +120,21 @@ FilterDrink.propTypes = {
       idDrink: PropTypes.string,
       strDrink: PropTypes.string,
       strDrinkThumb: PropTypes.string,
-    }),
+    })
   ).isRequired,
   drinkCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
-    }),
+    })
   ).isRequired,
   drinkSelected: PropTypes.arrayOf(
     PropTypes.shape({
       idDrink: PropTypes.string,
       strDrink: PropTypes.string,
       strDrinkThumb: PropTypes.string,
-    }),
+    })
   ).isRequired,
+  ingredient: PropTypes.string.isRequired,
   fetch: PropTypes.func.isRequired,
   fetchAll: PropTypes.func.isRequired,
   fetchFiltered: PropTypes.func.isRequired,
