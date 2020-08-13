@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
-const Perfil = ({ name = 'Perfil' }) => {
+const Perfil = ({ name = 'Perfil', email }) => {
   const history = useHistory();
   const redirectTo = (path) => {
     if (path === '/') {
@@ -16,7 +17,7 @@ const Perfil = ({ name = 'Perfil' }) => {
   return (
     <div>
       <Header name={name} />
-      <p data-testid="profile-email">{JSON.parse(localStorage.user).email}</p>
+      <p data-testid="profile-email">{email}</p>
       <button
         type="button"
         data-testid="profile-done-btn"
@@ -53,4 +54,8 @@ Perfil.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default Perfil;
+const mapStateToProps = (state) => ({
+  email: state.loginReducer.email,
+});
+
+export default connect(mapStateToProps)(Perfil);
