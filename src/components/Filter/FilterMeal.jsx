@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { fetchMealCategory } from '../../actions/actionMealCategory';
-import { fetchSelectedMeal } from '../../actions/actionSelectedMeal';
-import RenderFoods from '../RenderCards/RenderFoods';
-import { fetchAllMeal } from '../../actions/actionSelectAllM';
-import { ChangeRender } from '../../actions/actionChangeRender';
-import { fetchMainIngMeal } from '../../service/ingredientApi';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { fetchMealCategory } from "../../actions/actionMealCategory";
+import { fetchSelectedMeal } from "../../actions/actionSelectedMeal";
+import RenderFoods from "../RenderCards/RenderFoods";
+import { fetchAllMeal } from "../../actions/actionSelectAllM";
+import { ChangeRender } from "../../actions/actionChangeRender";
+import { fetchMainIngMeal } from "../../service/ingredientApi";
 
 class FilterMeal extends Component {
   constructor(props) {
@@ -47,11 +47,12 @@ class FilterMeal extends Component {
 
   mealFetched() {
     const { fetchAll, ingredient } = this.props;
-    ingredient === ''
-      ? fetchAll()
-      : fetchMainIngMeal(ingredient).then((mealIng) =>
-          this.setState((state) => ({ ...state, mealIng })),
-        );
+    if (ingredient === '') {
+      return fetchAll();
+    }
+    return fetchMainIngMeal(ingredient).then((mealIng) =>
+      this.setState((state) => ({ ...state, mealIng })),
+    );
   }
 
   buildCard() {
@@ -80,16 +81,16 @@ class FilterMeal extends Component {
     return (
       <div>
         <button
-          type='button'
-          data-testid='All-category-filter'
-          value='All'
+          type="button"
+          data-testid="All-category-filter"
+          value="All"
           onClick={this.onClick}
         >
           All
         </button>
         {mealCategories.map((item) => (
           <button
-            type='button'
+            type="button"
             key={item.strCategory}
             data-testid={`${item.strCategory}-category-filter`}
             value={item.strCategory}

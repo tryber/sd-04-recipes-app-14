@@ -13,7 +13,7 @@ class IngredientFood extends Component {
     fetchFoodIngredient()
       .then((data) => data.meals.slice(0, 12))
       .then((ingredients) =>
-        this.setState((state) => ({ ...state, ingredients }))
+        this.setState((state) => ({ ...state, ingredients })),
       );
   }
   render() {
