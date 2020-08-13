@@ -13,6 +13,7 @@ import mealAllReducer from './mealAllReducer';
 import drinkAllReducer from './drinkAllReducer';
 import buildSearchBtnReducer from './buildSearchBtnReducer';
 import ChangeRender from './ChangeRender';
+import ingredientsReducer from './ingredientReducer';
 
 const rootReducer = combineReducers({
   buildSearchBtnReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   loginReducer,
   reducerCarousel,
   ChangeRender,
+  ingredientsReducer,
 });
 
 export default rootReducer;

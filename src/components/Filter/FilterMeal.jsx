@@ -6,6 +6,7 @@ import { fetchSelectedMeal } from '../../actions/actionSelectedMeal';
 import RenderFoods from '../RenderCards/RenderFoods';
 import { fetchAllMeal } from '../../actions/actionSelectAllM';
 import { ChangeRender } from '../../actions/actionChangeRender';
+import { fetchMainIngMeal } from '../../service/ingredientApi';
 
 class FilterMeal extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class FilterMeal extends Component {
     this.state = {
       toggle: true,
       lastMeal: '',
+      mealIng: [],
     };
     this.onClick = this.onClick.bind(this);
     this.buildCard = this.buildCard.bind(this);
@@ -20,9 +22,14 @@ class FilterMeal extends Component {
   }
 
   componentDidMount() {
-    const { fetch, fetchAll } = this.props;
+    const { fetch, fetchAll, ingredient } = this.props;
+    ingredient === ''
+      ? fetchAll()
+      : fetchMainIngMeal(ingredient)
+          .then((mealIng) =>
+            this.setState((state) => ({ ...state, mealIng }))
+          );
     fetch();
-    fetchAll();
   }
 
   onClick(e) {
@@ -44,19 +51,36 @@ class FilterMeal extends Component {
 
   buildCard() {
     const { mealSelected } = this.props;
-    return mealSelected.map((foods, index) => <RenderFoods foods={foods} index={index} />);
+    return mealSelected.map((foods, index) => (
+      <RenderFoods foods={foods} index={index} />
+    ));
   }
 
   buildCardAll() {
-    const { mealAll } = this.props;
-    return mealAll.map((meal, index) => <RenderFoods foods={meal} index={index} />);
+    const { mealIng } = this.state;
+    const { mealAll, ingredient } = this.props;
+    console.log(ingredient);
+    if (ingredient === '') {
+      return mealAll.map((meal, index) => (
+        <RenderFoods foods={meal} index={index} />
+      ));
+    } else {
+      return mealIng.map((meal, index) => (
+        <RenderFoods foods={meal} index={index} />
+      ));
+    }
   }
 
   render() {
     const { mealCategories } = this.props;
     return (
       <div>
-        <button type="button" data-testid="All-category-filter" value="All" onClick={this.onClick}>
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          value="All"
+          onClick={this.onClick}
+        >
           All
         </button>
         {mealCategories.map((item) => (
@@ -80,6 +104,7 @@ const mapStateToProps = (state) => ({
   mealCategories: state.mealCategoryReducer.mealCategory,
   mealSelected: state.mealSelectedReducer.mealSelected,
   mealAll: state.mealAllReducer.mealAll,
+  ingredient: state.ingredientsReducer.food,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -94,24 +119,25 @@ FilterMeal.propTypes = {
   fetch: PropTypes.func.isRequired,
   fetchAll: PropTypes.func.isRequired,
   fetchFiltered: PropTypes.func.isRequired,
+  ingredient: PropTypes.string.isRequired,
   mealAll: PropTypes.arrayOf(
     PropTypes.shape({
       idMeal: PropTypes.string,
       strMeal: PropTypes.string,
       strMealThumb: PropTypes.string,
-    }),
+    })
   ).isRequired,
   mealCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
-    }),
+    })
   ).isRequired,
   mealSelected: PropTypes.arrayOf(
     PropTypes.shape({
       idMeal: PropTypes.string,
       strMeal: PropTypes.string,
       strMealThumb: PropTypes.string,
-    }),
+    })
   ).isRequired,
 };
 
