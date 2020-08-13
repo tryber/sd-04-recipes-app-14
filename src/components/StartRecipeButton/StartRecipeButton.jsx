@@ -5,22 +5,7 @@ import { connect } from 'react-redux';
 import { passRecipe } from '../../actions/actions';
 
 class StartRecipeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleStore = this.handleStore.bind(this);
-    this.handleBotao = this.handleBotao.bind(this);
-  }
-  componentDidMount() {
-    this.handleStore();
-  }
-
-  handleStore() {
-    const { receita } = this.props;
-    console.log('receita bebida', receita);
-    this.props.passRecipe1(receita);
-  }
-
-  handleBotao(id) {
+  static handleBotao(id) {
     if (localStorage.doneRecipes) {
       const storage = JSON.parse(localStorage.doneRecipes);
       return storage.some((ele) => ele.id === id);
@@ -28,7 +13,7 @@ class StartRecipeButton extends React.Component {
     return false;
   }
 
-  handleText(id) {
+  static handleText(id) {
     if (localStorage.inProgressRecipes) {
       let idStorage = '';
       const base = Object.keys(JSON.parse(localStorage.inProgressRecipes));
@@ -40,8 +25,25 @@ class StartRecipeButton extends React.Component {
     return false;
   }
 
+  constructor(props) {
+    super(props);
+    this.handleStore = this.handleStore.bind(this);
+    // this.handleBotao = this.handleBotao.bind(this);
+    // this.handleText = this.handleText.bind(this);
+  }
+
+  componentDidMount() {
+    this.handleStore();
+  }
+
+  handleStore() {
+    const { receita } = this.props;
+    console.log('receita bebida', receita);
+    this.props.passRecipe1(receita);
+  }
+
+
   render() {
-    const { inProgress } = this.props;
     const FOrD = document.URL.slice(22, 29);
     const idNum = document.URL.slice(30);
     return (
@@ -49,10 +51,13 @@ class StartRecipeButton extends React.Component {
         <button
           type="button"
           data-testid="start-recipe-btn"
-          style={this.handleBotao(idNum) ? { display: 'none' } : { position: 'fixed', bottom: 0 }}
+          style={
+            StartRecipeButton.handleBotao(idNum)
+              ? { display: 'none' }
+              : { position: 'fixed', bottom: 0 }
+          }
           onClick={() => this.handleStore()}
-        >
-          {this.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
+        >{StartRecipeButton.handleText(idNum) ? 'Continuar Receita' : 'Iniciar Receita'}
         </button>
       </Link>
     );

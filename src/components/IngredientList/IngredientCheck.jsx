@@ -21,7 +21,9 @@ class IngredientCheck extends React.Component {
     return null;
   }
 
-  juntaArray = (arr1, arr2) => arr1.map((ing, i) => ing + ' ' + arr2[i]);
+  juntaArray(arr1, arr2) {
+    return arr1.map((ing, i) => ing + ' ' + arr2[i]);
+  }
 
   criaArray = (lista, arr) => {
     return lista.map((ele, i) => {

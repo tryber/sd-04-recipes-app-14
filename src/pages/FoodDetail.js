@@ -26,15 +26,9 @@ class FoodDetail extends React.Component {
   }
 
   getRecipe(id) {
-    return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`).then((response) =>
-      response
-        .json()
-        .then((data) =>
-          response.ok
-            ? Promise.resolve(this.setState({ receita: data.meals[0] }))
-            : Promise.reject(console.log('erro', data))
-        )
-    );
+    return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then((response) => response.json())
+      .then((data) => this.setState({ receita: data.meals[0] }));
   }
 
   render() {

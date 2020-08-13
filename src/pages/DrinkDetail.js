@@ -26,17 +26,9 @@ class DrinkDetail extends React.Component {
   }
 
   getRecipe(id) {
-    return fetch(
-      `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
-    ).then((response) =>
-      response
-        .json()
-        .then((data) =>
-          response.ok
-            ? Promise.resolve(this.setState({ receita: data.drinks[0] }))
-            : Promise.reject(console.log('erro', data))
-        )
-    );
+    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then((response) => response.json())
+      .then((data) => this.setState({ receita: data.drinks[0] }));
   }
 
   render() {
@@ -75,8 +67,6 @@ class DrinkDetail extends React.Component {
 }
 
 DrinkDetail.propTypes = {
-  loadingDrinks: PropTypes.bool.isRequired,
-  loadingFoods: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
