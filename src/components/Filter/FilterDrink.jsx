@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import fetchDrinkCategory from "../../actions/actionDrinkCategory";
-import { fetchSelectedDrink } from "../../actions/actionSelectedDrink";
-import { fetchAllDrinks } from "../../actions/actionSelectAllD";
-import RenderDrinks from "../RenderCards/RenderDrinks";
-import { ChangeRender } from "../../actions/actionChangeRender";
-import { fetchMainIngDrink } from "../../service/ingredientApi";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import fetchDrinkCategory from '../../actions/actionDrinkCategory';
+import { fetchSelectedDrink } from '../../actions/actionSelectedDrink';
+import { fetchAllDrinks } from '../../actions/actionSelectAllD';
+import RenderDrinks from '../RenderCards/RenderDrinks';
+import { ChangeRender } from '../../actions/actionChangeRender';
+import { fetchMainIngDrink } from '../../service/ingredientApi';
 
 class FilterDrink extends Component {
   constructor(props) {

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { fetchMealCategory } from "../../actions/actionMealCategory";
-import { fetchSelectedMeal } from "../../actions/actionSelectedMeal";
-import RenderFoods from "../RenderCards/RenderFoods";
-import { fetchAllMeal } from "../../actions/actionSelectAllM";
-import { ChangeRender } from "../../actions/actionChangeRender";
-import { fetchMainIngMeal } from "../../service/ingredientApi";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { fetchMealCategory } from '../../actions/actionMealCategory';
+import { fetchSelectedMeal } from '../../actions/actionSelectedMeal';
+import RenderFoods from '../RenderCards/RenderFoods';
+import { fetchAllMeal } from '../../actions/actionSelectAllM';
+import { ChangeRender } from '../../actions/actionChangeRender';
+import { fetchMainIngMeal } from '../../service/ingredientApi';
 
 class FilterMeal extends Component {
   constructor(props) {
