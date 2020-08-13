@@ -27,14 +27,14 @@ class DrinkInProgress extends React.Component {
   handleInitialState() {
     const { receita } = this.props;
     this.setState({ receita: receita });
-  };
+  }
 
   handleInProgress1 = (id) => {
     if (!localStorage.inProgressRecipes) localStorage.inProgressRecipes = JSON.stringify({});
     let dInPro = JSON.parse(localStorage.inProgressRecipes);
     const cocktails = { [id]: [] };
     dInPro = { ...dInPro, cocktails };
-    localStorage.inProgressRecipes = JSON.stringify(dInPro);
+    return (localStorage.inProgressRecipes = JSON.stringify(dInPro));
   };
 
   handleStorage1(id, type, area, category, alcoholicOrNot, name, image, doneDate, tags) {
@@ -70,9 +70,12 @@ class DrinkInProgress extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idDrink} area={''}
-            type={'bebida'} categoria={strCategory}
-            src={strDrinkThumb} alcolica={strAlcoholic}
+            id={idDrink}
+            area={''}
+            type={'bebida'}
+            categoria={strCategory}
+            src={strDrinkThumb}
+            alcolica={strAlcoholic}
             nome={strDrink}
           />
           <IngredientCheck receita={receita} />
@@ -83,10 +86,14 @@ class DrinkInProgress extends React.Component {
             onClick={() => {
               this.props.changeDone1();
               this.handleStorage(
-                idDrink, 'bebida',
-                ' ', strCategory,
-                strAlcoholic, strDrink,
-                strDrinkThumb, new Date(),
+                idDrink,
+                'bebida',
+                ' ',
+                strCategory,
+                strAlcoholic,
+                strDrink,
+                strDrinkThumb,
+                new Date(),
                 strTags
               );
             }}

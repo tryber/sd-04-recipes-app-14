@@ -45,13 +45,8 @@ class DrinkDetail extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idDrink}
-            area={''}
-            type={'bebida'}
-            categoria={strCategory}
-            src={strDrinkThumb}
-            alcolica={strAlcoholic}
-            nome={strDrink}
+            id={idDrink} type={'bebida'} categoria={strCategory} nome={strDrink}
+            src={strDrinkThumb} area={''} alcolica={strAlcoholic}
           />
           <IngredientList receita={receita} />
           <Instructions strInstructions={strInstructions} />

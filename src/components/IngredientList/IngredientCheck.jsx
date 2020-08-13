@@ -25,13 +25,13 @@ class IngredientCheck extends React.Component {
     return arr1.map((ing, i) => ing + ' ' + arr2[i]);
   }
 
-  criaArray = (lista, arr) => {
+  criaArray(lista, arr) {
     return lista.map((ele, i) => {
       if (arr[ele] !== null) {
         return arr[ele];
       }
     });
-  };
+  }
 
   contador = (event) => {
     let { cont } = this.state;

@@ -65,7 +65,6 @@ class StartRecipeButton extends React.Component {
 }
 
 StartRecipeButton.propTypes = {
-  inProgress: PropTypes.bool.isRequired,
   passRecipe1: PropTypes.func.isRequired,
   receita: PropTypes.func.isRequired,
 };
