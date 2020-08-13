@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import fetchDrinkCategory from '../../actions/actionDrinkCategory';
-import { fetchSelectedDrink } from '../../actions/actionSelectedDrink';
-import { fetchAllDrinks } from '../../actions/actionSelectAllD';
-import RenderDrinks from '../RenderCards/RenderDrinks';
-import { ChangeRender } from '../../actions/actionChangeRender';
-import { fetchMainIngDrink } from '../../service/ingredientApi';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import fetchDrinkCategory from "../../actions/actionDrinkCategory";
+import { fetchSelectedDrink } from "../../actions/actionSelectedDrink";
+import { fetchAllDrinks } from "../../actions/actionSelectAllD";
+import RenderDrinks from "../RenderCards/RenderDrinks";
+import { ChangeRender } from "../../actions/actionChangeRender";
+import { fetchMainIngDrink } from "../../service/ingredientApi";
 
 class FilterDrink extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class FilterDrink extends Component {
 
   componentDidMount() {
     const { fetch } = this.props;
-    this.drinkFetched()
+    this.drinkFetched();
     fetch();
   }
 
@@ -47,11 +47,12 @@ class FilterDrink extends Component {
 
   drinkFetched() {
     const { fetchAll, ingredient } = this.props;
-    ingredient === ''
-      ? fetchAll()
-      : fetchMainIngDrink(ingredient).then((drinkIng) =>
-          this.setState((state) => ({ ...state, drinkIng })),
-        );
+    if (ingredient === '') {
+      return fetchAll();
+    }
+    return fetchMainIngDrink(ingredient).then((drinkIng) =>
+      this.setState((state) => ({ ...state, drinkIng })),
+    );
   }
 
   buildCard() {
