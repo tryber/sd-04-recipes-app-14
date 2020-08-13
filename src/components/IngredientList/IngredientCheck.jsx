@@ -47,7 +47,7 @@ class IngredientCheck extends React.Component {
       const quantidades = Object.keys(receita).filter((e) => e.includes('Measure'));
       const arr = IngredientCheck.juntaArray(
         IngredientCheck.criaArray(ingredientes, receita),
-        IngredientCheck.criaArray(quantidades, receita)
+        IngredientCheck.criaArray(quantidades, receita),
       ).filter((ele) => ele.length > 1);
       console.log('arr', arr);
       return (
