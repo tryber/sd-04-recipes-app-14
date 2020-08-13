@@ -19,16 +19,12 @@ class FilterMeal extends Component {
     this.onClick = this.onClick.bind(this);
     this.buildCard = this.buildCard.bind(this);
     this.buildCardAll = this.buildCardAll.bind(this);
+    this.mealFetched = this.mealFetched.bind(this);
   }
 
   componentDidMount() {
-    const { fetch, fetchAll, ingredient } = this.props;
-    ingredient === ''
-      ? fetchAll()
-      : fetchMainIngMeal(ingredient)
-          .then((mealIng) =>
-            this.setState((state) => ({ ...state, mealIng }))
-          );
+    const { fetch } = this.props;
+    this.mealFetched();
     fetch();
   }
 
@@ -49,6 +45,15 @@ class FilterMeal extends Component {
     return null;
   }
 
+  mealFetched() {
+    const { fetchAll, ingredient } = this.props;
+    ingredient === ''
+      ? fetchAll()
+      : fetchMainIngMeal(ingredient).then((mealIng) =>
+          this.setState((state) => ({ ...state, mealIng })),
+        );
+  }
+
   buildCard() {
     const { mealSelected } = this.props;
     return mealSelected.map((foods, index) => (
@@ -64,11 +69,10 @@ class FilterMeal extends Component {
       return mealAll.map((meal, index) => (
         <RenderFoods foods={meal} index={index} />
       ));
-    } else {
-      return mealIng.map((meal, index) => (
-        <RenderFoods foods={meal} index={index} />
-      ));
     }
+    return mealIng.map((meal, index) => (
+      <RenderFoods foods={meal} index={index} />
+    ));
   }
 
   render() {
@@ -76,16 +80,16 @@ class FilterMeal extends Component {
     return (
       <div>
         <button
-          type="button"
-          data-testid="All-category-filter"
-          value="All"
+          type='button'
+          data-testid='All-category-filter'
+          value='All'
           onClick={this.onClick}
         >
           All
         </button>
         {mealCategories.map((item) => (
           <button
-            type="button"
+            type='button'
             key={item.strCategory}
             data-testid={`${item.strCategory}-category-filter`}
             value={item.strCategory}
@@ -125,19 +129,19 @@ FilterMeal.propTypes = {
       idMeal: PropTypes.string,
       strMeal: PropTypes.string,
       strMealThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
   mealCategories: PropTypes.arrayOf(
     PropTypes.shape({
       strCategory: PropTypes.string,
-    })
+    }),
   ).isRequired,
   mealSelected: PropTypes.arrayOf(
     PropTypes.shape({
       idMeal: PropTypes.string,
       strMeal: PropTypes.string,
       strMealThumb: PropTypes.string,
-    })
+    }),
   ).isRequired,
 };
 
