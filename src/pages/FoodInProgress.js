@@ -55,8 +55,6 @@ class FoodInProgress extends React.Component {
     this.setState({ receita });
   }
 
-
-
   render() {
     if (this.state.receita.idMeal) {
       const {
@@ -72,13 +70,8 @@ class FoodInProgress extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idMeal}
-            area={strArea}
-            type={'comida'}
-            categoria={strCategory}
-            src={strMealThumb}
-            alcolica={''}
-            nome={strMeal}
+            id={idMeal} area={strArea} type={'comida'} categoria={strCategory}
+            src={strMealThumb} alcolica={''} nome={strMeal}
           />
           <IngredientCheck receita={receita} />
           <Instructions strInstructions={strInstructions} />
@@ -113,7 +106,7 @@ FoodInProgress.propTypes = {
   botao: PropTypes.bool.isRequired,
   changeDone1: PropTypes.func.isRequired,
   changeInprogress1: PropTypes.func.isRequired,
-  receita: PropTypes.func.isRequired
+  receita: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

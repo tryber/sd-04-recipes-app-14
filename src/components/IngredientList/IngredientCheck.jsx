@@ -5,7 +5,7 @@ import { buttonFinalizar } from '../../actions/actions';
 
 class IngredientCheck extends React.Component {
   static juntaArray(arr1, arr2) {
-    return arr1.map((ing, i) => ing + ' ' + arr2[i]);
+    return arr1.map((ing, i) => `${ing} ${arr2[i]}`);
   }
 
   static criaArray(lista, arr) {
@@ -35,9 +35,8 @@ class IngredientCheck extends React.Component {
   contador(event) {
     let { cont } = this.state;
     if (event.target.checked) {
-      cont.push(event.target.value)
-    }
-    else (cont = cont.filter((ele) => ele !== event.target.value));
+      cont.push(event.target.value);
+    } else cont = cont.filter((ele) => ele !== event.target.value);
     return this.setState({ cont });
   }
 
@@ -48,7 +47,7 @@ class IngredientCheck extends React.Component {
       const quantidades = Object.keys(receita).filter((e) => e.includes('Measure'));
       const arr = IngredientCheck.juntaArray(
         IngredientCheck.criaArray(ingredientes, receita),
-        IngredientCheck.criaArray(quantidades, receita),
+        IngredientCheck.criaArray(quantidades, receita)
       ).filter((ele) => ele.length > 1);
       console.log('arr', arr);
       return (
@@ -80,7 +79,7 @@ class IngredientCheck extends React.Component {
 
 IngredientCheck.propTypes = {
   buttonFinalizar1: PropTypes.func.isRequired,
-  receita: PropTypes.func.isRequired
+  receita: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
