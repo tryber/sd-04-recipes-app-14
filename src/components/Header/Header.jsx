@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ProfileIcon from '../../images/profileIcon.svg';
 import SearchIcon from '../../images/searchIcon.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import './Header.css';
-import { Link } from 'react-router-dom';
 
 class Header extends Component {
   constructor(props) {
