@@ -45,14 +45,16 @@ class DrinkInProgress extends React.Component {
   }
 
   componentDidMount() {
-    this.handleInitialState();
-    DrinkInProgress.handleInProgress1(this.props.receita.idDrink);
+    const idNu = this.props.match.params.id
+    this.handleInitialState(idNu);
+    DrinkInProgress.handleInProgress1(idNu);
     this.props.changeInprogress1();
   }
 
-  handleInitialState() {
-    const { receita } = this.props;
-    this.setState({ receita });
+  handleInitialState(id) {
+    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then((response1) => response1.json())
+      .then((data) => this.setState({ receita: data.drinks[0] }));
   }
 
   render() {
@@ -66,14 +68,14 @@ class DrinkInProgress extends React.Component {
         strDrink,
         strTags,
       } = this.state.receita;
-      const { receita, botao } = this.props;
+      const { botao } = this.props;
       return (
         <div>
           <HeaderDetail
             id={idDrink} area={''} type={'bebida'} nome={strDrink}
             categoria={strCategory} src={strDrinkThumb} alcolica={strAlcoholic}
           />
-          <IngredientCheck receita={receita} />
+          <IngredientCheck receita={this.state.receita} />
           <Instructions strInstructions={strInstructions} />
           <button
             data-testid="finish-recipe-btn"
@@ -109,7 +111,7 @@ DrinkInProgress.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  receita: state.inProgressReducer.receita,
+  // receita: state.inProgressReducer.receita,
   botao: state.inProgressReducer.button,
 });
 

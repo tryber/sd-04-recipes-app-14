@@ -45,14 +45,16 @@ class FoodInProgress extends React.Component {
   }
 
   componentDidMount() {
-    this.handleInitialState();
+    const idNum = this.props.match.params.id
+    this.handleInitialState(idNum);
     FoodInProgress.handleInProgress(this.props.receita.idMeal);
     this.props.changeInprogress1();
   }
 
-  handleInitialState() {
-    const { receita } = this.props;
-    this.setState({ receita });
+  handleInitialState(id) {
+    return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then((response1) => response1.json())
+      .then((data) => this.setState({ receita: data.meals[0] }));
   }
 
   render() {
@@ -66,14 +68,14 @@ class FoodInProgress extends React.Component {
         strMeal,
         strTags,
       } = this.state.receita;
-      const { receita, botao } = this.props;
+      const { botao } = this.props;
       return (
         <div>
           <HeaderDetail
             id={idMeal} area={strArea} type={'comida'} categoria={strCategory}
             src={strMealThumb} alcolica={''} nome={strMeal}
           />
-          <IngredientCheck receita={receita} />
+          <IngredientCheck receita={this.state.receita} />
           <Instructions strInstructions={strInstructions} />
           <button
             disabled={!botao}
@@ -92,8 +94,7 @@ class FoodInProgress extends React.Component {
                 strTags,
               );
             }}
-          >
-            finalizar receita
+          >finalizar receita
           </button>
         </div>
       );
