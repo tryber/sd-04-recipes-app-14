@@ -45,7 +45,7 @@ class FoodInProgress extends React.Component {
   }
 
   componentDidMount() {
-    const idNum = this.props.match.params.id
+    const idNum = this.props.match.params.id;
     this.handleInitialState(idNum);
     FoodInProgress.handleInProgress(this.props.receita.idMeal);
     this.props.changeInprogress1();
@@ -72,8 +72,13 @@ class FoodInProgress extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idMeal} area={strArea} type={'comida'} categoria={strCategory}
-            src={strMealThumb} alcolica={''} nome={strMeal}
+            id={idMeal}
+            area={strArea}
+            type={'comida'}
+            categoria={strCategory}
+            src={strMealThumb}
+            alcolica={''}
+            nome={strMeal}
           />
           <IngredientCheck receita={this.state.receita} />
           <Instructions strInstructions={strInstructions} />
@@ -91,10 +96,11 @@ class FoodInProgress extends React.Component {
                 strMeal,
                 strMealThumb,
                 new Date(),
-                strTags,
+                strTags
               );
             }}
-          >finalizar receita
+          >
+            finalizar receita
           </button>
         </div>
       );
@@ -107,6 +113,11 @@ FoodInProgress.propTypes = {
   botao: PropTypes.bool.isRequired,
   changeDone1: PropTypes.func.isRequired,
   changeInprogress1: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  }),
   receita: PropTypes.func.isRequired,
 };
 
