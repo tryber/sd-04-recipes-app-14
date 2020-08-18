@@ -45,7 +45,7 @@ class DrinkInProgress extends React.Component {
   }
 
   componentDidMount() {
-    const idNu = this.props.match.params.id
+    const idNu = this.props.match.params.id;
     this.handleInitialState(idNu);
     DrinkInProgress.handleInProgress1(idNu);
     this.props.changeInprogress1();
@@ -72,8 +72,13 @@ class DrinkInProgress extends React.Component {
       return (
         <div>
           <HeaderDetail
-            id={idDrink} area={''} type={'bebida'} nome={strDrink}
-            categoria={strCategory} src={strDrinkThumb} alcolica={strAlcoholic}
+            id={idDrink}
+            area={''}
+            type={'bebida'}
+            nome={strDrink}
+            categoria={strCategory}
+            src={strDrinkThumb}
+            alcolica={strAlcoholic}
           />
           <IngredientCheck receita={this.state.receita} />
           <Instructions strInstructions={strInstructions} />
@@ -91,10 +96,11 @@ class DrinkInProgress extends React.Component {
                 strDrink,
                 strDrinkThumb,
                 new Date(),
-                strTags,
+                strTags
               );
             }}
-          >finalizar receita
+          >
+            finalizar receita
           </button>
         </div>
       );
@@ -107,7 +113,11 @@ DrinkInProgress.propTypes = {
   botao: PropTypes.bool.isRequired,
   changeDone1: PropTypes.func.isRequired,
   changeInprogress1: PropTypes.func.isRequired,
-  receita: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  }),
 };
 
 const mapStateToProps = (state) => ({

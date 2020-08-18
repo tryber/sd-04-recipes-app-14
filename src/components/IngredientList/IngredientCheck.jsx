@@ -47,9 +47,9 @@ class IngredientCheck extends React.Component {
       const quantidades = Object.keys(receita).filter((e) => e.includes('Measure'));
       const arr = IngredientCheck.juntaArray(
         IngredientCheck.criaArray(ingredientes, receita),
-        IngredientCheck.criaArray(quantidades, receita),
-        ).filter((ele) => ele.length > 1);
-      console.log('null', IngredientCheck.criaArray(ingredientes, receita))
+        IngredientCheck.criaArray(quantidades, receita)
+      ).filter((ele) => ele.length > 1);
+      console.log('null', IngredientCheck.criaArray(ingredientes, receita));
       console.log('arr', arr);
       return (
         <div>
@@ -64,6 +64,7 @@ class IngredientCheck extends React.Component {
                     data-testid={`${i}-ingredient-step`}
                     type="checkbox"
                     value={item}
+                    // style={checked ? { textDecoration: 'line-through' } : 'none'}
                     onClick={(event) => this.contador(event)}
                   />
                 </label>
