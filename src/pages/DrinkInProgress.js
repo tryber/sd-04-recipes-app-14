@@ -60,13 +60,8 @@ class DrinkInProgress extends React.Component {
   render() {
     if (this.state.receita.idDrink) {
       const {
-        strDrinkThumb,
-        strCategory,
-        idDrink,
-        strAlcoholic,
-        strInstructions,
-        strDrink,
-        strTags,
+        strDrinkThumb, strCategory, idDrink, strAlcoholic,
+        strInstructions, strDrink, strTags,
       } = this.state.receita;
       const { botao } = this.props;
       return (
@@ -96,11 +91,10 @@ class DrinkInProgress extends React.Component {
                 strDrink,
                 strDrinkThumb,
                 new Date(),
-                strTags
+                strTags,
               );
             }}
-          >
-            finalizar receita
+          >finalizar receita
           </button>
         </div>
       );
@@ -117,7 +111,7 @@ DrinkInProgress.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.number,
     }),
-  }),
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({

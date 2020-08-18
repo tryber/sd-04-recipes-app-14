@@ -60,13 +60,8 @@ class FoodInProgress extends React.Component {
   render() {
     if (this.state.receita.idMeal) {
       const {
-        idMeal,
-        strArea,
-        strMealThumb,
-        strCategory,
-        strInstructions,
-        strMeal,
-        strTags,
+        idMeal, strArea, strMealThumb, strCategory,
+        strInstructions, strMeal, strTags,
       } = this.state.receita;
       const { botao } = this.props;
       return (
@@ -96,11 +91,10 @@ class FoodInProgress extends React.Component {
                 strMeal,
                 strMealThumb,
                 new Date(),
-                strTags
+                strTags,
               );
             }}
-          >
-            finalizar receita
+          >finalizar receita
           </button>
         </div>
       );
@@ -117,7 +111,7 @@ FoodInProgress.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.number,
     }),
-  }),
+  }).isRequired,
   receita: PropTypes.func.isRequired,
 };
 
