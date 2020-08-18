@@ -16,6 +16,7 @@ import buildSearchBtnReducer from './buildSearchBtnReducer';
 import ChangeRender from './ChangeRender';
 import ingredientsReducer from './ingredientReducer';
 import DoneRecipe from './DoneRecipe';
+import foodByArea from './foodByArea';
 
 const rootReducer = combineReducers({
   inProgressReducer,
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   reducerDrinks,
   reducerFoods,
   reducerSearch,
+  foodByArea,
 });
 
 export default rootReducer;
