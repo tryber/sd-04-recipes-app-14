@@ -38,14 +38,21 @@ class ExploreFoodOrigin extends React.Component {
     return (
       <div>
         {foods.map(({ idMeal, strMeal, strMealThumb }, index) => {
-          return index < 12 ? (
-            <Link to={`/comidas/${idMeal}`}>
-              <div key={strMeal} data-testid={`${index}-recipe-card`}>
-                <img src={strMealThumb} data-testid={`${index}-card-img`} alt={`IMG ${strMeal}`} />
-                <p data-testid={`${index}-card-name`}>{strMeal}</p>
-              </div>
-            </Link>
-          ) : null;
+          if (index < 12) {
+            return (
+              <Link to={`/comidas/${idMeal}`}>
+                <div key={strMeal} data-testid={`${index}-recipe-card`}>
+                  <img
+                    src={strMealThumb}
+                    data-testid={`${index}-card-img`}
+                    alt={`IMG ${strMeal}`}
+                  />
+                  <p data-testid={`${index}-card-name`}>{strMeal}</p>
+                </div>
+              </Link>
+            );
+          }
+          return null;
         })}
       </div>
     );
@@ -81,7 +88,10 @@ const maptStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   saveAreas: () => dispatch(fetchAreas()),
   getFoodByArea: (area) => {
-    return area === 'All' ? dispatch(fetchAllFoods()) : dispatch(fetchFoods(area));
+    if (area === 'All') {
+      return dispatch(fetchAllFoods());
+    }
+    return dispatch(fetchFoods(area));
   },
 });
 

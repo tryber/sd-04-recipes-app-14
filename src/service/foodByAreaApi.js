@@ -9,7 +9,7 @@ const getFoodByArea = (area) =>
   );
 
 const getAllFoods = () =>
-  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`).then((data) =>
+  fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=").then((data) =>
     data.json().then((json) => (data.ok ? Promise.resolve(json) : Promise.reject(json))),
   );
 
