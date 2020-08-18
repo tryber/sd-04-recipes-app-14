@@ -5,12 +5,12 @@ import { buttonFinalizar } from '../../actions/actions';
 
 class IngredientCheck extends React.Component {
   static juntaArray(arr1, arr2) {
-    return arr1.map((ing, i) => `${ing} ${arr2[i]}`);
+    return arr1.filter((e) => e !== null).map((ing, i) => `${ing} ${arr2[i]}`);
   }
 
   static criaArray(lista, arr) {
     return lista.map((ele) => {
-      if (arr[ele] !== null) {
+      if (arr[ele] !== null || arr[ele] !== '') {
         return arr[ele];
       }
       return null;
@@ -48,12 +48,13 @@ class IngredientCheck extends React.Component {
       const arr = IngredientCheck.juntaArray(
         IngredientCheck.criaArray(ingredientes, receita),
         IngredientCheck.criaArray(quantidades, receita),
-      ).filter((ele) => ele.length > 1);
+        ).filter((ele) => ele.length > 1);
+      console.log('null', IngredientCheck.criaArray(ingredientes, receita))
       console.log('arr', arr);
       return (
         <div>
           {arr.map((item, i) => {
-            if (item !== '  ') {
+            if (item.length > 1) {
               return (
                 <label htmlFor={item}>
                   {item}
