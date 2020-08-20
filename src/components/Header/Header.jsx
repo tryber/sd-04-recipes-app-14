@@ -27,7 +27,12 @@ class Header extends Component {
 
   buildSearchBtn() {
     return (
-      <button src={SearchIcon} data-testid="search-top-btn" onClick={this.onClick}>
+      <button
+        src={SearchIcon}
+        className="btn btn-secondary"
+        data-testid="search-top-btn"
+        onClick={this.onClick}
+      >
         <img src={SearchIcon} alt="search-icon" />
       </button>
     );
@@ -37,7 +42,7 @@ class Header extends Component {
     return (
       <div>
         <div className="header-container">
-          <Link className="perfil-btn" to="/perfil">
+          <Link className="perfil-btn " to="/perfil">
             <img data-testid="profile-top-btn" src={ProfileIcon} alt="profile-icon" />
           </Link>
           <h1 className="page-title" data-testid="page-title">

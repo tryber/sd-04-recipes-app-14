@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const Perfil = ({ name = 'Perfil', email }) => {
   const history = useHistory();
@@ -20,6 +21,7 @@ const Perfil = ({ name = 'Perfil', email }) => {
       <p data-testid="profile-email">{email}</p>
       <button
         type="button"
+        className="btn btn-secondary"
         data-testid="profile-done-btn"
         onClick={() => {
           redirectTo('/receitas-feitas');
@@ -28,6 +30,7 @@ const Perfil = ({ name = 'Perfil', email }) => {
         Receitas Feitas
       </button>
       <button
+        className="btn btn-secondary"
         type="button"
         data-testid="profile-favorite-btn"
         onClick={() => {
@@ -37,6 +40,7 @@ const Perfil = ({ name = 'Perfil', email }) => {
         Receitas Favoritas
       </button>
       <button
+        className="btn btn-secondary"
         type="button"
         data-testid="profile-logout-btn"
         onClick={() => {

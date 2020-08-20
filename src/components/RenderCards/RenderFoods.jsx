@@ -12,7 +12,7 @@ function RenderFoods(props) {
   }
   if (foods.length === 1) return <Redirect to={`/comidas/${foods[0].idMeal}`} />;
   return (
-    <div data-testid={`${index}-recipe-card`} className="foods-card" key={foods.idMeal}>
+    <div data-testid={`${index}-recipe-card`} className="card" key={foods.idMeal}>
       <Link to={`/comidas/${foods.idMeal}`}>
         <img
           className="picture-cards-food"
@@ -20,7 +20,7 @@ function RenderFoods(props) {
           src={foods.strMealThumb}
           alt={foods.strMeal}
         />
-        <p data-testid={`${index}-card-name`}>{foods.strMeal}</p>
+        <p className="card-title" data-testid={`${index}-card-name`}>{foods.strMeal}</p>
       </Link>
     </div>
   );

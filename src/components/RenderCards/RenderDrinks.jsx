@@ -16,9 +16,10 @@ function RenderDrinks(props) {
   return (
     <div
       data-testid={`${index}-recipe-card`}
-      className="foods-card"
+      className="card"
       id={drink.idDrink}
       key={drink.strDrink}
+      style={{ width: '18rem' }}
     >
       <Link to={`/bebidas/${drink.idDrink}`}>
         <img
@@ -27,7 +28,9 @@ function RenderDrinks(props) {
           src={drink.strDrinkThumb}
           alt={drink.strDrink}
         />
-        <p data-testid={`${index}-card-name`}>{drink.strDrink}</p>
+        <p className="card-title" data-testid={`${index}-card-name`}>
+          {drink.strDrink}
+        </p>
       </Link>
     </div>
   );

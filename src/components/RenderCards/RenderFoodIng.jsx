@@ -20,7 +20,7 @@ function RenderFoodIng(props) {
     <Link to="/comidas/" onClick={() => handleClick()}>
       <div
         data-testid={`${index}-ingredient-card`}
-        className="foods-card"
+        className="card"
         key={foods.idIngredient}
       >
         <img
@@ -29,7 +29,7 @@ function RenderFoodIng(props) {
           src={`https://www.themealdb.com/images/ingredients/${foods.strIngredient}-Small.png`}
           alt={foods.strIngredient}
         />
-        <p data-testid={`${index}-card-name`}>{foods.strIngredient}</p>
+        <p className="card-title" data-testid={`${index}-card-name`}>{foods.strIngredient}</p>
       </div>
     </Link>
   );

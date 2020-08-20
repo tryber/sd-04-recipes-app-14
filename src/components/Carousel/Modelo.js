@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 export const ModeloFood = (props) => {
   const { data, index } = props;
   return (
-    <div className="recomendation-card">
+    <div class="carousel-inner card">
       <Link to={`/comidas/${data.idMeal}`}>
-        <div data-testid={`${index}-recomendation-card`} className="foods-card" key={index}>
+        <div data-testid={`${index}-recomendation-card`} class="carousel-item active" key={index}>
           <img className="picture-cards-food" src={data.strMealThumb} alt={data.strMeal} />
           <p data-testid={`${index}-recomendation-title`}>{data.strMeal}</p>
         </div>

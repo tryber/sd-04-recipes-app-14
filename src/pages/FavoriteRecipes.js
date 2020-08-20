@@ -39,10 +39,16 @@ class FavoriteRecipes extends React.Component {
   renderButtons() {
     return (
       <div>
-        <button type="button" data-testid="filter-by-all-btn" onClick={() => this.filter('todos')}>
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={() => this.filter('todos')}
+          className="btn btn-secondary"
+        >
           All
         </button>
         <button
+          className="btn btn-secondary"
           type="button"
           data-testid="filter-by-food-btn"
           onClick={() => this.filter('comida')}
@@ -50,6 +56,7 @@ class FavoriteRecipes extends React.Component {
           Food
         </button>
         <button
+          className="btn btn-secondary"
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={() => this.filter('bebida')}
@@ -68,7 +75,7 @@ class FavoriteRecipes extends React.Component {
         {this.renderButtons()}
         {(filter ? filteredData : data).map(
           ({ name, image, id, type, area, category, alcoholicOrNot }, index) => (
-            <div>
+            <div className="card">
               <p data-testid={`${index}-horizontal-top-text`}>
                 {type === 'comida' ? `${area} - ${category}` : `${alcoholicOrNot}`}
               </p>

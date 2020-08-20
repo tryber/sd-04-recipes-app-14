@@ -50,6 +50,7 @@ class StartRecipeButton extends React.Component {
         <button
           type="button"
           data-testid="start-recipe-btn"
+          className="btn btn-primary"
           style={
             StartRecipeButton.handleBotao(idNum)
               ? { display: 'none' }

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getEmail } from '../actions/actions';
@@ -47,41 +48,54 @@ class Login extends React.Component {
 
   render() {
     return (
-      <form>
-        <h3>Login</h3>
-        <label htmlFor="email">
-          E-mail
+      <div className="text-center">
+        <form className="form-signin">
+          <img
+            className="mb-4"
+            src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
+            alt=""
+            width="72"
+            height="72"
+          />
+          <h1 className="h3 mb-3 font-weight-normal">Login</h1>
+          {/* <label className="sr-only" htmlFor="email">
+            E-mail
+          </label> */}
           <input
+            className="form-control"
             onChange={this.handleEmail}
             type="email"
             name="email"
+            id="email"
+            placeholder="E-mail"
             data-testid="email-input"
             required
             pattern="[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}"
           />
-        </label>
-        <label htmlFor="senha">
-          Senha:
+          {/* <label htmlFor="senha">Senha:</label> */}
           <input
+            className="form-control"
             onChange={this.handlePassword}
             data-testid="password-input"
             type="password"
             name="senha"
             required
+            placeholder="Senha"
             minLength="6"
           />
-        </label>
-        <Link to="/comidas">
-          <button
-            disabled={!this.state.email || !this.state.password}
-            type="button"
-            onClick={() => this.handleSubmit()}
-            data-testid="login-submit-btn"
-          >
-            Entrar
-          </button>
-        </Link>
-      </form>
+          <Link to="/comidas">
+            <button
+              disabled={!this.state.email || !this.state.password}
+              type="button"
+              onClick={() => this.handleSubmit()}
+              data-testid="login-submit-btn"
+              className="btn btn-lg btn-primary btn-block"
+            >
+              Entrar
+            </button>
+          </Link>
+        </form>
+      </div>
     );
   }
 }
