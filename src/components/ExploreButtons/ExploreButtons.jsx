@@ -20,6 +20,7 @@ const ExploreButtons = ({ type }) => {
   return (
     <div>
       <button
+        className="btn btn-secondary"
         type="button"
         onClick={() => {
           redirectTo('ingredientes');
@@ -30,6 +31,7 @@ const ExploreButtons = ({ type }) => {
       </button>
       {type === 'comidas' && (
         <button
+          className="btn btn-secondary"
           type="button"
           onClick={() => {
             redirectTo('area');
@@ -39,7 +41,13 @@ const ExploreButtons = ({ type }) => {
           Por Local de Origem
         </button>
       )}
-      <button type="button" onClick={() => getRandomRecipe()} data-testid="explore-surprise">
+
+      <button
+        type="button"
+        onClick={() => getRandomRecipe()}
+        data-testid="explore-surprise"
+        className="btn btn-secondary"
+      >
         Me Surpreenda!
       </button>
     </div>

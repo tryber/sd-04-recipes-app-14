@@ -17,14 +17,14 @@ function RenderDrinkIng(props) {
 
   return (
     <Link to="/bebidas/" onClick={() => handlClick()}>
-      <div data-testid={`${index}-ingredient-card`} className="foods-card">
+      <div data-testid={`${index}-ingredient-card`} className="card">
         <img
           className="picture-cards-food"
           data-testid={`${index}-card-img`}
           src={`https://www.thecocktaildb.com/images/ingredients/${foods.strIngredient1}-Small.png`}
           alt={foods.strIngredient1}
         />
-        <p data-testid={`${index}-card-name`}>{foods.strIngredient1}</p>
+        <p className="card-title" data-testid={`${index}-card-name`}>{foods.strIngredient1}</p>
       </div>
     </Link>
   );

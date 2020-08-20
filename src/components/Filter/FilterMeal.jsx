@@ -7,6 +7,7 @@ import RenderFoods from '../RenderCards/RenderFoods';
 import { fetchAllMeal } from '../../actions/actionSelectAllM';
 import { ChangeRender } from '../../actions/actionChangeRender';
 import { fetchMainIngMeal } from '../../service/ingredientApi';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class FilterMeal extends Component {
   constructor(props) {
@@ -82,6 +83,7 @@ class FilterMeal extends Component {
       <div>
         <button
           type="button"
+          className="btn btn-secondary"
           data-testid="All-category-filter"
           value="All"
           onClick={this.onClick}
@@ -90,6 +92,7 @@ class FilterMeal extends Component {
         </button>
         {mealCategories.map((item) => (
           <button
+          className="btn btn-secondary"
             type="button"
             key={item.strCategory}
             data-testid={`${item.strCategory}-category-filter`}

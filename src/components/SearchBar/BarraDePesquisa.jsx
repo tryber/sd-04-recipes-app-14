@@ -21,6 +21,7 @@ function BarraDePesquisa({
       <input
         data-testid="search-input"
         type="text"
+        className="form-control"
         placeholder="Digite sua pesquisa"
         value={searchBar}
         onChange={(e) => primeiraLetra(e, inputSearch, radio, searchBar)}
@@ -28,6 +29,7 @@ function BarraDePesquisa({
       <button
         type="submit"
         data-testid="exec-search-btn"
+        className="btn btn-secondary"
         onClick={() => {
           changeRender(false);
           FoodOrDrinks(searchBar, radio, requestAPIdrinks, requestAPIfoods);

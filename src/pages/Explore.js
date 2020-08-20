@@ -14,6 +14,7 @@ const Explore = ({ name = 'Explorar' }) => {
       <Header name={name} />
       <button
         type="button"
+        className="btn btn-secondary"
         onClick={() => {
           redirectTo('/explorar/comidas');
         }}
@@ -23,6 +24,7 @@ const Explore = ({ name = 'Explorar' }) => {
       </button>
       <button
         type="button"
+        className="btn btn-secondary"
         onClick={() => {
           redirectTo('/explorar/bebidas');
         }}

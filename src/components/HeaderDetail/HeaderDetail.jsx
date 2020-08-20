@@ -7,9 +7,9 @@ const HeaderDetail = (props) => {
   const { src, nome, categoria, id, type, area, alcolica } = props;
   return (
     <div>
-      <div>
+      <div className="card">
         <div>
-          <img data-testid="recipe-photo" src={src} alt="foto da receita" />
+          <img data-testid="recipe-photo" src={src} alt="foto da receita" className="picture-cards-food" />
         </div>
         <div>
           <div>

@@ -57,9 +57,7 @@ class FilterDrink extends Component {
 
   buildCard() {
     const { drinkSelected } = this.props;
-    return drinkSelected.map((drink, index) => (
-      <RenderDrinks drink={drink} index={index} />
-    ));
+    return drinkSelected.map((drink, index) => <RenderDrinks drink={drink} index={index} />);
   }
 
   buildCardAll() {
@@ -67,13 +65,9 @@ class FilterDrink extends Component {
     const { drinkAll, ingredient } = this.props;
     console.log(drinkIng);
     if (ingredient === '') {
-      return drinkAll.map((drink, index) => (
-        <RenderDrinks drink={drink} index={index} />
-      ));
+      return drinkAll.map((drink, index) => <RenderDrinks drink={drink} index={index} />);
     }
-    return drinkIng.map((drink, index) => (
-      <RenderDrinks drink={drink} index={index} />
-    ));
+    return drinkIng.map((drink, index) => <RenderDrinks drink={drink} index={index} />);
   }
 
   render() {
@@ -84,6 +78,7 @@ class FilterDrink extends Component {
         {drinkCategories.map((item) => (
           <button
             type="button"
+            className="btn btn-secondary"
             data-testid={`${item.strCategory}-category-filter`}
             value={item.strCategory}
             onClick={(e) => this.onClick(e)}
@@ -92,6 +87,7 @@ class FilterDrink extends Component {
           </button>
         ))}
         <button
+          className="btn btn-secondary"
           type="button"
           data-testid="All-category-filter"
           value="All"

@@ -17,6 +17,7 @@ class ExploreFoodOrigin extends React.Component {
     const { areas } = foodByArea;
     return (
       <select
+        className="dropdown btn btn-secondary"
         data-testid="explore-by-area-dropdown"
         onChange={(event) => {
           this.props.getFoodByArea(event.target.value);
@@ -40,14 +41,17 @@ class ExploreFoodOrigin extends React.Component {
         {foods.map(({ idMeal, strMeal, strMealThumb }, index) => {
           if (index < 12) {
             return (
-              <Link to={`/comidas/${idMeal}`}>
+              <Link to={`/comidas/${idMeal}`} className="card">
                 <div key={strMeal} data-testid={`${index}-recipe-card`}>
                   <img
                     src={strMealThumb}
+                    className="picture-cards-food"
                     data-testid={`${index}-card-img`}
                     alt={`IMG ${strMeal}`}
                   />
-                  <p data-testid={`${index}-card-name`}>{strMeal}</p>
+                  <p className="card-title" data-testid={`${index}-card-name`}>
+                    {strMeal}
+                  </p>
                 </div>
               </Link>
             );

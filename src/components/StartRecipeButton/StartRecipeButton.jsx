@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { passRecipe } from '../../actions/actions';
-
+// Alo commit
 class StartRecipeButton extends React.Component {
   static handleBotao(id) {
     if (localStorage.doneRecipes) {
@@ -50,6 +50,7 @@ class StartRecipeButton extends React.Component {
         <button
           type="button"
           data-testid="start-recipe-btn"
+          className="btn btn-primary"
           style={
             StartRecipeButton.handleBotao(idNum)
               ? { display: 'none' }
